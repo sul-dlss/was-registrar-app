@@ -4,6 +4,7 @@ references:
   default_docker_ruby_executor: &default_docker_ruby_executor
     image: circleci/ruby:2.6.3-stretch-node
     environment:
+      BUNDLER_VERSION: 2.0.2
       BUNDLE_JOBS: 3
       BUNDLE_RETRY: 3
       BUNDLE_PATH: vendor/bundle
@@ -24,6 +25,10 @@ jobs:
       - *default_docker_ruby_executor
     steps:
       - checkout
+      # Install bundler
+      - run:
+          name: Install bundler
+          command: gem install bundler
       # Which version of bundler?
       - run:
           name: Which bundler?
@@ -65,6 +70,10 @@ jobs:
           keys:
             - rails-demo-bundle-v2-{{ checksum "Gemfile.lock" }}
             - rails-demo-bundle-v2-
+      # Install bundler
+      - run:
+          name: Install bundler
+          command: gem install bundler
       - run:
           name: Bundle Install
           command: bundle check || bundle install
