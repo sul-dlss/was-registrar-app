@@ -1,5 +1,7 @@
 # WAS Registrar App
 
+[![CircleCI](https://circleci.com/gh/sul-dlss/was-registrar-app/tree/master.svg?style=svg)](https://circleci.com/gh/sul-dlss/was-registrar-app/tree/master)
+
 The WAS Registrar App is a Rails application that:
 * Allows a web archivist to update configuration and schedule web archive collections to be fetched.
 * Allows a web archivist to monitor fetch workflow outcomes.
@@ -28,7 +30,8 @@ RAILS_ENV=test rake db:create db:migrate
 
 ## Tests
 ```
-rake
+bundle exec rubocop
+bundle exec rspec
 ```
 
 ## Run locally
