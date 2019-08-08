@@ -1,24 +1,45 @@
-# README
+# WAS Registrar App
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+The WAS Registrar App is a Rails application that:
+* Allows a web archivist to update configuration and schedule web archive collections to be fetched.
+* Allows a web archivist to monitor fetch workflow outcomes.
+* Initiates web archive fetch workflows according to schedule.
+* Maintains state for web archive collections.
 
-Things you may want to cover:
+It includes both HTML and API interfaces.
 
-* Ruby version
+WAS Registrar App is the successor to the [Web Registrar](https://github.com/sul-dlss/was-registrar).
 
-* System dependencies
+## Requirements
+* Ruby 2.6.3
+* Docker / Docker-Compose (optional)
 
-* Configuration
+## Setup
+### To use Postgres container (instead of local Postgres)
+```
+docker-compose up -d db
+```
+Note that the databases are stored in the _postgres_data_ directory; delete this directory to erase the databases.
 
-* Database creation
+### Setup the db
+```
+RAILS_ENV=test rake db:create db:migrate
+```
 
-* Database initialization
+## Tests
+```
+rake
+```
 
-* How to run the test suite
+## Run locally
+```
+docker-compose up -d db
+docker-compose run web rake db:setup
+docker-compose up -d
+```
 
-* Services (job queues, cache servers, search engines, etc.)
+## Deploying
+TODO
 
-* Deployment instructions
-
-* ...
+## Routes
+TODO
