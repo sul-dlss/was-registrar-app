@@ -13,10 +13,8 @@ services:
       - db
   db:
     image: postgres
-     # No ports shared externally, so that this doesn't conflict with the postgres
-     # server that TravisCI starts up.
-     # ports:
-     #   - "5432:5432"
+    ports:
+      - 5432:5432
     environment:
       - POSTGRES_PASSWORD=sekret
     volumes:
