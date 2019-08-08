@@ -12,7 +12,7 @@
   <% @collections.each do |collection| %>
 
     <tr>
-      <th scope="row"><%= collection.title %></th>
+      <th scope="row"><%= link_to collection.title, collection_path(collection)  %></th>
       <td><%= collection.druid %></td>
       <td><%= collection.last_successful_fetch %></td>
       <td><%= collection.last_fetch_succeeded %></td>
