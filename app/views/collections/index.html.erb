@@ -6,17 +6,23 @@
     <th scope="col">Last successful fetch</th>
     <th scope="col">Last fetch succeeded</th>
     <th scope="col">On/off</th>
+    <th scope="col">Actions</th>
   </tr>
   </thead>
   <tbody>
   <% @collections.each do |collection| %>
 
     <tr>
-      <th scope="row"><%= link_to collection.title, collection_path(collection)  %></th>
+      <th scope="row"><%= collection.title %></th>
       <td><%= collection.druid %></td>
       <td><%= collection.last_successful_fetch %></td>
       <td><%= collection.last_fetch_succeeded %></td>
       <td><%= collection.active ? 'on' : 'off' %></td>
+      <td class="text-center">
+        <%= link_to "View", collection_path(collection), class: 'badge badge-info'%>
+        <%= link_to "Edit", edit_collection_path(collection), class: 'badge badge-success'%>
+        <%= link_to "Delete", @collection, method: :destroy, data: { confirm: "Are you sure?" }, class: 'badge badge-danger' %>
+      </td>
     </tr>
   <% end %>
   </tbody>
