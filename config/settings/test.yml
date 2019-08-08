@@ -1,0 +1,23 @@
+wasapi_providers:
+  ait:
+    name: Archive-It
+    baseurl: https://archive-it.org/
+    authurl: https://archive-it.org/login
+    accounts:
+      ua:
+        accountid: 1
+        username: user
+        password: pass
+      history:
+        accountid: 2
+        username: user2
+        password: pass2
+  notait:
+    name: Not Archive-It
+    baseurl: https://not-archive-it.org/
+    authurl: https://not-archive-it.org/login
+    accounts:
+      ua:
+        accountid: 1
+        username: user
+        password: pass
