@@ -1,2 +1,40 @@
 <h1>Collections#new</h1>
 <p>Find me in app/views/collections/new.html.erb</p>
+
+<form>
+  <div class="card">
+    <div class="card-header">Collection</div>
+    <div class="card-body">
+      <div class="form-group">
+        <label for="title">Title</label>
+        <input type="text" class="form-control" id="title" placeholder="Enter Collection Title">
+      </div>
+      <div class="form-group">
+        <label for="druid">DRUID</label>
+        <input type="text" class="form-control" id="druid" placeholder="Enter Collection DRUID">
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-header">Status</div>
+    <div class="card-body">
+      <div class="form-group">
+        <label for="last_successful_fetch">Last successful fetch:</label>
+        <input type="text" class="form-control" id="title" placeholder="Enter date of last successful fetch">
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-header">Embargo</div>
+    <div class="card-body">
+      <div class="form-group">
+        <label for="embargo_months"># of months</label>
+        <input type="text" class="form-control" id="embargo_months" placeholder="6">
+      </div>
+    </div>
+  </div>
+
+  <button type="submit" class="btn btn-primary">Submit</button>
+</form>
