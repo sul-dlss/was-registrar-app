@@ -5,8 +5,9 @@ require 'rails_helper'
 RSpec.describe 'collections/index' do
   it 'displays all the collections' do
     assign(:collections, [
-             Collection.create!(title: 'collection1', druid: 'druid:1', last_fetch_succeeded: true, active: true),
-             Collection.create!(title: 'collection2', druid: 'druid:2')
+             Collection.create!(title: 'collection1', druid: 'druid:1', last_fetch_succeeded: true, active:
+                 true, embargo_months: 6),
+             Collection.create!(title: 'collection2', druid: 'druid:2', active: true, embargo_months: 6)
            ])
 
     render

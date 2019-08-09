@@ -23,7 +23,7 @@ class CollectionsController < ApplicationController
 
     if @collection.save
       flash[:notice] = 'Collection created.'
-      redirect_to :action => 'index'
+      redirect_to action: 'index'
     else
       render :new
     end
@@ -34,7 +34,7 @@ class CollectionsController < ApplicationController
 
     if @collection.update_attributes(collection_params)
       flash[:notice] = 'Collection updated.'
-      redirect_to :action => 'index'
+      redirect_to action: 'index'
     else
       Rails.logger.info(@collection.errors.any?)
       render :edit
@@ -46,5 +46,4 @@ class CollectionsController < ApplicationController
   def collection_params
     params.require(:collection).permit(:title, :druid, :embargo_months, :last_successful_fetch)
   end
-
 end

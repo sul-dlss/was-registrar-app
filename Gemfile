@@ -40,8 +40,8 @@ gem 'bootsnap', '>= 1.1.0', require: false
 
 # You know, so things looks pretty
 gem 'bootstrap', '~> 4.3.1'
-gem 'jquery-rails'
 gem 'bootstrap-datepicker-rails'
+gem 'jquery-rails'
 
 # For configuration
 gem 'config', '~> 1.7'
