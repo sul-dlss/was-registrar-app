@@ -1,2 +1,20 @@
-<h1>Collections#edit</h1>
-<p>Find me in app/views/collections/edit.html.erb</p>
+<h1>Edit Collection</h1>
+
+<%= form_for @collection do |f| %>
+  <%= f.label 'Collection Title' %><br>
+  <%= f.text_field :title %><br>
+
+  <%= f.label 'Collection DRUID' %><br>
+  <%= f.text_field :druid %><br>
+
+  <%= f.label 'Last successful fetch:' %><br>
+  <%= f.text_field :last_successful_fetch %><br>
+
+  <%= f.label 'Last fetch succeeded:' %><br>
+  <%= f.text_field :last_fetch_succeeded %><br>
+
+  <%= f.label 'Active:' %><br>
+  <%= f.text_field :active %><br>
+
+  <%= f.submit "Submit Article" %>
+<% end %>
