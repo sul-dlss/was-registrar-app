@@ -2,6 +2,8 @@
 
 # Controller for Collections
 class CollectionsController < ApplicationController
+  before_action :current_collection, only: [:show, :edit]
+
   def index
     @collections = Collection.order('title')
   end
@@ -11,11 +13,9 @@ class CollectionsController < ApplicationController
   end
 
   def show
-    @collection = Collection.find(params[:id])
   end
 
   def edit
-    @collection = Collection.find(params[:id])
   end
 
   def create
@@ -28,5 +28,9 @@ class CollectionsController < ApplicationController
 
   def collection_params
     params.require(:collection).permit(:title, :druid, :embargo_months, :last_successful_fetch)
+  end
+
+  def current_collection
+    @collection = Collection.find(params[:id])
   end
 end
