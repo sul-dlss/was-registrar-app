@@ -2,26 +2,43 @@
 
 # Controller for Collections
 class CollectionsController < ApplicationController
-  before_action :current_collection, only: [:show, :edit]
-
   def index
     @collections = Collection.order('title')
   end
 
   def new
-    @collection = Collection.new
-  end
-
-  def show
+    @collection = Collection.new do |collection|
+      collection.embargo_months = Settings.embargo
+    end
   end
 
   def edit
+    @collection = Collection.find(params[:id])
   end
 
   def create
-    collection = Collection.create(collection_params)
+    @collection = Collection.new(collection_params) do |collection|
+      collection.active = true
+    end
 
-    redirect_to collection_path(collection)
+    if @collection.save
+      flash[:notice] = 'Collection created.'
+      redirect_to :action => 'index'
+    else
+      render :new
+    end
+  end
+
+  def update
+    @collection = Collection.find(params[:id])
+
+    if @collection.update_attributes(collection_params)
+      flash[:notice] = 'Collection updated.'
+      redirect_to :action => 'index'
+    else
+      Rails.logger.info(@collection.errors.any?)
+      render :edit
+    end
   end
 
   private
@@ -30,7 +47,4 @@ class CollectionsController < ApplicationController
     params.require(:collection).permit(:title, :druid, :embargo_months, :last_successful_fetch)
   end
 
-  def current_collection
-    @collection = Collection.find(params[:id])
-  end
 end
