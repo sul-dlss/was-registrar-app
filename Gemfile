@@ -38,9 +38,8 @@ gem 'jbuilder', '~> 2.5'
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.1.0', require: false
 
-# You know, so things looks pretty
-gem 'bootstrap', '~> 4.3.1'
-gem 'jquery-rails'
+# Transpile app-like JavaScript. Read more: https://github.com/rails/webpacker
+gem 'webpacker', '~> 4.0'
 
 # For configuration
 gem 'config', '~> 1.7'
