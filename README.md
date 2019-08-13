@@ -15,6 +15,7 @@ WAS Registrar App is the successor to the [Web Registrar](https://github.com/sul
 ## Requirements
 * Ruby 2.6.3
 * Docker / Docker-Compose (optional)
+* npm for building assets
 
 ## Setup
 ### To use Postgres container (instead of local Postgres)
