@@ -5,5 +5,5 @@ Rails.application.routes.draw do
   # root to: 'collections#index'
   get '/', to: redirect('/collections')
 
-  resources :collections
+  resources :collections, only: %i[edit index new show update]
 end
