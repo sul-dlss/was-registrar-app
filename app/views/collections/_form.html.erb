@@ -20,7 +20,7 @@
     <div class="card-body">
       <div class="form-group">
         <label for="last_successful_fetch">Last successful fetch:</label>
-        <%= form.text_field :last_successful_fetch, placeholder: 'Enter date of last successful fetch' %>
+        <%= form.text_field :last_successful_fetch, data:{ provide:'datepicker' } %>
       </div>
     </div>
   </div>
