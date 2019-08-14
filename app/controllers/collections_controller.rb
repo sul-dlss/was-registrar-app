@@ -6,7 +6,48 @@ class CollectionsController < ApplicationController
     @collections = Collection.order('title')
   end
 
+  def new
+    @collection = Collection.new do |collection|
+      collection.embargo_months = Settings.default_embargo_months
+    end
+  end
+
+  def edit
+    @collection = Collection.find(params[:id])
+  end
+
   def show
     @collection = Collection.find_by_druid(params[:id])
+  end
+
+  def create
+    @collection = Collection.new(collection_params) do |collection|
+      collection.active = true
+    end
+
+    if @collection.save
+      flash[:notice] = 'Collection created.'
+      redirect_to action: 'index'
+    else
+      render :new
+    end
+  end
+
+  def update
+    @collection = Collection.find(params[:id])
+
+    if @collection.update_attributes(collection_params)
+      flash[:notice] = 'Collection updated.'
+      redirect_to action: 'index'
+    else
+      Rails.logger.info(@collection.errors.any?)
+      render :edit
+    end
+  end
+
+  private
+
+  def collection_params
+    params.require(:collection).permit(:title, :druid, :embargo_months, :last_successful_fetch)
   end
 end

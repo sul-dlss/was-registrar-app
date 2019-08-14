@@ -4,9 +4,10 @@ require 'rails_helper'
 
 RSpec.describe CollectionsController do
   describe 'GET index' do
+    let(:collection1) { create(:collection, title: 'zzz collection') }
+    let(:collection2) { create(:collection, title: 'aaa collection') }
+
     it 'assigns @collections ordered by title' do
-      collection1 = Collection.create title: 'zzz collection'
-      collection2 = Collection.create title: 'aaa collection'
       get :index
       expect(assigns(:collections)).to eq([collection2, collection1])
     end

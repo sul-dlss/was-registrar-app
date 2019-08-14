@@ -10,6 +10,14 @@
 
   <body>
     <div class="container">
+      <% flash.each do |name, msg| %>
+        <% if name == 'notice' %>
+          <%= content_tag :div, msg, class: "alert alert-info" %>
+        <% end %>
+        <% if name == 'alert' %>
+          <%= content_tag :div, msg, class: "alert alert-warning" %>
+        <% end %>
+      <% end %>
       <%= yield %>
     </div>
   </body>

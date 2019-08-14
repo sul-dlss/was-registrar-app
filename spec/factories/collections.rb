@@ -5,5 +5,7 @@ FactoryBot.define do
     sequence :druid do |n|
       "druid:abc123#{n}"
     end
+    active { true }
+    embargo_months { 6 }
   end
 end
