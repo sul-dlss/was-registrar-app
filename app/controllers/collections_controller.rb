@@ -8,7 +8,7 @@ class CollectionsController < ApplicationController
 
   def new
     @collection = Collection.new do |collection|
-      collection.embargo_months = Settings.embargo
+      collection.embargo_months = Settings.default_embargo_months
     end
   end
 
