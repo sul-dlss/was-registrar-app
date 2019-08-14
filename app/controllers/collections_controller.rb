@@ -16,6 +16,10 @@ class CollectionsController < ApplicationController
     @collection = Collection.find(params[:id])
   end
 
+  def show
+    @collection = Collection.find_by_druid(params[:id])
+  end
+
   def create
     @collection = Collection.new(collection_params) do |collection|
       collection.active = true
