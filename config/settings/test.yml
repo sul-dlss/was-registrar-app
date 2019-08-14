@@ -21,5 +21,3 @@ wasapi_providers:
         accountid: 1
         username: user
         password: pass
-# Default number of months to embargo a collection
-default_embargo_months: 6
