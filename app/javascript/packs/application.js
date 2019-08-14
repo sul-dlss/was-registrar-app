@@ -13,3 +13,4 @@
 
 import '../src/application.scss';
 import 'bootstrap/dist/js/bootstrap';
+import 'bootstrap-datepicker/dist/js/bootstrap-datepicker';
