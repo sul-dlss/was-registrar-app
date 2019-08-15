@@ -33,6 +33,9 @@ gem 'webpacker', '~> 4.0'
 
 # For configuration
 gem 'config', '~> 1.7'
+gem 'honeybadger'
+gem 'okcomputer'
+gem 'whenever'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
@@ -54,6 +57,11 @@ end
 
 group :test do
   gem 'rails-controller-testing'
+end
+
+group :deployment do
+  gem 'capistrano-rails'
+  gem 'dlss-capistrano'
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
