@@ -1,39 +1,12 @@
-<%= form_with model: @collection do |form| %>
+<%= simple_form_for @collection do |form| %>
   <div class="card">
     <div class="card-header">Collection</div>
     <div class="card-body">
-      <div class="form-group">
-        <label for="title">Title</label>
-        <%= form.text_field :title, placeholder: 'Enter Collection Title' %>
-      </div>
-      <div class="form-group">
-        <label for="druid">DRUID</label>
-        <%= form.text_field :druid, placeholder: 'Enter Collection DRUID' %>
-      </div>
+      <%= form.input :title %>
+      <%= form.input :druid %>
+      <%= form.input :last_successful_fetch, as: :string, input_html: { data: { provide: 'datepicker' } } %>
+      <%= form.input :embargo_months %>
+      <%= form.button :submit, class: 'btn-primary' %>
     </div>
   </div>
-
-  <br />
-
-  <div class="card">
-    <div class="card-header">Status</div>
-    <div class="card-body">
-      <div class="form-group">
-        <label for="last_successful_fetch">Last successful fetch:</label>
-        <%= form.text_field :last_successful_fetch, data:{ provide:'datepicker' } %>
-      </div>
-    </div>
-  </div>
-
-  <div class="card">
-    <div class="card-header">Embargo</div>
-    <div class="card-body">
-      <div class="form-group">
-        <label for="embargo_months"># of months</label>
-        <%= form.text_field :embargo_months, placeholder: '6' %>
-      </div>
-    </div>
-  </div>
-
-  <%= form.submit %>
-  <% end %>
+<% end %>

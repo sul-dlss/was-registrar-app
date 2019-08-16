@@ -59,6 +59,14 @@ jobs:
           key: rails-demo-yarn-{{ checksum "yarn.lock" }}
           paths:
             - ~/.cache/yarn
+      - run:
+          name: Webpacker compile
+          command: NODE_ENV=test bundle exec rails webpacker:compile
+      # Store packs
+      - save_cache:
+          key: packs-1
+          paths:
+            - public/packs-test
   test:
     parallelism: 3
     docker:
@@ -81,6 +89,9 @@ jobs:
           keys:
             - rails-demo-yarn-{{ checksum "yarn.lock" }}
             - rails-demo-yarn-
+      - restore_cache:
+          keys:
+            - packs-1
       - run:
           name: Rubocop
           command: bundle exec rubocop

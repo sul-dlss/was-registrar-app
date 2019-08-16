@@ -35,11 +35,13 @@ gem 'webpacker', '~> 4.0'
 gem 'config', '~> 1.7'
 gem 'honeybadger'
 gem 'okcomputer'
+gem 'simple_form'
 gem 'whenever'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platforms: %i[mri mingw x64_mingw]
+  gem 'capybara'
   gem 'factory_bot_rails'
   gem 'rspec-rails', '~> 3.8'
   gem 'rspec_junit_formatter'
