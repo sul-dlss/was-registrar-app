@@ -20,6 +20,8 @@ Style/MixinUsage:
     - bin/*
 
 Metrics/BlockLength:
+  ExcludedMethods:
+    - setup
   Exclude:
     - config/routes.rb
     - spec/**/*
@@ -30,3 +32,6 @@ Metrics/MethodLength:
 
 Metrics/LineLength:
   Max: 120
+  Exclude:
+    - config/initializers/simple_form.rb
+    - config/initializers/simple_form_bootstrap.rb

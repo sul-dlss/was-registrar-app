@@ -1,0 +1,16 @@
+# frozen_string_literal: true
+
+require 'rails_helper'
+
+RSpec.describe 'Create a collection', type: :feature do
+  context 'when fields are missing' do
+    it 'shows the errors' do
+      visit '/collections'
+      click_link 'Add a Collection'
+      click_button 'Create Collection'
+
+      expect(page).to have_content "Title can't be blank"
+      expect(page).to have_content "Druid can't be blank and Druid must begin with druid:"
+    end
+  end
+end
