@@ -1,3 +1,4 @@
+
 version: 2
 
 references:
@@ -62,18 +63,18 @@ jobs:
       - run:
           name: Webpacker compile
           command: NODE_ENV=test bundle exec rails webpacker:compile
-      # Store packs
-      - save_cache:
-          key: packs-1
-          paths:
-            - public/packs-test
+      # Copy packs into the workspace
+      - persist_to_workspace:
+          root: ~/project
+          paths: '*'
   test:
     parallelism: 3
     docker:
       - *default_docker_ruby_executor
       - *postgres
     steps:
-      - checkout
+      - attach_workspace:
+          at: '~/project'
       - restore_cache:
           keys:
             - rails-demo-bundle-v2-{{ checksum "Gemfile.lock" }}
@@ -89,9 +90,6 @@ jobs:
           keys:
             - rails-demo-yarn-{{ checksum "yarn.lock" }}
             - rails-demo-yarn-
-      - restore_cache:
-          keys:
-            - packs-1
       - run:
           name: Rubocop
           command: bundle exec rubocop
