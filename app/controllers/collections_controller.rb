@@ -17,7 +17,7 @@ class CollectionsController < ApplicationController
   end
 
   def show
-    @collection = Collection.find_by_druid(params[:id])
+    @collection = Collection.find(params[:id])
   end
 
   def create

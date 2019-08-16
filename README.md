@@ -53,5 +53,14 @@ docker-compose up -d
 ## Deploying
 TODO
 
-## Routes
-TODO
+## API
+
+### PUT /collections/:druid  Update attributes of a collection
+#### body: (json) the attributes to set
+
+##### Example value
+```
+  {
+    last_successful_fetch: '2019-08-16T11:31:00+06:00'
+  }
+```
