@@ -48,6 +48,6 @@ class CollectionsController < ApplicationController
   private
 
   def collection_params
-    params.require(:collection).permit(:title, :druid, :embargo_months, :last_successful_fetch)
+    params.require(:collection).permit(:title, :druid, :embargo_months, :last_successful_fetch, :active)
   end
 end
