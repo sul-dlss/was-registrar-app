@@ -2,6 +2,10 @@
 
 FactoryBot.define do
   factory :collection do
+    sequence :title do |n|
+      "Test title ##{n}"
+    end
+
     sequence :druid do |n|
       "druid:abc123#{n}"
     end
