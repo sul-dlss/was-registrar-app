@@ -21,3 +21,5 @@ wasapi_providers:
         accountid: 1
         username: user
         password: pass
+crawl_directory: tmp/jobs
+wasapi_downloader_bin: wasapi-downloader/v1.0.0/bin/wasapi-downloader

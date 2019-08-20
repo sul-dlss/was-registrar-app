@@ -21,3 +21,4 @@ wasapi_providers:
         accountid: 1
         username: user
         password: pass
+crawl_directory: tmp/jobs
