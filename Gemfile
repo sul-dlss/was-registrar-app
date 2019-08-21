@@ -30,6 +30,7 @@ gem 'webpacker', '~> 4.0'
 gem 'config', '~> 1.7'
 gem 'honeybadger'
 gem 'okcomputer'
+gem 'sidekiq'
 gem 'simple_form'
 
 group :development, :test do
