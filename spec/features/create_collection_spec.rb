@@ -21,6 +21,7 @@ RSpec.describe 'Create a collection', type: :feature do
 
       fill_in 'Title', with: 'Robots'
       fill_in 'Druid', with: "druid:#{rand(10_000)}"
+      fill_in 'Fetch start month', with: '2011-08-01'
       check 'collection_active'
       click_button 'Create Collection'
 

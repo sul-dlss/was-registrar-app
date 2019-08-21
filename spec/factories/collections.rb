@@ -11,5 +11,6 @@ FactoryBot.define do
     end
     active { true }
     embargo_months { 6 }
+    fetch_start_month { '2011-08-01' }
   end
 end
