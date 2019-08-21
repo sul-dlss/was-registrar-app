@@ -9,8 +9,6 @@ ruby '2.6.3'
 gem 'rails', '~> 6.0.0'
 # Use postgresql as the database for Active Record
 gem 'pg'
-# Use Puma as the app server
-gem 'puma', '~> 3.11'
 
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 # gem 'jbuilder', '~> 2.5'
@@ -21,9 +19,6 @@ gem 'puma', '~> 3.11'
 
 # Use ActiveStorage variant
 # gem 'mini_magick', '~> 4.8'
-
-# Use Capistrano for deployment
-# gem 'capistrano-rails', group: :development
 
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.1.0', require: false
@@ -36,13 +31,14 @@ gem 'config', '~> 1.7'
 gem 'honeybadger'
 gem 'okcomputer'
 gem 'simple_form'
-gem 'whenever'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug'
   gem 'capybara'
   gem 'factory_bot_rails'
+  # Use Puma as the app server
+  gem 'puma', '~> 3.11'
   gem 'rspec-rails', '~> 3.8'
   gem 'rspec_junit_formatter'
   gem 'rubocop'
@@ -58,6 +54,7 @@ group :development do
 end
 
 group :deployment do
+  gem 'capistrano-passenger'
   gem 'capistrano-rails'
   gem 'dlss-capistrano'
 end

@@ -2,9 +2,15 @@
 
 # Add your own tasks in files placed in lib/tasks ending in .rake,
 # for example lib/tasks/capistrano.rake, and they will automatically be available to Rake.
-require 'rubocop/rake_task'
+# rubocop:disable Lint/HandleExceptions
+begin
+  require 'rubocop/rake_task'
+  RuboCop::RakeTask.new
+rescue LoadError
+  # should only be here when gem group development and test aren't installed
+end
+# rubocop:enable Lint/HandleExceptions
 
 require_relative 'config/application'
 
-RuboCop::RakeTask.new
 Rails.application.load_tasks
