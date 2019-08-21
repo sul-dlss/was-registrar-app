@@ -48,7 +48,6 @@ class CollectionsController < ApplicationController
                                        :druid,
                                        :embargo_months,
                                        :fetch_start_month,
-                                       :last_successful_fetch,
                                        :active)
   end
 end
