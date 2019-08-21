@@ -8,8 +8,8 @@ RSpec.describe 'Update collection information', type: :request do
     let(:druid) { collection.druid }
 
     it 'updates the information' do
-      put "/collections/#{druid}", params: { last_successful_fetch: '2019-08-16T11:31:00+06:00' }, as: :json
-      expect(collection.reload.last_successful_fetch).to eq DateTime.parse('2019-08-16 05:31:00+0')
+      put "/collections/#{druid}", params: { title: 'Fast cars' }, as: :json
+      expect(collection.reload.title).to eq 'Fast cars'
     end
   end
 end

@@ -3,8 +3,6 @@
   <tr>
     <th scope="col">Collection</th>
     <th scope="col">Druid</th>
-    <th scope="col">Last successful fetch</th>
-    <th scope="col">Last fetch succeeded</th>
     <th scope="col">On/off</th>
   </tr>
   </thead>
@@ -14,8 +12,6 @@
     <tr>
       <th scope="row"><%= link_to collection.title, edit_collection_path(collection)%></th>
       <td><%= collection.druid %></td>
-      <td><%= collection.last_successful_fetch %></td>
-      <td><%= collection.last_fetch_succeeded %></td>
       <td><%= collection.active ? 'on' : 'off' %></td>
     </tr>
   <% end %>
