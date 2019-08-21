@@ -12,5 +12,7 @@ FactoryBot.define do
     active { true }
     embargo_months { 6 }
     fetch_start_month { '2011-08-01' }
+    wasapi_provider { 'ait' }
+    wasapi_account { 'ua' }
   end
 end

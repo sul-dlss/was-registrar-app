@@ -2,6 +2,8 @@
 
 # Controller for Collections
 class CollectionsController < ApplicationController
+  before_action :wasapi_provider_accounts, only: %i[new edit]
+
   def index
     @collections = Collection.order('title')
   end
@@ -47,6 +49,17 @@ class CollectionsController < ApplicationController
                                        :druid,
                                        :embargo_months,
                                        :fetch_start_month,
-                                       :active)
+                                       :active,
+                                       :wasapi_provider_account)
+  end
+
+  def wasapi_provider_accounts
+    @wasapi_provider_accounts = []
+    Settings.wasapi_providers.each do |provider, provider_info|
+      provider_info.accounts.each do |account, account_info|
+        @wasapi_provider_accounts << ["#{provider_info.name} (#{provider}) > #{account_info.accountid} (#{account})",
+                                      "#{provider}:#{account}"]
+      end
+    end
   end
 end
