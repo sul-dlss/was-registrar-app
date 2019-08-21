@@ -3,7 +3,7 @@
 # Web archive collection
 class Collection < ApplicationRecord
   self.primary_key = 'druid'
-  validates_presence_of :title, :druid, :active, :embargo_months
+  validates_presence_of :title, :druid, :active, :embargo_months, :fetch_start_month
   validates :druid, format: { with: /druid:.+/,
                               message: 'must begin with druid:' }
 end

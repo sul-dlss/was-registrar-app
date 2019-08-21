@@ -4,12 +4,7 @@ require 'rails_helper'
 
 RSpec.describe Collection, type: :model do
   let(:collection) do
-    Collection.new do |collection|
-      collection.title = 'My collection'
-      collection.druid = 'druid:abc123'
-      collection.active = true
-      collection.embargo_months = 6
-    end
+    build(:collection, title: 'My collection', druid: 'druid:abc123')
   end
 
   context 'a valid collection' do

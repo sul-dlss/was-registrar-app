@@ -3,12 +3,11 @@
 require 'rails_helper'
 
 RSpec.describe 'collections/index' do
+  let(:collection1) { create(:collection, title: 'collection1', druid: 'druid:1', last_fetch_succeeded: true) }
+  let(:collection2) { create(:collection, title: 'collection2', druid: 'druid:2') }
+
   it 'displays all the collections' do
-    assign(:collections, [
-             Collection.create!(title: 'collection1', druid: 'druid:1', last_fetch_succeeded: true, active:
-                 true, embargo_months: 6),
-             Collection.create!(title: 'collection2', druid: 'druid:2', active: true, embargo_months: 6)
-           ])
+    @collections = [collection1, collection2]
 
     render
 
