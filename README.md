@@ -8,8 +8,6 @@ The WAS Registrar App is a Rails application that:
 * Initiates web archive fetch workflows according to schedule.
 * Maintains state for web archive collections.
 
-It includes both HTML and API interfaces.
-
 WAS Registrar App is the successor to the [Web Registrar](https://github.com/sul-dlss/was-registrar).
 
 ## Requirements
@@ -52,15 +50,3 @@ docker-compose up -d
 
 ## Deploying
 TODO
-
-## API
-
-### PUT /collections/:druid  Update attributes of a collection
-#### body: (json) the attributes to set
-
-##### Example value
-```
-  {
-    last_successful_fetch: '2019-08-16T11:31:00+06:00'
-  }
-```
