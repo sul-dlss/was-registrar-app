@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-RSpec.describe 'Show collections', type: :request do
+RSpec.describe 'List collections', type: :request do
   before do
     create(:collection, title: 'zzz collection')
     create(:collection, title: 'aaa collection')
