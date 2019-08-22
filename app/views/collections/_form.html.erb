@@ -4,7 +4,10 @@
     <div class="card-body">
       <%= form.input :title %>
       <%= form.input :druid %>
-      <%= form.input :fetch_start_month, as: :string, input_html: { data: { provide: 'datepicker' } } %>
+      <%= form.input :fetch_start_month, as: :date, start_year: Date.today.year - 15,
+                  end_year: Date.today.year, discard_day: true,
+                  order: [:month, :year] %>
+      <%= form.input :wasapi_provider_account, label: 'WASAPI provider / account', collection: @wasapi_provider_accounts %>
       <%= form.input :embargo_months %>
       <%= form.input :active %>
       <%= form.button :submit, class: 'btn-primary' %>

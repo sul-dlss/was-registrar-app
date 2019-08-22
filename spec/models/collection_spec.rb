@@ -29,5 +29,10 @@ RSpec.describe Collection, type: :model do
       collection.embargo_months = nil
       expect(collection.valid?).to eq(false)
     end
+    it 'validates wasapi_provider_account' do
+      collection.wasapi_provider = nil
+      collection.wasapi_account = nil
+      expect(collection.valid?).to eq(false)
+    end
   end
 end
