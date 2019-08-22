@@ -36,7 +36,6 @@ class CollectionsController < ApplicationController
       flash[:notice] = 'Collection updated.'
       redirect_to action: 'index'
     else
-      Rails.logger.info(@collection.errors.any?)
       render :edit
     end
   end
