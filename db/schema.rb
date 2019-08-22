@@ -23,6 +23,8 @@ ActiveRecord::Schema.define(version: 2019_08_21_215554) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.date "fetch_start_month", null: false
+    t.string "wasapi_provider"
+    t.string "wasapi_account"
     t.index ["druid"], name: "index_collections_on_druid", unique: true
   end
 
