@@ -3,7 +3,7 @@
   <tr>
     <th scope="col">Collection</th>
     <th scope="col">Druid</th>
-    <th scope="col">On/off</th>
+    <th scope="col">Active/Inactive</th>
   </tr>
   </thead>
   <tbody>
@@ -12,7 +12,7 @@
     <tr>
       <th scope="row"><%= link_to collection.title, edit_collection_path(collection)%></th>
       <td><%= collection.druid %></td>
-      <td><%= collection.active ? 'on' : 'off' %></td>
+      <td><%= collection.active ? 'active' : 'inactive' %></td>
     </tr>
   <% end %>
   </tbody>

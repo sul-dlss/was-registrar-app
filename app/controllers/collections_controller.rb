@@ -9,6 +9,7 @@ class CollectionsController < ApplicationController
   def new
     @collection = Collection.new do |collection|
       collection.embargo_months = Settings.default_embargo_months
+      collection.active = true
     end
   end
 
@@ -17,9 +18,7 @@ class CollectionsController < ApplicationController
   end
 
   def create
-    @collection = Collection.new(collection_params) do |collection|
-      collection.active = true
-    end
+    @collection = Collection.new(collection_params)
 
     if @collection.save
       flash[:notice] = 'Collection created.'
