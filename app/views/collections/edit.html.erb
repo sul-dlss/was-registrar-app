@@ -1,2 +1,14 @@
 <h1>Edit <%= @collection.title %></h1>
 <%= render 'form' %>
+
+<div class="card" style="margin-top: 20px">
+  <div class="card-header">Months</div>
+  <div class="card-body">
+    <table class="table">
+      <thead>
+        <tr><th>Year</th><th>Month</th><th>Status</th></tr>
+      </thead>
+      <%= render partial: 'fetch_month', collection: @collection.fetch_months.order(:year, :month) %>
+    </table>
+  </div>
+</div>
