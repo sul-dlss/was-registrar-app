@@ -7,3 +7,5 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
+AdminPolicy.create([{ druid: 'druid:wr005wn5739', name: 'Web Archive Crawl Object Public APO' },
+                    { druid: 'druid:yf700yh0557', name: 'Web Archive Crawl Object Dark APO' }])

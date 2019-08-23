@@ -15,6 +15,12 @@ ActiveRecord::Schema.define(version: 2019_08_26_155605) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
+  create_table "admin_policies", force: :cascade do |t|
+    t.string "collection_id", null: false
+    t.string "druid"
+    t.string "name"
+  end
+
   create_table "collections", force: :cascade do |t|
     t.string "title"
     t.string "druid"
