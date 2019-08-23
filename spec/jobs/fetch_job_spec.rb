@@ -45,7 +45,7 @@ RSpec.describe FetchJob do
         expect(fetch_month.status).to eq 'success'
         expect(fetch_month.failure_reason).to be_nil
         expect(objects_client).to have_received(:register).with(params: { admin_policy: 'druid:wr005wn5739',
-                                                                          collection: 'druid:abc1232',
+                                                                          collection: fetch_month.collection_id,
                                                                           label: 'AIT_1/2017_11',
                                                                           object_type: 'item',
                                                                           rights: 'dark',
@@ -70,7 +70,6 @@ RSpec.describe FetchJob do
       described_class.new.tap { |job| job.instance_variable_set(:@fetch_month, fetch_month) }
     end
     it 'returns the correct args' do
-      puts(job.downloader_args)
       expect(job.downloader_args).to eq(['--crawlStartAfter',
                                          '2017-11-01',
                                          '--crawlStartBefore',
