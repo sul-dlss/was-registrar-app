@@ -2,11 +2,8 @@
 
 FactoryBot.define do
   factory :fetch_month do
-    collection { nil }
-    year { 1 }
-    month { 1 }
-    status { 'MyString' }
-    failure_reason { 'MyText' }
-    crawl_item_druid { 'MyString' }
+    year { 2017 }
+    month { 11 }
+    status { 'waiting' }
   end
 end

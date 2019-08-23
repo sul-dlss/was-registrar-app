@@ -28,6 +28,8 @@ gem 'webpacker', '~> 4.0'
 
 # For configuration
 gem 'config', '~> 1.7'
+gem 'dor-services-client'
+gem 'dor-workflow-client'
 gem 'honeybadger'
 gem 'okcomputer'
 gem 'sidekiq'
