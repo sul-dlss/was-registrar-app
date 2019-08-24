@@ -5,11 +5,9 @@ wasapi_providers:
     authurl: https://archive-it.org/login
     accounts:
       ua:
-        accountid: 1
         username: user
         password: pass
       history:
-        accountid: 2
         username: user2
         password: pass2
   notait:
@@ -18,7 +16,6 @@ wasapi_providers:
     authurl: https://not-archive-it.org/login
     accounts:
       ua:
-        accountid: 1
         username: user
         password: pass
 crawl_directory: tmp/jobs
