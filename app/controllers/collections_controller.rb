@@ -41,6 +41,12 @@ class CollectionsController < ApplicationController
     end
   end
 
+  def fetch
+    FetchJobCreator.run(druid: params[:id])
+    flash[:notice] = 'Queued fetch jobs for this collection.'
+    redirect_to action: 'index'
+  end
+
   private
 
   def collection_params

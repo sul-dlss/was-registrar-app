@@ -7,7 +7,9 @@ Rails.application.routes.draw do
   # root to: 'collections#index'
   get '/', to: redirect('/collections')
 
-  resources :collections, except: %i[destroy show]
+  resources :collections, except: %i[destroy show] do
+    get 'fetch', on: :member
+  end
 
   mount Sidekiq::Web => '/queues'
 end
