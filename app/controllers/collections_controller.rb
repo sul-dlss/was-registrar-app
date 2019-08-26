@@ -61,8 +61,8 @@ class CollectionsController < ApplicationController
   def wasapi_provider_accounts
     @wasapi_provider_accounts = []
     Settings.wasapi_providers.each do |provider, provider_info|
-      provider_info.accounts.each do |account, account_info|
-        @wasapi_provider_accounts << ["#{provider_info.name} (#{provider}) > #{account_info.accountid} (#{account})",
+      provider_info.accounts.each do |account, _|
+        @wasapi_provider_accounts << ["#{provider_info.name} (#{provider}) > #{account}",
                                       "#{provider}:#{account}"]
       end
     end

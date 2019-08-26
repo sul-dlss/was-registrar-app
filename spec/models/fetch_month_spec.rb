@@ -8,13 +8,13 @@ RSpec.describe FetchMonth, type: :model do
 
   describe '#crawl_directory' do
     it 'returns the correct crawl directory' do
-      expect(fetch_month.crawl_directory).to eq('tmp/jobs/AIT_1/2017_11')
+      expect(fetch_month.crawl_directory).to eq('tmp/jobs/AIT_COLLECTIONID/2017_11')
     end
   end
 
   describe '#job_directory' do
     it 'returns the correct job directory' do
-      expect(fetch_month.job_directory).to eq('AIT_1/2017_11')
+      expect(fetch_month.job_directory).to eq('AIT_COLLECTIONID/2017_11')
     end
   end
 
@@ -38,7 +38,7 @@ RSpec.describe FetchMonth, type: :model do
 
   describe '#wasapi_account_config' do
     it 'provides the correct config' do
-      expect(fetch_month.wasapi_account_config.accountid).to eq(1)
+      expect(fetch_month.wasapi_account_config.username).to eq('user')
     end
   end
 end

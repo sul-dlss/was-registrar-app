@@ -24,7 +24,7 @@ RSpec.describe 'Create a collection', type: :feature do
       fill_in 'Druid', with: "druid:#{rand(10_000)}"
       select 'August', from: 'collection_fetch_start_month_2i'
       select '2011', from: 'collection_fetch_start_month_1i'
-      select 'Archive-It (ait) > 1 (ua)', from: 'WASAPI provider / account'
+      select 'Archive-It (ait) > ua', from: 'WASAPI provider / account'
       check 'collection_active'
       click_button 'Create Collection'
 

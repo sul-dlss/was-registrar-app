@@ -35,7 +35,6 @@ class FetchJob < ApplicationJob
      '--crawlStartBefore', fetch_month.crawl_start_before,
      '--baseurl', fetch_month.wasapi_provider_config.baseurl,
      '--authurl', fetch_month.wasapi_provider_config.authurl,
-     '--accountId', fetch_month.wasapi_account_config.accountid.to_s,
      '--username', fetch_month.wasapi_account_config.username,
      '--password', fetch_month.wasapi_account_config.password,
      '--outputBaseDir', fetch_month.crawl_directory,
@@ -77,6 +76,6 @@ class FetchJob < ApplicationJob
     # TODO: Using simple scheme for now, but depends on #95
     # sul:ARCHIVEIT-[organizationalUnit]-[collectionId]-[frequency]-[crawlId]-[YYYY]_[MM]
     date_part = "#{fetch_month.year}_#{fetch_month.month.to_s.rjust(2, '0')}"
-    "sul:ARCHIVEIT-#{fetch_month.wasapi_account_config.accountid}-#{date_part}"
+    "sul:ARCHIVEIT-#{date_part}"
   end
 end
