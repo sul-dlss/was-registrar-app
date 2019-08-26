@@ -4,10 +4,11 @@ require 'rails_helper'
 
 RSpec.describe FetchJobCreator do
   before do
-    FetchMonth.destroy_all
     allow(Date).to receive(:today).and_return(Date.parse('2019-08-21'))
     allow(FetchJob).to receive(:perform_later)
   end
+
+  subject(:run) { described_class.run(collection: collection) }
 
   context 'when there is an embargo' do
     let(:collection) do
@@ -20,7 +21,7 @@ RSpec.describe FetchJobCreator do
       end
 
       it 'creates fetch_months' do
-        described_class.run(druid: collection.druid)
+        run
         expect(collection.fetch_months.map { |m| [m.year, m.month] }).to eq [
           [2018, 11], [2018, 12], [2019, 1]
         ]
@@ -31,7 +32,7 @@ RSpec.describe FetchJobCreator do
 
     context 'for a collection that does not have fetch months' do
       it 'creates fetch_months' do
-        described_class.run(druid: collection.druid)
+        run
         expect(collection.fetch_months.map { |m| [m.year, m.month] }).to eq [
           [2018, 10], [2018, 11], [2018, 12], [2019, 1]
         ]
@@ -51,7 +52,7 @@ RSpec.describe FetchJobCreator do
       end
 
       it 'creates fetch_months' do
-        described_class.run(druid: collection.druid)
+        run
         expect(collection.fetch_months.map { |m| [m.year, m.month] }).to eq [
           [2018, 11], [2018, 12], [2019, 1], [2019, 2], [2019, 3], [2019, 4], [2019, 5], [2019, 6], [2019, 7]
         ]
@@ -62,7 +63,7 @@ RSpec.describe FetchJobCreator do
 
     context 'for a collection that does not have fetch months' do
       it 'creates fetch_months' do
-        described_class.run(druid: collection.druid)
+        run
         expect(collection.fetch_months.map { |m| [m.year, m.month] }).to eq [
           [2018, 10], [2018, 11], [2018, 12], [2019, 1], [2019, 2], [2019, 3], [2019, 4], [2019, 5], [2019, 6],
           [2019, 7]

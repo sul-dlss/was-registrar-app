@@ -12,12 +12,12 @@
 #     Create a fetch_month for every month between the last fetch_month and now - embargo.
 #     Initiate a fetch job for each new month.
 class FetchJobCreator
-  def self.run(druid:)
-    new(druid: druid).create
+  def self.run(collection:)
+    new(collection: collection).create
   end
 
-  def initialize(druid:)
-    @druid = druid
+  def initialize(collection:)
+    @collection = collection
   end
 
   def create
@@ -33,7 +33,7 @@ class FetchJobCreator
 
   private
 
-  attr_reader :druid
+  attr_reader :collection
 
   def create_for_months(starting)
     date = starting
@@ -52,9 +52,5 @@ class FetchJobCreator
     # Subtract an extra month to account for this month (which is part of a month),
     # since only dealing with whole months.
     @stop_month ||= Date.today - collection.embargo_months.months - 1.month
-  end
-
-  def collection
-    @collection ||= Collection.find(druid)
   end
 end
