@@ -8,6 +8,7 @@
                   end_year: Date.today.year, discard_day: true,
                   order: [:month, :year] %>
       <%= form.input :wasapi_provider_account, label: 'WASAPI provider / account', collection: @wasapi_provider_accounts %>
+      <%= form.input :wasapi_collection_id, label: 'WASAPI collection id' %>
       <%= form.input :embargo_months %>
       <%= form.input :active %>
       <%= form.button :submit, class: 'btn-primary' %>

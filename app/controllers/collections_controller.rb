@@ -56,7 +56,8 @@ class CollectionsController < ApplicationController
                                        :embargo_months,
                                        :fetch_start_month,
                                        :active,
-                                       :wasapi_provider_account)
+                                       :wasapi_provider_account,
+                                       :wasapi_collection_id)
   end
 
   def wasapi_provider_accounts

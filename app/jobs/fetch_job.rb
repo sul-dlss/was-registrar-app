@@ -38,6 +38,7 @@ class FetchJob < ApplicationJob
      '--username', fetch_month.wasapi_account_config.username,
      '--password', fetch_month.wasapi_account_config.password,
      '--outputBaseDir', fetch_month.crawl_directory,
+     '--collectionId', fetch_month.collection.wasapi_collection_id,
      '--resume']
   end
   # rubocop:enable Metrics/AbcSize
@@ -76,6 +77,6 @@ class FetchJob < ApplicationJob
     # TODO: Using simple scheme for now, but depends on #95
     # sul:ARCHIVEIT-[organizationalUnit]-[collectionId]-[frequency]-[crawlId]-[YYYY]_[MM]
     date_part = "#{fetch_month.year}_#{fetch_month.month.to_s.rjust(2, '0')}"
-    "sul:ARCHIVEIT-#{date_part}"
+    "sul:ARCHIVEIT-#{fetch_month.collection.wasapi_collection_id}-#{date_part}"
   end
 end

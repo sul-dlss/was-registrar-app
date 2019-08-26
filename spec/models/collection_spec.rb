@@ -34,5 +34,9 @@ RSpec.describe Collection, type: :model do
       collection.wasapi_account = nil
       expect(collection.valid?).to eq(false)
     end
+    it 'validates wasapi_collection_id' do
+      collection.wasapi_collection_id = nil
+      expect(collection.valid?).to eq(false)
+    end
   end
 end
