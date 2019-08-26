@@ -2,11 +2,11 @@
 
 require 'rails_helper'
 
-RSpec.describe 'Queue fetches for a collection', type: :feature do
+RSpec.describe 'Queue fetch jobs for a collection', type: :feature do
   let(:collection) { create(:collection) }
 
   before do
-    expect(FetchJobCreator).to receive(:run).with(druid: collection.druid)
+    expect(FetchJobCreator).to receive(:run).with(collection: collection)
   end
 
   it 'initiates the fetches' do
