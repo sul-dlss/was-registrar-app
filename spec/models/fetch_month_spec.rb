@@ -8,13 +8,13 @@ RSpec.describe FetchMonth, type: :model do
 
   describe '#crawl_directory' do
     it 'returns the correct crawl directory' do
-      expect(fetch_month.crawl_directory).to eq('tmp/jobs/AIT_COLLECTIONID/2017_11')
+      expect(fetch_month.crawl_directory).to eq('tmp/jobs/AIT_915/2017_11')
     end
   end
 
   describe '#job_directory' do
     it 'returns the correct job directory' do
-      expect(fetch_month.job_directory).to eq('AIT_COLLECTIONID/2017_11')
+      expect(fetch_month.job_directory).to eq('AIT_915/2017_11')
     end
   end
 

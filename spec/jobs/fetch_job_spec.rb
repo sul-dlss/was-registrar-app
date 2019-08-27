@@ -9,13 +9,13 @@ RSpec.describe FetchJob do
   describe '#perform_now' do
     before do
       expect(Open3).to receive(:capture3).and_return([nil, stderr, status])
-      expect(FileUtils).to receive(:mkdir_p).with('tmp/jobs/AIT_COLLECTIONID/2017_11')
+      expect(FileUtils).to receive(:mkdir_p).with('tmp/jobs/AIT_915/2017_11')
     end
 
     let(:stderr) { nil }
     context 'when the fetch is successful and there are no warcs' do
       before do
-        allow(Dir).to receive(:glob).with('tmp/jobs/AIT_COLLECTIONID/2017_11/*.warc*').and_return([])
+        allow(Dir).to receive(:glob).with('tmp/jobs/AIT_915/2017_11/*.warc*').and_return([])
       end
       let(:status) { instance_double(Process::Status, success?: true) }
 
@@ -32,7 +32,7 @@ RSpec.describe FetchJob do
       let(:wf_client) { instance_double(Dor::Workflow::Client) }
 
       before do
-        allow(Dir).to receive(:glob).with('tmp/jobs/AIT_COLLECTIONID/2017_11/*.warc*').and_return(['foo.warc'])
+        allow(Dir).to receive(:glob).with('tmp/jobs/AIT_915/2017_11/*.warc*').and_return(['foo.warc'])
         allow(Dor::Services::Client).to receive(:objects).and_return(objects_client)
         allow(Dor::Workflow::Client).to receive(:new).and_return(wf_client)
         expect(wf_client).to receive(:create_workflow_by_name).with(druid, 'wasCrawlPreassemblyWF')
@@ -46,10 +46,10 @@ RSpec.describe FetchJob do
         expect(fetch_month.failure_reason).to be_nil
         expect(objects_client).to have_received(:register).with(params: { admin_policy: 'druid:wr005wn5739',
                                                                           collection: fetch_month.collection_id,
-                                                                          label: 'AIT_COLLECTIONID/2017_11',
+                                                                          label: 'AIT_915/2017_11',
                                                                           object_type: 'item',
                                                                           rights: 'dark',
-                                                                          source_id: 'sul:ARCHIVEIT-2017_11' })
+                                                                          source_id: 'sul:ARCHIVEIT-915-2017_11' })
       end
     end
 
@@ -83,7 +83,9 @@ RSpec.describe FetchJob do
                                          '--password',
                                          'pass',
                                          '--outputBaseDir',
-                                         'tmp/jobs/AIT_COLLECTIONID/2017_11',
+                                         'tmp/jobs/AIT_915/2017_11',
+                                         '--collectionId',
+                                         '915',
                                          '--resume'])
     end
   end

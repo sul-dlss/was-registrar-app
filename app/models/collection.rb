@@ -6,7 +6,8 @@ class Collection < ApplicationRecord
   has_many :fetch_months
   scope :active, -> { where(active: true) }
 
-  validates_presence_of :title, :druid, :embargo_months, :fetch_start_month, :wasapi_provider_account
+  validates_presence_of :title, :druid, :embargo_months, :fetch_start_month, :wasapi_provider_account,
+                        :wasapi_collection_id
   validates :active, inclusion: { in: [true, false] }
   validates :druid, format: { with: /druid:.+/,
                               message: 'must begin with druid:' }

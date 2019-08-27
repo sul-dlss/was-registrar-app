@@ -25,6 +25,7 @@ RSpec.describe 'Create a collection', type: :feature do
       select 'August', from: 'collection_fetch_start_month_2i'
       select '2011', from: 'collection_fetch_start_month_1i'
       select 'Archive-It (ait) > ua', from: 'WASAPI provider / account'
+      fill_in 'WASAPI collection id', with: '915'
       check 'collection_active'
       click_button 'Create Collection'
 
