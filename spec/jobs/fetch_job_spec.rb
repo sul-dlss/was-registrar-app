@@ -49,7 +49,7 @@ RSpec.describe FetchJob do
                                                                           label: 'AIT_915/2017_11',
                                                                           object_type: 'item',
                                                                           rights: 'dark',
-                                                                          source_id: 'sul:ARCHIVEIT-915-2017_11' })
+                                                                          source_id: 'sul:ait-915-2017_11' })
       end
     end
 

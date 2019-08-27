@@ -74,9 +74,8 @@ class FetchJob < ApplicationJob
   end
 
   def source_id
-    # TODO: Using simple scheme for now, but depends on #95
-    # sul:ARCHIVEIT-[organizationalUnit]-[collectionId]-[frequency]-[crawlId]-[YYYY]_[MM]
+    # sul:[wasapi provider]-[collectionId]-[YYYY]_[MM]
     date_part = "#{fetch_month.year}_#{fetch_month.month.to_s.rjust(2, '0')}"
-    "sul:ARCHIVEIT-#{fetch_month.collection.wasapi_collection_id}-#{date_part}"
+    "sul:#{fetch_month.collection.wasapi_provider}-#{fetch_month.collection.wasapi_collection_id}-#{date_part}"
   end
 end
