@@ -38,5 +38,8 @@ RSpec.describe Collection, type: :model do
       collection.wasapi_collection_id = nil
       expect(collection.valid?).to eq(false)
     end
+    it 'validates default admin_policy' do
+      expect(collection.admin_policy).to eq('druid:wr005wn5739')
+    end
   end
 end
