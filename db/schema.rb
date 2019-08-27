@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_08_26_155605) do
+ActiveRecord::Schema.define(version: 2019_08_27_172510) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -26,6 +26,7 @@ ActiveRecord::Schema.define(version: 2019_08_26_155605) do
     t.string "wasapi_account"
     t.date "fetch_start_month", null: false
     t.string "wasapi_collection_id", null: false
+    t.string "admin_policy", default: "druid:wr005wn5739"
     t.index ["druid"], name: "index_collections_on_druid", unique: true
   end
 

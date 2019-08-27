@@ -9,6 +9,7 @@ class Collection < ApplicationRecord
   validates_presence_of :title, :druid, :embargo_months, :fetch_start_month, :wasapi_provider_account,
                         :wasapi_collection_id
   validates :active, inclusion: { in: [true, false] }
+  validates :admin_policy, inclusion: { in: %w[druid:wr005wn5739 druid:yf700yh0557] }
   validates :druid, format: { with: /druid:.+/,
                               message: 'must begin with druid:' }
 
