@@ -14,6 +14,7 @@ WAS Registrar App is the successor to the [Web Registrar](https://github.com/sul
 * Ruby 2.6.3
 * Docker / Docker-Compose (optional)
 * npm for building assets
+* Java 8ish for [WASAPI Downloader](https://github.com/sul-dlss/wasapi-downloader)
 
 ## Setup
 ### To use Postgres container (instead of local Postgres)
@@ -26,6 +27,15 @@ Note that the databases are stored in the _postgres_data_ directory; delete this
 ```
 RAILS_ENV=test rake db:create db:migrate
 ```
+
+### Install WASAPI Downloader
+Note: The WASAPI Downloader is not typically needed for development; it is necessary for running fetches.
+
+```
+curl -L https://github.com/sul-dlss/wasapi-downloader/releases/download/v1.1.0/wasapi-downloader.zip > wasapi-downloader.zip
+unzip wasapi-downloader.zip
+```
+If installing in a different location, make the appropriate change in settings.
 
 ## Tests
 ```

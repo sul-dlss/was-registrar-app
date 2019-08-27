@@ -38,3 +38,6 @@
 yarn-debug.log*
 .yarn-integrity
 config/settings/production.yml
+wasapi-downloader.zip
+/wasapi-downloader
+config/settings.local.yml
