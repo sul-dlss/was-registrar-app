@@ -341,7 +341,7 @@ DEPENDENCIES
   config (~> 1.7)
   dlss-capistrano
   dor-services-client
-  dor-workflow-client (~> 3.4.2)
+  dor-workflow-client (~> 3.4, >= 3.4.2)
   factory_bot_rails
   honeybadger
   listen (>= 3.0.5, < 3.2)
