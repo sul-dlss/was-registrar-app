@@ -51,6 +51,12 @@ class FetchJob < ApplicationJob
     @workflow_client ||= Dor::Workflow::Client.new(url: Settings.workflow.url)
   end
 
+  def dor_services_client
+    @dor_services_client ||= Dor::Services::Client.configure(url: Settings.dor_services.url,
+                                                             token: Settings.dor_services.token,
+                                                             token_header: Settings.dor_services.token_header)
+  end
+
   def register
     register_params = { object_type: 'item',
                         admin_policy: fetch_month.collection.admin_policy,
@@ -59,7 +65,7 @@ class FetchJob < ApplicationJob
                         collection: fetch_month.collection_id,
 
                         rights: 'dark' }
-    response = Dor::Services::Client.objects.register(params: register_params)
+    response = dor_services_client.objects.register(params: register_params)
 
     response[:pid]
   end
