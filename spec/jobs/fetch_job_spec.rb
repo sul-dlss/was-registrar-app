@@ -15,7 +15,7 @@ RSpec.describe FetchJob do
     let(:stderr) { nil }
     context 'when the fetch is successful and there are no warcs' do
       before do
-        allow(Dir).to receive(:glob).with('tmp/jobs/AIT_915/2017_11/*.warc*').and_return([])
+        allow(Dir).to receive(:glob).with('tmp/jobs/AIT_915/2017_11/**/*.warc*').and_return([])
       end
       let(:status) { instance_double(Process::Status, success?: true) }
 
@@ -32,7 +32,7 @@ RSpec.describe FetchJob do
       let(:wf_client) { instance_double(Dor::Workflow::Client) }
 
       before do
-        allow(Dir).to receive(:glob).with('tmp/jobs/AIT_915/2017_11/*.warc*').and_return(['foo.warc'])
+        allow(Dir).to receive(:glob).with('tmp/jobs/AIT_915/2017_11/**/*.warc*').and_return(['foo.warc'])
         allow(Dor::Services::Client).to receive(:objects).and_return(objects_client)
         allow(Dor::Workflow::Client).to receive(:new).and_return(wf_client)
         expect(wf_client).to receive(:create_workflow_by_name).with(druid, 'wasCrawlPreassemblyWF')
