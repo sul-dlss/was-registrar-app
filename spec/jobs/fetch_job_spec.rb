@@ -83,7 +83,7 @@ RSpec.describe FetchJob do
                                          '--password',
                                          'pass',
                                          '--outputBaseDir',
-                                         'tmp/jobs/AIT_915/2017_11',
+                                         'tmp/jobs/AIT_915/2017_11/',
                                          '--collectionId',
                                          '915',
                                          '--resume'])

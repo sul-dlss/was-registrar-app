@@ -16,6 +16,13 @@ RSpec.describe FetchMonth, type: :model do
     it 'returns the correct job directory' do
       expect(fetch_month.job_directory).to eq('AIT_915/2017_11')
     end
+    context 'when the month is a single digit' do
+      let(:fetch_month) { create(:fetch_month, collection: collection, month: 1) }
+
+      it 'returns the correct job directory with month padded' do
+        expect(fetch_month.job_directory).to eq('AIT_915/2017_01')
+      end
+    end
   end
 
   describe '#crawl_start_after' do
