@@ -3,7 +3,7 @@
 require 'rails_helper'
 
 RSpec.describe FetchJob do
-  let(:collection) { create(:collection) }
+  let(:collection) { create(:collection, admin_policy: 'druid:yf700yh0557') }
   let(:fetch_month) { create(:fetch_month, collection: collection) }
 
   describe '#perform_now' do
@@ -44,7 +44,7 @@ RSpec.describe FetchJob do
         described_class.perform_now(fetch_month)
         expect(fetch_month.status).to eq 'success'
         expect(fetch_month.failure_reason).to be_nil
-        expect(objects_client).to have_received(:register).with(params: { admin_policy: 'druid:wr005wn5739',
+        expect(objects_client).to have_received(:register).with(params: { admin_policy: 'druid:yf700yh0557',
                                                                           collection: fetch_month.collection_id,
                                                                           label: 'AIT_915/2017_11',
                                                                           object_type: 'item',

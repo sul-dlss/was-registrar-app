@@ -53,8 +53,7 @@ class FetchJob < ApplicationJob
 
   def register
     register_params = { object_type: 'item',
-                        # TODO: Set this correctly after #94 is completed.
-                        admin_policy: 'druid:wr005wn5739',
+                        admin_policy: fetch_month.collection.admin_policy,
                         source_id: source_id,
                         label: fetch_month.job_directory,
                         collection: fetch_month.collection_id,
