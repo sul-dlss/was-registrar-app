@@ -45,7 +45,7 @@ RSpec.describe FetchJob do
         expect(fetch_month.status).to eq 'success'
         expect(fetch_month.failure_reason).to be_nil
         expect(objects_client).to have_received(:register).with(params: { admin_policy: 'druid:yf700yh0557',
-                                                                          collection: fetch_month.collection_id,
+                                                                          collection: fetch_month.collection.druid,
                                                                           label: 'AIT_915/2017_11',
                                                                           object_type: 'item',
                                                                           rights: 'dark',
