@@ -10,7 +10,8 @@ class FetchMonth < ApplicationRecord
   end
 
   def job_directory
-    File.join("#{collection.wasapi_provider.upcase}_#{collection.wasapi_collection_id}", "#{year}_#{month}")
+    date_part = "#{year}_#{month.to_s.rjust(2, '0')}"
+    File.join("#{collection.wasapi_provider.upcase}_#{collection.wasapi_collection_id}", date_part)
   end
 
   def crawl_start_after

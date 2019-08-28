@@ -37,7 +37,7 @@ class FetchJob < ApplicationJob
      '--authurl', fetch_month.wasapi_provider_config.authurl,
      '--username', fetch_month.wasapi_account_config.username,
      '--password', fetch_month.wasapi_account_config.password,
-     '--outputBaseDir', fetch_month.crawl_directory,
+     '--outputBaseDir', fetch_month.crawl_directory + '/',
      '--collectionId', fetch_month.collection.wasapi_collection_id,
      '--resume']
   end
