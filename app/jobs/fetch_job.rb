@@ -44,7 +44,7 @@ class FetchJob < ApplicationJob
   # rubocop:enable Metrics/AbcSize
 
   def warcs?
-    Dir.glob("#{fetch_month.crawl_directory}/*.warc*").any?
+    Dir.glob("#{fetch_month.crawl_directory}/**/*.warc*").any?
   end
 
   def workflow_client
