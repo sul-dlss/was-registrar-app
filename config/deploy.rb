@@ -25,13 +25,17 @@ set :deploy_to, "/opt/app/was/#{fetch(:application)}"
 set :linked_files, %w[config/database.yml config/honeybadger.yml config/secrets.yml]
 
 # Default value for linked_dirs is []
-set :linked_dirs, %w[log config/settings vendor/bundle public/system]
+set :linked_dirs, %w[log config/settings vendor/bundle public/system tmp/pids]
 
 # Default value for default_env is {}
 # set :default_env, { path: "/opt/ruby/bin:$PATH" }
 
 # Default value for keep_releases is 5
 # set :keep_releases, 5
+
+# Sidekiq configuration (run one process with ten threads)
+# see sidekiq.yml for concurrency and queue settings
+set :sidekiq_processes, 1
 
 # honeybadger_env otherwise defaults to rails_env
 set :honeybadger_env, fetch(:stage)
