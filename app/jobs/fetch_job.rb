@@ -62,8 +62,7 @@ class FetchJob < ApplicationJob
                         admin_policy: fetch_month.collection.admin_policy,
                         source_id: source_id,
                         label: fetch_month.job_directory,
-                        collection: fetch_month.collection_id,
-
+                        collection: fetch_month.collection.druid,
                         rights: 'dark' }
     response = dor_services_client.objects.register(params: register_params)
 

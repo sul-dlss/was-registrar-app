@@ -27,11 +27,10 @@ ActiveRecord::Schema.define(version: 2019_08_27_172510) do
     t.date "fetch_start_month", null: false
     t.string "wasapi_collection_id", null: false
     t.string "admin_policy", default: "druid:wr005wn5739"
-    t.index ["druid"], name: "index_collections_on_druid", unique: true
   end
 
   create_table "fetch_months", force: :cascade do |t|
-    t.string "collection_id", null: false
+    t.bigint "collection_id", null: false
     t.integer "year", null: false
     t.integer "month", null: false
     t.string "status", null: false
@@ -40,8 +39,9 @@ ActiveRecord::Schema.define(version: 2019_08_27_172510) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["collection_id", "year", "month"], name: "index_fetch_months_on_collection_id_and_year_and_month", unique: true
+    t.index ["collection_id"], name: "index_fetch_months_on_collection_id"
     t.index ["crawl_item_druid"], name: "index_fetch_months_on_crawl_item_druid", unique: true
   end
 
-  add_foreign_key "fetch_months", "collections", primary_key: "druid"
+  add_foreign_key "fetch_months", "collections"
 end

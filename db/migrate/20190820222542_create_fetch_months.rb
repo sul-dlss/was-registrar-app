@@ -3,7 +3,7 @@
 class CreateFetchMonths < ActiveRecord::Migration[6.0]
   def change
     create_table :fetch_months do |t|
-      t.string :collection_id, null: false
+      t.references :collection, null: false, foreign_key: true
       t.integer :year, null: false
       t.integer :month, null: false
       t.string :status, null: false
@@ -13,6 +13,5 @@ class CreateFetchMonths < ActiveRecord::Migration[6.0]
       t.index ['crawl_item_druid'], unique: true
       t.index %w[collection_id year month], unique: true
     end
-    add_foreign_key :fetch_months, :collections, column: :collection_id, primary_key: :druid
   end
 end

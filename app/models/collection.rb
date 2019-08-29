@@ -2,7 +2,6 @@
 
 # Web archive collection
 class Collection < ApplicationRecord
-  self.primary_key = 'druid'
   has_many :fetch_months
   scope :active, -> { where(active: true) }
 
