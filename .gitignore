@@ -41,3 +41,4 @@ config/settings/production.yml
 wasapi-downloader.zip
 /wasapi-downloader
 config/settings.local.yml
+coverage/*

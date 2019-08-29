@@ -1,6 +1,8 @@
 # WAS Registrar App
 
 [![CircleCI](https://circleci.com/gh/sul-dlss/was-registrar-app/tree/master.svg?style=svg)](https://circleci.com/gh/sul-dlss/was-registrar-app/tree/master)
+[![Test Coverage](https://api.codeclimate.com/v1/badges/825ca3f3c2fe04d3319c/test_coverage)](https://codeclimate.com/github/sul-dlss/was-registrar-app/test_coverage)
+[![Maintainability](https://api.codeclimate.com/v1/badges/825ca3f3c2fe04d3319c/maintainability)](https://codeclimate.com/github/sul-dlss/was-registrar-app/maintainability)
 
 The WAS Registrar App is a Rails application that:
 * Allows a web archivist to update configuration and schedule web archive collections to be fetched.
