@@ -6,6 +6,11 @@ require 'open3'
 class FetchJob < ApplicationJob
   queue_as :default
 
+  rescue_from(StandardError) do |exception|
+    fetch_month&.update(failure_reason: exception.to_s, status: 'failure')
+    raise exception
+  end
+
   attr_reader :fetch_month
 
   def perform(fetch_month)
@@ -24,9 +29,7 @@ class FetchJob < ApplicationJob
     _, stderr, status = Open3.capture3(Settings.wasapi_downloader_bin, *downloader_args)
     return if status.success?
 
-    failure_reason = "Fetching WARCs failed: #{stderr}"
-    fetch_month.update(failure_reason: failure_reason, status: 'failure')
-    raise failure_reason
+    raise "Fetching WARCs failed: #{stderr}"
   end
 
   # rubocop:disable Metrics/AbcSize
