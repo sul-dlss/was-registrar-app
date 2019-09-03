@@ -15,7 +15,7 @@
       <thead>
         <tr><th>Year</th><th>Month</th><th>Status</th></tr>
       </thead>
-      <%= render partial: 'fetch_month', collection: @collection.fetch_months.order(:year, :month) %>
+      <%= render partial: 'fetch_month', collection: @collection.fetch_months.order(year: :desc, month: :desc) %>
     </table>
   </div>
 </div>
