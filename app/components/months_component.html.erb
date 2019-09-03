@@ -1,0 +1,8 @@
+<table class="table">
+  <thead>
+    <tr><th>Year</th><th>Month</th><th>Status</th></tr>
+  </thead>
+  <% collection.fetch_months.order(year: :desc, month: :desc).each do |fetch_month| %>
+    <%= render FetchMonthComponent, fetch_month: fetch_month %>
+  <% end %>
+</table>

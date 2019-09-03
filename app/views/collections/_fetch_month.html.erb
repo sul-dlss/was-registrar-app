@@ -1,5 +1,0 @@
-<tr>
-  <td><%= fetch_month.year %></td>
-  <td><%= Date::MONTHNAMES[fetch_month.month] %></td>
-  <td><%= fetch_month.status %><% if fetch_month.status == 'success' %>: <% if fetch_month.crawl_item_druid %>Created <%= fetch_month.crawl_item_druid %><% else %>No WARCs fetched<% end %><% end %><% if fetch_month.failure_reason %>: <%= fetch_month.failure_reason %><% end %></td>
-</tr>
