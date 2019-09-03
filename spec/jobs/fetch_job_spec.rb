@@ -7,14 +7,11 @@ RSpec.describe FetchJob do
   let(:fetch_month) { create(:fetch_month, collection: collection) }
 
   describe '#perform_now' do
-    before do
-      expect(Open3).to receive(:capture3).and_return([nil, stderr, status])
-      expect(FileUtils).to receive(:mkdir_p).with('tmp/jobs/AIT_915/2017_11')
-    end
-
     let(:stderr) { nil }
     context 'when the fetch is successful and there are no warcs' do
       before do
+        expect(Open3).to receive(:capture3).and_return([nil, stderr, status])
+        expect(FileUtils).to receive(:mkdir_p).with('tmp/jobs/AIT_915/2017_11')
         allow(Dir).to receive(:glob).with('tmp/jobs/AIT_915/2017_11/**/*.warc*').and_return([])
       end
       let(:status) { instance_double(Process::Status, success?: true) }
@@ -32,6 +29,8 @@ RSpec.describe FetchJob do
       let(:wf_client) { instance_double(Dor::Workflow::Client) }
 
       before do
+        expect(Open3).to receive(:capture3).and_return([nil, stderr, status])
+        expect(FileUtils).to receive(:mkdir_p).with('tmp/jobs/AIT_915/2017_11')
         allow(Dir).to receive(:glob).with('tmp/jobs/AIT_915/2017_11/**/*.warc*').and_return(['foo.warc'])
         allow(Dor::Services::Client).to receive(:objects).and_return(objects_client)
         allow(Dor::Workflow::Client).to receive(:new).and_return(wf_client)
@@ -57,10 +56,27 @@ RSpec.describe FetchJob do
       let(:status) { instance_double(Process::Status, success?: false) }
       let(:stderr) { 'Ooops' }
 
+      before do
+        expect(Open3).to receive(:capture3).and_return([nil, stderr, status])
+        expect(FileUtils).to receive(:mkdir_p).with('tmp/jobs/AIT_915/2017_11')
+      end
+
       it 'raises an error successfully' do
         expect { described_class.perform_now(fetch_month) }.to raise_error 'Fetching WARCs failed: Ooops'
         expect(fetch_month.status).to eq 'failure'
         expect(fetch_month.failure_reason).to eq 'Fetching WARCs failed: Ooops'
+      end
+    end
+
+    context 'when a non-fetch error occurs' do
+      before do
+        expect(FileUtils).to receive(:mkdir_p).with('tmp/jobs/AIT_915/2017_11').and_raise(Errno::ENOSPC)
+      end
+
+      it 'raises an error successfully' do
+        expect { described_class.perform_now(fetch_month) }.to raise_error Errno::ENOSPC
+        expect(fetch_month.status).to eq 'failure'
+        expect(fetch_month.failure_reason).to eq 'No space left on device'
       end
     end
   end
