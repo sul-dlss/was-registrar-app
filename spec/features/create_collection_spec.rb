@@ -5,7 +5,7 @@ require 'rails_helper'
 RSpec.describe 'Create a collection', type: :feature do
   context 'when fields are missing' do
     it 'shows the errors' do
-      visit '/collections'
+      visit collections_path
       click_link 'Add a Collection'
       click_button 'Create Collection'
 
@@ -17,7 +17,7 @@ RSpec.describe 'Create a collection', type: :feature do
 
   context 'when all fields are present' do
     it 'shows the errors' do
-      visit '/collections'
+      visit collections_path
       click_link 'Add a Collection'
 
       fill_in 'Title', with: 'Robots'
@@ -30,6 +30,15 @@ RSpec.describe 'Create a collection', type: :feature do
       click_button 'Create Collection'
 
       expect(page).to have_content 'Collection created.'
+    end
+  end
+
+  context 'when cancelling' do
+    it 'returns to collections list page' do
+      visit collections_path
+      click_link 'Add a Collection'
+      click_link 'Cancel'
+      expect(page).to have_current_path(collections_path)
     end
   end
 end
