@@ -68,4 +68,6 @@ Sidekiq can be monitored from [/queues](http://localhost:3000/queues).
 For more information on configuring and deploying Sidekiq, see this [doc](https://github.com/sul-dlss/DevOpsDocs/blob/master/projects/sul-requests/background_jobs.md).
 
 ## Deploying
-TODO
+To deploy to [stage](https://was-registrar-app-stage.stanford.edu): `bundle exec cap stage deploy`
+
+To deploy to [production](https://was-registrar-app.stanford.edu): `bundle exec cap prod deploy`
