@@ -1,26 +1,37 @@
-<table class="table">
-  <thead>
-  <tr>
-    <th scope="col">Collection</th>
-    <th scope="col">Druid</th>
-    <th scope="col">Provider</th>
-    <th scope="col">Account</th>
-    <th scope="col">Active/Inactive</th>
-  </tr>
-  </thead>
-  <tbody>
-  <% @collections.each do |collection| %>
+<div class="card" style="margin-top: 20px">
+  <div class="card-header">Collections</div>
+  <div class="card-body">
+    <table class="table">
+      <thead>
+      <tr>
+        <th scope="col">Collection</th>
+        <th scope="col">Druid</th>
+        <th scope="col">Active/Inactive</th>
+      </tr>
+      </thead>
+      <tbody>
+      <% @collections.each do |collection| %>
 
-    <tr>
-      <th scope="row"><%= link_to collection.title, edit_collection_path(collection)%></th>
-      <td><%= collection.druid %></td>
-      <td><%= collection.wasapi_provider %></td>
-      <td><%= collection.wasapi_account %></td>
-      <td><%= collection.active ? 'active' : 'inactive' %></td>
-    </tr>
-  <% end %>
-  </tbody>
-</table>
+        <tr>
+          <th scope="row"><%= link_to collection.title, edit_collection_path(collection)%></th>
+          <td><%= collection.druid %></td>
+          <td><%= collection.active ? 'active' : 'inactive' %></td>
+        </tr>
+      <% end %>
+      </tbody>
+    </table>
+  </div>
+  <div class="card-footer">
+    <%= link_to "Add a Collection", new_collection_path, class: 'btn btn-link'%>
+  </div>
+</div>
 
-<%= link_to "Add a Collection", new_collection_path, class: 'btn btn-link'%>
-<%= link_to "Sidekiq Dashboard", "/queues", class: 'btn btn-link'%>
+<div class="card" style="margin-top: 20px">
+  <div class="card-header">Current jobs</div>
+  <div class="card-body">
+    <%= render FetchMonthJobsComponent, fetch_months: @fetch_month_jobs %>
+  </div>
+  <div class="card-footer">
+    <%= link_to "Sidekiq Dashboard", "/queues", class: 'btn btn-link'%>
+  </div>
+</div>
