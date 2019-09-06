@@ -30,6 +30,11 @@ Note that the databases are stored in the _postgres_data_ directory; delete this
 RAILS_ENV=test rake db:create db:migrate
 ```
 
+### To use Redis container (instead of local Redis)
+```
+docker-compose up -d redis
+```
+
 ### Install WASAPI Downloader
 Note: The WASAPI Downloader is not typically needed for development; it is necessary for running fetches.
 
@@ -66,6 +71,11 @@ Background processing is performed by [Sidekiq](https://github.com/mperham/sidek
 Sidekiq can be monitored from [/queues](http://localhost:3000/queues).
 
 For more information on configuring and deploying Sidekiq, see this [doc](https://github.com/sul-dlss/DevOpsDocs/blob/master/projects/sul-requests/background_jobs.md).
+
+To run a Sidekiq worker locally:
+```
+bundle exec sidekiq
+```
 
 ## Deploying
 To deploy to [stage](https://was-registrar-app-stage.stanford.edu): `bundle exec cap stage deploy`

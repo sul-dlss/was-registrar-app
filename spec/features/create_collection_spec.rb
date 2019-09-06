@@ -3,6 +3,10 @@
 require 'rails_helper'
 
 RSpec.describe 'Create a collection', type: :feature do
+  before do
+    allow(FetchJobLister).to receive(:list).and_return([])
+  end
+
   context 'when fields are missing' do
     it 'shows the errors' do
       visit collections_path

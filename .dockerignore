@@ -1,1 +1,4 @@
 /node_modules
+/tmp
+/postgres-data
+/redis-data

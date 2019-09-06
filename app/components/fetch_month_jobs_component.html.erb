@@ -1,0 +1,12 @@
+<% if fetch_months.empty? %>
+  <p>No jobs are currently processing.</p>
+<% else %>
+  <table class="table">
+    <thead>
+    <tr><th>Collection</th><th>Year</th><th>Month</th></tr>
+    </thead>
+    <% fetch_months.each do |fetch_month| %>
+      <%= render FetchMonthJobComponent, fetch_month: fetch_month %>
+    <% end %>
+  </table>
+<% end %>

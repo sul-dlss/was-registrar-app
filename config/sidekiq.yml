@@ -2,3 +2,4 @@
 :concurrency: 1
 :queues:
   - was_registrar_app_production_default
+  - was_registrar_app_development_default

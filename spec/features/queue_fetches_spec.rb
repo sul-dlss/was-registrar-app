@@ -6,6 +6,7 @@ RSpec.describe 'Queue fetch jobs for a collection', type: :feature do
   let(:collection) { create(:collection) }
 
   before do
+    allow(FetchJobLister).to receive(:list).and_return([])
     expect(FetchJobCreator).to receive(:run).with(collection: collection)
   end
 

@@ -6,6 +6,7 @@ class CollectionsController < ApplicationController
 
   def index
     @collections = Collection.order('title')
+    @fetch_month_jobs = FetchJobLister.list
   end
 
   def new

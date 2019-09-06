@@ -6,11 +6,13 @@ RSpec.describe 'List collections', type: :request do
   before do
     create(:collection, title: 'zzz collection')
     create(:collection, title: 'aaa collection')
+    allow(FetchJobLister).to receive(:list).and_return([])
   end
 
   it 'shows the information' do
-    get collections_path
-    expect(response.body).to match 'zzz collection'
-    expect(response.body).to match 'aaa collection'
+    get '/collections'
+    expect(response.body).to include 'Collections'
+    expect(response.body).to include 'zzz collection'
+    expect(response.body).to include 'aaa collection'
   end
 end
