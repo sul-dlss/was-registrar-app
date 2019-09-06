@@ -7,12 +7,16 @@ RSpec.describe Collection, type: :model do
     build(:collection, title: 'My collection', druid: 'druid:abc123')
   end
 
+  before do
+    create(:collection, wasapi_collection_id: '916')
+  end
+
   context 'a valid collection' do
     it 'validates' do
       expect(collection.valid?).to eq(true)
     end
   end
-  context 'an valid collection' do
+  context 'an invalid collection' do
     it 'validates title' do
       collection.title = nil
       expect(collection.valid?).to eq(false)
@@ -40,6 +44,10 @@ RSpec.describe Collection, type: :model do
     end
     it 'validates default admin_policy' do
       expect(collection.admin_policy).to eq('druid:wr005wn5739')
+    end
+    it 'validates unique' do
+      collection.wasapi_collection_id = '916'
+      expect(collection.valid?).to eq(false)
     end
   end
 end
