@@ -14,6 +14,6 @@ FactoryBot.define do
     fetch_start_month { '2011-08-01' }
     wasapi_provider { 'ait' }
     wasapi_account { 'ua' }
-    wasapi_collection_id { '915' }
+    sequence :wasapi_collection_id, &:to_s
   end
 end
