@@ -26,11 +26,12 @@ gem 'webpacker', '~> 4.0'
 
 gem 'actionview-component'
 # For configuration
-gem 'config', '~> 1.7'
+gem 'config', '~> 2.0'
 gem 'dor-services-client'
 gem 'dor-workflow-client', '~> 3.4', '>= 3.4.2'
 gem 'honeybadger'
 gem 'okcomputer'
+
 # TODO: Unpin from 5.x once we have switched to using systemd to manage the sidekiq daemon
 gem 'sidekiq', '~> 5.2'
 gem 'simple_form'
