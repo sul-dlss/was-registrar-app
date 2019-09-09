@@ -13,3 +13,13 @@
 
 import '../src/application.scss';
 import 'bootstrap/dist/js/bootstrap';
+import 'datatables.net';
+
+$(document).ready(function() {
+  $('#collection-table').DataTable( {
+    "paging":   false,
+    "ordering": true,
+    "info":     false,
+    "order": [[ 0, "desc" ]]
+  } );
+} );
