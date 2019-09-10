@@ -15,7 +15,7 @@ import '../src/application.scss';
 import 'bootstrap/dist/js/bootstrap';
 import 'datatables.net';
 
-$(document).ready(function() {
+document.addEventListener("DOMContentLoaded", function() {
   $('#collection-table').DataTable( {
     "paging":   false,
     "ordering": true,
