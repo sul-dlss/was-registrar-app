@@ -13,13 +13,14 @@
 
 import '../src/application.scss';
 import 'bootstrap/dist/js/bootstrap';
-import 'datatables.net';
+import {DataTable} from "simple-datatables"
 
 document.addEventListener("DOMContentLoaded", function() {
-  $('#collection-table').DataTable( {
-    "paging":   false,
-    "ordering": true,
-    "info":     false,
-    "order": [[ 0, "desc" ]]
-  } );
+  const dataTable = new DataTable("#collection-table", {
+    paging: false,
+    labels: {
+      placeholder: 'Filter...',
+    },
+    columns: [{ select: 0, sort: 'asc' }]
+  });
 } );
