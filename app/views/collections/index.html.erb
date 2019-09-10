@@ -6,6 +6,8 @@
       <tr>
         <th scope="col">Collection</th>
         <th scope="col">Druid</th>
+        <th scope="col">Provider</th>
+        <th scope="col">Account</th>
         <th scope="col">Active/Inactive</th>
       </tr>
       </thead>
@@ -15,6 +17,8 @@
         <tr>
           <th scope="row"><%= link_to collection.title, edit_collection_path(collection)%></th>
           <td><%= collection.druid %></td>
+          <td><%= collection.wasapi_provider %></td>
+          <td><%= collection.wasapi_account %></td>
           <td><%= collection.active ? 'active' : 'inactive' %></td>
         </tr>
       <% end %>
