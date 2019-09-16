@@ -9,6 +9,5 @@ workflow:
 dor_services:
   url:  'https://dor-services-test.stanford.test'
   token: secret-token
-  token_header: 'X-Auth'
 
 argo_view_url: https://argo.stanford.edu/view/%s
