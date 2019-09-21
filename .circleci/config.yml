@@ -68,7 +68,6 @@ jobs:
           root: ~/project
           paths: '*'
   test:
-    parallelism: 3
     docker:
       - *default_docker_ruby_executor
       - *postgres
@@ -79,7 +78,6 @@ jobs:
           keys:
             - rails-demo-bundle-v2-{{ checksum "Gemfile.lock" }}
             - rails-demo-bundle-v2-
-      # Install bundler
       - run:
           name: Install bundler
           command: gem install bundler
@@ -104,29 +102,13 @@ jobs:
           command: |
             curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64 > ./cc-test-reporter
             chmod +x ./cc-test-reporter
-      # Run rspec in parallel
-      - run:
-          command: |
-            mkdir -p test-results/rspec
             ./cc-test-reporter before-build
-            TESTFILES=$(circleci tests glob "spec/**/*_spec.rb" | circleci tests split --split-by=timings)
-            bundle exec rspec --profile 10 --format RspecJunitFormatter --out test-results/rspec/rspec.xml --format progress -- ${TESTFILES}
       - run:
-          name: Code Climate Test Coverage
-          command: ./cc-test-reporter format-coverage -t simplecov -o "coverage/codeclimate.$CIRCLE_NODE_INDEX.json"
-      - persist_to_workspace:
-          root: coverage
-          paths:
-            - codeclimate.*.json
+          name: rspec
+          command: bundle exec rspec
       - run:
-          name: Send test report to Code Climate
-          command: |
-            ./cc-test-reporter sum-coverage --output - coverage/codeclimate.*.json | ./cc-test-reporter upload-coverage --input -
-      - store_test_results:
-          path: test-results
-      - store_artifacts:
-          path: test-artifacts
-
+          name: upload test coverage report to Code Climate
+          command: ./cc-test-reporter after-build --coverage-input-type simplecov --exit-code $?
 workflows:
   version: 2
   build_and_test:
