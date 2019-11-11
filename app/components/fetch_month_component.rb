@@ -23,7 +23,9 @@ class FetchMonthComponent < ActionView::Component::Base
   def argo_link
     return unless crawl_item_druid
 
-    path = format(Settings.argo_view_url, crawl_item_druid)
+    # Prefer `String#%` to `Kernel#format` now that `ActionView::Component`
+    # responds to `#format` as of version 1.4.0
+    path = Settings.argo_view_url % crawl_item_druid
     link_to crawl_item_druid, path, target: '_new'
   end
 
