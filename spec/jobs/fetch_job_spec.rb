@@ -25,6 +25,8 @@ RSpec.describe FetchJob do
 
     context 'when the fetch is successful and there are warcs' do
       let('druid') { 'druid:abc123' }
+      let(:version_client) { instance_double(Dor::Services::Client::ObjectVersion, current: '5') }
+      let(:object_client) { instance_double(Dor::Services::Client::Object, version: version_client) }
       let(:objects_client) { instance_double(Dor::Services::Client::Objects, register: { pid: druid }) }
       let(:wf_client) { instance_double(Dor::Workflow::Client) }
 
@@ -33,8 +35,9 @@ RSpec.describe FetchJob do
         expect(FileUtils).to receive(:mkdir_p).with('tmp/jobs/AIT_915/2017_11')
         allow(Dir).to receive(:glob).with('tmp/jobs/AIT_915/2017_11/**/*.warc*').and_return(['foo.warc'])
         allow(Dor::Services::Client).to receive(:objects).and_return(objects_client)
+        allow(Dor::Services::Client).to receive(:object).and_return(object_client)
         allow(Dor::Workflow::Client).to receive(:new).and_return(wf_client)
-        expect(wf_client).to receive(:create_workflow_by_name).with(druid, 'wasCrawlPreassemblyWF')
+        expect(wf_client).to receive(:create_workflow_by_name).with(druid, 'wasCrawlPreassemblyWF', version: 5)
       end
 
       let(:status) { instance_double(Process::Status, success?: true) }
