@@ -72,7 +72,8 @@ class FetchJob < ApplicationJob
   end
 
   def start_workflow(druid)
-    workflow_client.create_workflow_by_name(druid, 'wasCrawlPreassemblyWF')
+    current_version = dor_services_client.object(druid).version.current.to_i
+    workflow_client.create_workflow_by_name(druid, 'wasCrawlPreassemblyWF', version: current_version)
   end
 
   def success(druid: nil)
