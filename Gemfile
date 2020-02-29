@@ -43,7 +43,7 @@ group :development, :test do
   gem 'capybara'
   gem 'factory_bot_rails'
   # Use Puma as the app server
-  gem 'puma', '~> 3.11'
+  gem 'puma', '~> 3.12'
   gem 'rspec-rails', '~> 3.8'
   gem 'rspec_junit_formatter'
   gem 'rubocop'
