@@ -362,7 +362,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  actionview-component
+  actionview-component (>= 1.14.0)
   bootsnap (>= 1.1.0)
   byebug
   capistrano-passenger

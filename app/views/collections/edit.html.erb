@@ -12,6 +12,6 @@
 <div class="card" style="margin-top: 20px">
   <div class="card-header">Months</div>
   <div class="card-body">
-    <%= render FetchMonthsComponent, collection: @collection %>
+    <%= render(FetchMonthsComponent.new(collection: @collection)) %>
   </div>
 </div>

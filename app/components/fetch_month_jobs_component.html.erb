@@ -6,7 +6,7 @@
     <tr><th>Collection</th><th>Year</th><th>Month</th></tr>
     </thead>
     <% fetch_months.each do |fetch_month| %>
-      <%= render FetchMonthJobComponent, fetch_month: fetch_month %>
+      <%= render(FetchMonthJobComponent.new(fetch_month: fetch_month)) %>
     <% end %>
   </table>
 <% end %>
