@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 # Draws a single table row that represents a FetchMonth model
-class FetchMonthComponent < ActionView::Component::Base
+class FetchMonthComponent < ViewComponent::Base
   def initialize(fetch_month:)
     @fetch_month = fetch_month
   end

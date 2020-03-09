@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 # Draws a single table row that represents a Fetch Job
-class FetchMonthJobComponent < ActionView::Component::Base
+class FetchMonthJobComponent < ViewComponent::Base
   def initialize(fetch_month:)
     @fetch_month = fetch_month
   end

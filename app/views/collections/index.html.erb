@@ -33,7 +33,7 @@
 <div class="card" style="margin-top: 20px">
   <div class="card-header">Current jobs</div>
   <div class="card-body">
-    <%= render FetchMonthJobsComponent, fetch_months: @fetch_month_jobs %>
+    <%= render(FetchMonthJobsComponent.new(fetch_months: @fetch_month_jobs)) %>
   </div>
   <div class="card-footer">
     <%= link_to "Sidekiq Dashboard", "/queues", class: 'btn btn-link'%>
