@@ -24,10 +24,11 @@ RSpec.describe FetchJob do
     end
 
     context 'when the fetch is successful and there are warcs' do
-      let('druid') { 'druid:abc123' }
+      let('druid') { 'druid:bc123df4557' }
       let(:version_client) { instance_double(Dor::Services::Client::ObjectVersion, current: '5') }
       let(:object_client) { instance_double(Dor::Services::Client::Object, version: version_client) }
-      let(:objects_client) { instance_double(Dor::Services::Client::Objects, register: { pid: druid }) }
+      let(:response_model) { instance_double(Cocina::Models::DRO, externalIdentifier: druid) }
+      let(:objects_client) { instance_double(Dor::Services::Client::Objects, register: response_model) }
       let(:wf_client) { instance_double(Dor::Workflow::Client) }
 
       before do
@@ -42,16 +43,21 @@ RSpec.describe FetchJob do
 
       let(:status) { instance_double(Process::Status, success?: true) }
 
+      let(:expected) do
+        Cocina::Models::RequestDRO.new({ type: 'http://cocina.sul.stanford.edu/models/webarchive-binary.jsonld',
+                                         label: 'AIT_915/2017_11',
+                                         version: 1,
+                                         access: { access: 'dark' },
+                                         administrative: { hasAdminPolicy: 'druid:yf700yh0557' },
+                                         identification: { sourceId: 'sul:ait-915-2017_11' },
+                                         structural: { isMemberOf: fetch_month.collection.druid } })
+      end
+
       it 'run successfully' do
         described_class.perform_now(fetch_month)
         expect(fetch_month.status).to eq 'success'
         expect(fetch_month.failure_reason).to be_nil
-        expect(objects_client).to have_received(:register).with(params: { admin_policy: 'druid:yf700yh0557',
-                                                                          collection: fetch_month.collection.druid,
-                                                                          label: 'AIT_915/2017_11',
-                                                                          object_type: 'item',
-                                                                          rights: 'dark',
-                                                                          source_id: 'sul:ait-915-2017_11' })
+        expect(objects_client).to have_received(:register).with(params: expected)
       end
     end
 
