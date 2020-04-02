@@ -23,7 +23,6 @@ WAS Registrar App is the successor to the [Web Registrar](https://github.com/sul
 ```
 docker-compose up -d db
 ```
-Note that the databases are stored in the _postgres_data_ directory; delete this directory to erase the databases.
 
 ### Setup the db
 ```
