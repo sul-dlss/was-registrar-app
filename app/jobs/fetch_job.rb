@@ -60,15 +60,17 @@ class FetchJob < ApplicationJob
   end
 
   def register
-    register_params = { object_type: 'item',
-                        admin_policy: fetch_month.collection.admin_policy,
-                        source_id: source_id,
+    register_params = { type: 'http://cocina.sul.stanford.edu/models/webarchive-binary.jsonld',
                         label: fetch_month.job_directory,
-                        collection: fetch_month.collection.druid,
-                        rights: 'dark' }
-    response = dor_services_client.objects.register(params: register_params)
+                        version: 1,
+                        access: { access: 'dark' },
+                        administrative: { hasAdminPolicy: fetch_month.collection.admin_policy },
+                        identification: { sourceId: source_id },
+                        structural: { isMemberOf: fetch_month.collection.druid } }
+    request_model = Cocina::Models::RequestDRO.new(register_params)
+    response_model = dor_services_client.objects.register(params: request_model)
 
-    response[:pid]
+    response_model.externalIdentifier
   end
 
   def start_workflow(druid)

@@ -7,7 +7,7 @@ FactoryBot.define do
     end
 
     sequence :druid do |n|
-      "druid:abc123#{n}"
+      "druid:bc123df456#{n}"
     end
     active { true }
     embargo_months { 6 }
