@@ -14,3 +14,4 @@ OkComputer.check_in_parallel = true
 OkComputer::Registry.register 'ruby_version', OkComputer::RubyVersionCheck.new
 OkComputer::Registry.register 'crawl_directory', OkComputer::DirectoryCheck.new(Settings.crawl_directory)
 OkComputer::Registry.register 'redis', OkComputer::RedisCheck.new(url: 'redis://localhost:6379/1')
+OkComputer::Registry.register 'background_jobs', OkComputer::SidekiqLatencyCheck.new('default', 25)
