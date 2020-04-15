@@ -64,5 +64,5 @@ group :deployment do
   gem 'capistrano-passenger'
   gem 'capistrano-rails'
   gem 'capistrano-sidekiq'
-  gem 'dlss-capistrano'
+  gem 'dlss-capistrano', '~> 3.5'
 end

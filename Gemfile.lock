@@ -382,7 +382,7 @@ DEPENDENCIES
   capistrano-sidekiq
   capybara
   config (~> 2.0)
-  dlss-capistrano
+  dlss-capistrano (~> 3.5)
   dor-services-client (~> 5.1)
   dor-workflow-client (~> 3.4, >= 3.4.2)
   factory_bot_rails
