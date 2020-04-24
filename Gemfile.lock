@@ -100,7 +100,7 @@ GEM
       regexp_parser (~> 1.5)
       xpath (~> 3.2)
     chronic (0.10.2)
-    cocina-models (0.31.1)
+    cocina-models (0.32.0)
       activesupport
       dry-struct (~> 1.0)
       dry-types (~> 1.1)
@@ -126,9 +126,9 @@ GEM
       capistrano-one_time_key
       capistrano-shared_configs
     docile (1.3.2)
-    dor-services-client (5.1.0)
+    dor-services-client (6.0.0)
       activesupport (>= 4.2, < 7)
-      cocina-models (~> 0.31.0)
+      cocina-models (~> 0.32.0)
       deprecation
       faraday (>= 0.15, < 2)
       moab-versioning (~> 4.0)
@@ -220,7 +220,7 @@ GEM
     mini_mime (1.0.2)
     mini_portile2 (2.4.0)
     minitest (5.14.0)
-    moab-versioning (4.4.0)
+    moab-versioning (4.4.1)
       druid-tools (>= 1.0.0)
       json
       nokogiri
@@ -383,7 +383,7 @@ DEPENDENCIES
   capybara
   config (~> 2.0)
   dlss-capistrano (~> 3.5)
-  dor-services-client (~> 5.1)
+  dor-services-client (~> 6.0)
   dor-workflow-client (~> 3.4, >= 3.4.2)
   factory_bot_rails
   honeybadger
