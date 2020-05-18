@@ -33,9 +33,14 @@ set :linked_dirs, %w[log config/settings vendor/bundle public/system tmp/pids]
 # Default value for keep_releases is 5
 # set :keep_releases, 5
 
-# Sidekiq configuration (run one process with ten threads)
-# see sidekiq.yml for concurrency and queue settings
-set :sidekiq_processes, 1
+# All deployed environments run in the production Rails env
+set :rails_env, 'production'
+
+# Allow dlss-capistrano to manage sidekiq via systemd
+set :sidekiq_systemd_use_hooks, true
+
+# Use bundler2-style configuration (from dlss-capistrano)
+set :bundler2_config_use_hook, true
 
 # honeybadger_env otherwise defaults to rails_env
 set :honeybadger_env, fetch(:stage)
@@ -46,15 +51,10 @@ set :passenger_environment_variables, 'PASSENGER_INSTANCE_REGISTRY_DIR' => '/var
 # update shared_configs before restarting app
 before 'deploy:restart', 'shared_configs:update'
 
-before 'deploy:assets:precompile', 'deploy:yarn_install'
-
-namespace :deploy do
-  desc 'Run rake yarn:install'
-  task :yarn_install do
-    on roles(:web) do
-      within release_path do
-        execute("cd #{release_path} && yarn install")
-      end
+before 'deploy:assets:precompile', :yarn_install do
+  on roles(:web) do
+    within release_path do
+      execute("cd #{release_path} && yarn install")
     end
   end
 end
