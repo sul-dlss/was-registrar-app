@@ -3,7 +3,7 @@
     <div class="card-header">Collection</div>
     <div class="card-body">
       <%= form.input :title %>
-      <%= form.input :druid %>
+      <%= form.input :druid, label: 'Collection Druid' %>
       <%= form.input :fetch_start_month, as: :date, start_year: Date.today.year - 15,
                   end_year: Date.today.year, discard_day: true,
                   order: [:month, :year] %>
