@@ -43,8 +43,8 @@ group :development, :test do
   gem 'factory_bot_rails'
   # Use Puma as the app server
   gem 'puma', '~> 3.12'
-  gem 'rspec-rails', '~> 3.8'
   gem 'rspec_junit_formatter'
+  gem 'rspec-rails', '~> 3.8'
   gem 'rubocop'
   # Codeclimate is not compatible with 0.18+. See https://github.com/codeclimate/test-reporter/issues/413
   gem 'simplecov', '~> 0.17.1'
