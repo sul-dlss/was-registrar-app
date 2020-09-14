@@ -66,7 +66,7 @@ class FetchJob < ApplicationJob
                         access: { access: 'dark' },
                         administrative: { hasAdminPolicy: fetch_month.collection.admin_policy },
                         identification: { sourceId: source_id },
-                        structural: { isMemberOf: fetch_month.collection.druid } }
+                        structural: { isMemberOf: [fetch_month.collection.druid] } }
     request_model = Cocina::Models::RequestDRO.new(register_params)
     response_model = dor_services_client.objects.register(params: request_model)
 

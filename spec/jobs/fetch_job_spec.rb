@@ -50,7 +50,7 @@ RSpec.describe FetchJob do
                                          access: { access: 'dark' },
                                          administrative: { hasAdminPolicy: 'druid:yf700yh0557' },
                                          identification: { sourceId: 'sul:ait-915-2017_11' },
-                                         structural: { isMemberOf: fetch_month.collection.druid } })
+                                         structural: { isMemberOf: [fetch_month.collection.druid] } })
       end
 
       it 'run successfully' do
