@@ -17,6 +17,12 @@ Style/MixinUsage:
   Exclude:
     - bin/*
 
+Layout/LineLength:
+  Max: 120
+  Exclude:
+    - config/initializers/simple_form.rb
+    - config/initializers/simple_form_bootstrap.rb
+
 Metrics/BlockLength:
   ExcludedMethods:
     - setup
@@ -27,9 +33,3 @@ Metrics/BlockLength:
 Metrics/MethodLength:
   Exclude:
     - db/migrate/*
-
-Metrics/LineLength:
-  Max: 120
-  Exclude:
-    - config/initializers/simple_form.rb
-    - config/initializers/simple_form_bootstrap.rb
