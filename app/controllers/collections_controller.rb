@@ -34,7 +34,7 @@ class CollectionsController < ApplicationController
   def update
     @collection = Collection.find(params[:id])
 
-    if @collection.update_attributes(collection_params)
+    if @collection.update(collection_params)
       flash[:notice] = 'Collection updated.'
       redirect_to action: 'index'
     else
