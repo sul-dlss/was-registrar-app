@@ -27,7 +27,7 @@ gem 'webpacker', '~> 4.0'
 gem 'view_component', '~> 2.0'
 # For configuration
 gem 'config', '~> 2.0'
-gem 'dor-services-client', '~> 6.0'
+gem 'dor-services-client', '~> 7.0'
 gem 'dor-workflow-client', '~> 3.4', '>= 3.4.2'
 gem 'honeybadger'
 gem 'okcomputer'
