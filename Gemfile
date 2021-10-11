@@ -21,9 +21,9 @@ gem 'pg'
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.1.0', require: false
 
-# Transpile app-like JavaScript. Read more: https://github.com/rails/webpacker
-gem 'webpacker', '~> 4.0'
 gem 'cssbundling-rails'
+# Transpile app-like JavaScript.
+gem 'jsbundling-rails'
 
 gem 'view_component', '~> 2.0'
 # For configuration

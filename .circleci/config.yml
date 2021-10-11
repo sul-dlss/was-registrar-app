@@ -61,8 +61,8 @@ jobs:
           paths:
             - ~/.cache/yarn
       - run:
-          name: Webpacker compile
-          command: NODE_ENV=test bundle exec rails webpacker:compile
+          name: compile assets
+          command: NODE_ENV=test bundle exec rails assets:precompile
       # Copy packs into the workspace
       - persist_to_workspace:
           root: ~/project
