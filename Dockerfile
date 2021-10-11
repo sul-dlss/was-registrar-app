@@ -1,4 +1,4 @@
-FROM ruby:2.7.1-stretch
+FROM ruby:2.7
 
 # https://github.com/nodesource/distributions#installation-instructions
 RUN curl -sL https://deb.nodesource.com/setup_12.x | bash - \
