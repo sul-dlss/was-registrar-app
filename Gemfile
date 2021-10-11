@@ -23,6 +23,7 @@ gem 'bootsnap', '>= 1.1.0', require: false
 
 # Transpile app-like JavaScript. Read more: https://github.com/rails/webpacker
 gem 'webpacker', '~> 4.0'
+gem 'cssbundling-rails'
 
 gem 'view_component', '~> 2.0'
 # For configuration
