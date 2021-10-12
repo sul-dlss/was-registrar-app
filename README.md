@@ -49,7 +49,7 @@ bundle exec rubocop
 bundle exec rspec
 ```
 
-## Run locally
+## Run with docker
 ```
 docker-compose up -d db
 docker-compose run web rake db:setup
@@ -63,6 +63,13 @@ docker-compose stop web
 docker-compose build web
 docker-compose up -d
 ```
+
+## Run locally
+
+```
+bin/dev
+```
+This starts css bundling and the development server
 
 ## Background processing
 Background processing is performed by [Sidekiq](https://github.com/mperham/sidekiq).
