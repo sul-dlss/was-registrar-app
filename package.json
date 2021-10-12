@@ -7,7 +7,6 @@
     "jquery": "^3.4.1",
     "popper.js": "^1.15.0",
     "sass": "^1.42.1",
-    "serialize-javascript": "^2.1.1",
     "simple-datatables": "^2.1.6"
   },
   "devDependencies": {},
