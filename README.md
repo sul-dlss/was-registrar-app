@@ -66,10 +66,17 @@ docker-compose up -d
 
 ## Run locally
 
+First install foreman (foreman is not supposed to be in the Gemfile, See this [wiki article](https://github.com/ddollar/foreman/wiki/Don't-Bundle-Foreman) ):
+
+```
+gem install foreman
+```
+
+Then you can run
 ```
 bin/dev
 ```
-This starts css bundling and the development server
+This starts css/js bundling and the development server
 
 ## Background processing
 Background processing is performed by [Sidekiq](https://github.com/mperham/sidekiq).
