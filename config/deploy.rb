@@ -39,9 +39,6 @@ set :rails_env, 'production'
 # Allow dlss-capistrano to manage sidekiq via systemd
 set :sidekiq_systemd_use_hooks, true
 
-# Use bundler2-style configuration (from dlss-capistrano)
-set :bundler2_config_use_hook, true
-
 # honeybadger_env otherwise defaults to rails_env
 set :honeybadger_env, fetch(:stage)
 
