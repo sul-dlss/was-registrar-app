@@ -42,9 +42,6 @@ set :sidekiq_systemd_use_hooks, true
 # honeybadger_env otherwise defaults to rails_env
 set :honeybadger_env, fetch(:stage)
 
-# capistrano/passenger wouldn't restart Passenger without this
-set :passenger_environment_variables, 'PASSENGER_INSTANCE_REGISTRY_DIR' => '/var/run'
-
 # update shared_configs before restarting app
 before 'deploy:restart', 'shared_configs:update'
 
