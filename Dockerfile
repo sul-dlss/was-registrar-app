@@ -1,4 +1,4 @@
-FROM ruby:2.7
+FROM ruby:3.0
 
 # https://github.com/nodesource/distributions#installation-instructions
 RUN curl -sL https://deb.nodesource.com/setup_12.x | bash - \
@@ -12,7 +12,7 @@ WORKDIR /app
 
 ADD Gemfile Gemfile.lock package.json yarn.lock /app/
 
-ENV BUNDLER_VERSION 2.0.2
+ENV BUNDLER_VERSION 2.3.4
 RUN gem install bundler && bundle install
 RUN yarn install --check-files
 COPY . .
