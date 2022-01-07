@@ -49,8 +49,7 @@ group :development, :test do
   gem 'rubocop'
   gem 'rubocop-rails'
   gem 'rubocop-rspec'
-  # Codeclimate is not compatible with 0.18+. See https://github.com/codeclimate/test-reporter/issues/413
-  gem 'simplecov', '~> 0.17.1'
+  gem 'simplecov'
 end
 
 group :development do
