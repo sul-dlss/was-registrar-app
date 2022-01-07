@@ -321,6 +321,12 @@ GEM
       unicode-display_width (>= 1.4.0, < 3.0)
     rubocop-ast (1.15.0)
       parser (>= 3.0.1.1)
+    rubocop-rails (2.13.0)
+      activesupport (>= 4.2.0)
+      rack (>= 1.1)
+      rubocop (>= 1.7.0, < 2.0)
+    rubocop-rspec (2.7.0)
+      rubocop (~> 1.19)
     ruby-progressbar (1.11.0)
     ruby2_keywords (0.0.5)
     sidekiq (6.3.1)
@@ -393,6 +399,8 @@ DEPENDENCIES
   rspec-rails (~> 4.0)
   rspec_junit_formatter
   rubocop
+  rubocop-rails
+  rubocop-rspec
   sidekiq (~> 6.0)
   simple_form
   simplecov (~> 0.17.1)
@@ -402,4 +410,4 @@ DEPENDENCIES
   whenever (~> 1.0)
 
 BUNDLED WITH
-   2.2.27
+   2.3.4

@@ -3,10 +3,10 @@
 require 'rails_helper'
 
 RSpec.describe FetchJobLister do
+  subject(:fetch_months) { described_class.list }
+
   let(:collection) { create(:collection) }
   let(:fetch_month) { create(:fetch_month, collection: collection) }
-
-  subject(:fetch_months) { described_class.list }
 
   context 'when there are no current jobs' do
     before do

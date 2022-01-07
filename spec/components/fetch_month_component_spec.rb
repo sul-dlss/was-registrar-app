@@ -19,9 +19,9 @@ RSpec.describe FetchMonthComponent do
         before do
           fetch_month.crawl_item_druid = 'druid:1234'
         end
+
         it {
-          is_expected.to eq 'success: Created ' \
-          '<a target="_new" href="https://argo.stanford.edu/view/druid:1234">druid:1234</a>'
+          is_expected.to eq 'success: Created <a target="_new" href="https://argo.stanford.edu/view/druid:1234">druid:1234</a>'
         }
       end
     end
