@@ -3,19 +3,19 @@
 require 'rails_helper'
 
 RSpec.describe FetchJobCreator do
+  subject(:run) { described_class.run(collection: collection) }
+
   before do
     allow(Date).to receive(:today).and_return(Date.parse('2019-08-21'))
     allow(FetchJob).to receive(:perform_later)
   end
-
-  subject(:run) { described_class.run(collection: collection) }
 
   context 'when there is an embargo' do
     let(:collection) do
       create(:collection, fetch_start_month: '2018-10-01')
     end
 
-    context 'for a collection that has fetch months' do
+    context 'with a collection that has fetch months' do
       before do
         collection.fetch_months.create!(year: 2018, month: 11, status: 'waiting')
       end
@@ -30,7 +30,7 @@ RSpec.describe FetchJobCreator do
       end
     end
 
-    context 'for a collection that does not have fetch months' do
+    context 'with a collection that does not have fetch months' do
       it 'creates fetch_months' do
         run
         expect(collection.fetch_months.map { |m| [m.year, m.month] }).to eq [
@@ -46,7 +46,7 @@ RSpec.describe FetchJobCreator do
       create(:collection, embargo_months: 0, fetch_start_month: '2018-10-01')
     end
 
-    context 'for a collection that has fetch months' do
+    context 'with a collection that has fetch months' do
       before do
         collection.fetch_months.create!(year: 2018, month: 11, status: 'waiting')
       end
@@ -61,7 +61,7 @@ RSpec.describe FetchJobCreator do
       end
     end
 
-    context 'for a collection that does not have fetch months' do
+    context 'with a collection that does not have fetch months' do
       it 'creates fetch_months' do
         run
         expect(collection.fetch_months.map { |m| [m.year, m.month] }).to eq [

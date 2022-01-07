@@ -8,15 +8,17 @@ RSpec.describe FetchJob do
 
   describe '#perform_now' do
     let(:stderr) { nil }
+
     context 'when the fetch is successful and there are no warcs' do
       before do
-        expect(Open3).to receive(:capture3).and_return([nil, stderr, status])
-        expect(FileUtils).to receive(:mkdir_p).with('tmp/jobs/AIT_915/2017_11')
+        allow(Open3).to receive(:capture3).and_return([nil, stderr, status])
+        allow(FileUtils).to receive(:mkdir_p).with('tmp/jobs/AIT_915/2017_11').and_call_original
         allow(Dir).to receive(:glob).with('tmp/jobs/AIT_915/2017_11/**/*.warc*').and_return([])
       end
+
       let(:status) { instance_double(Process::Status, success?: true) }
 
-      it 'run successfully' do
+      it 'runs successfully' do
         described_class.perform_now(fetch_month)
         expect(fetch_month.status).to eq 'success'
         expect(fetch_month.failure_reason).to be_nil
@@ -24,25 +26,8 @@ RSpec.describe FetchJob do
     end
 
     context 'when the fetch is successful and there are warcs' do
-      let('druid') { 'druid:bc123df4557' }
-      let(:version_client) { instance_double(Dor::Services::Client::ObjectVersion, current: '5') }
-      let(:object_client) { instance_double(Dor::Services::Client::Object, version: version_client) }
-      let(:response_model) { instance_double(Cocina::Models::DRO, externalIdentifier: druid) }
-      let(:objects_client) { instance_double(Dor::Services::Client::Objects, register: response_model) }
-      let(:wf_client) { instance_double(Dor::Workflow::Client) }
-
-      before do
-        expect(Open3).to receive(:capture3).and_return([nil, stderr, status])
-        expect(FileUtils).to receive(:mkdir_p).with('tmp/jobs/AIT_915/2017_11')
-        allow(Dir).to receive(:glob).with('tmp/jobs/AIT_915/2017_11/**/*.warc*').and_return(['foo.warc'])
-        allow(Dor::Services::Client).to receive(:objects).and_return(objects_client)
-        allow(Dor::Services::Client).to receive(:object).and_return(object_client)
-        allow(Dor::Workflow::Client).to receive(:new).and_return(wf_client)
-        expect(wf_client).to receive(:create_workflow_by_name).with(druid, 'wasCrawlPreassemblyWF', version: 5)
-      end
-
+      let(:druid) { 'druid:bc123df4557' }
       let(:status) { instance_double(Process::Status, success?: true) }
-
       let(:expected) do
         Cocina::Models::RequestDRO.new({ type: 'http://cocina.sul.stanford.edu/models/webarchive-binary.jsonld',
                                          label: 'AIT_915/2017_11',
@@ -52,9 +37,25 @@ RSpec.describe FetchJob do
                                          identification: { sourceId: 'sul:ait-915-2017_11' },
                                          structural: { isMemberOf: [fetch_month.collection.druid] } })
       end
+      let(:version_client) { instance_double(Dor::Services::Client::ObjectVersion, current: '5') }
+      let(:object_client) { instance_double(Dor::Services::Client::Object, version: version_client) }
+      let(:response_model) { instance_double(Cocina::Models::DRO, externalIdentifier: druid) }
+      let(:objects_client) { instance_double(Dor::Services::Client::Objects, register: response_model) }
+      let(:wf_client) { instance_double(Dor::Workflow::Client) }
 
-      it 'run successfully' do
+      before do
+        allow(Open3).to receive(:capture3).and_return([nil, stderr, status])
+        allow(FileUtils).to receive(:mkdir_p).with('tmp/jobs/AIT_915/2017_11').and_call_original
+        allow(Dir).to receive(:glob).with('tmp/jobs/AIT_915/2017_11/**/*.warc*').and_return(['foo.warc'])
+        allow(Dor::Services::Client).to receive(:objects).and_return(objects_client)
+        allow(Dor::Services::Client).to receive(:object).and_return(object_client)
+        allow(Dor::Workflow::Client).to receive(:new).and_return(wf_client)
+        allow(wf_client).to receive(:create_workflow_by_name).with(druid, 'wasCrawlPreassemblyWF', version: 5)
+      end
+
+      it 'runs successfully' do
         described_class.perform_now(fetch_month)
+        expect(wf_client).to have_received(:create_workflow_by_name).with(druid, 'wasCrawlPreassemblyWF', version: 5)
         expect(fetch_month.status).to eq 'success'
         expect(fetch_month.failure_reason).to be_nil
         expect(objects_client).to have_received(:register).with(params: expected)
@@ -66,11 +67,11 @@ RSpec.describe FetchJob do
       let(:stderr) { 'Ooops' }
 
       before do
-        expect(Open3).to receive(:capture3).and_return([nil, stderr, status])
-        expect(FileUtils).to receive(:mkdir_p).with('tmp/jobs/AIT_915/2017_11')
+        allow(Open3).to receive(:capture3).and_return([nil, stderr, status])
+        allow(FileUtils).to receive(:mkdir_p).with('tmp/jobs/AIT_915/2017_11').and_call_original
       end
 
-      it 'raises an error successfully' do
+      it 'raises an error' do
         expect { described_class.perform_now(fetch_month) }.to raise_error 'Fetching WARCs failed: Ooops'
         expect(fetch_month.status).to eq 'failure'
         expect(fetch_month.failure_reason).to eq 'Fetching WARCs failed: Ooops'
@@ -79,10 +80,10 @@ RSpec.describe FetchJob do
 
     context 'when a non-fetch error occurs' do
       before do
-        expect(FileUtils).to receive(:mkdir_p).with('tmp/jobs/AIT_915/2017_11').and_raise(Errno::ENOSPC)
+        allow(FileUtils).to receive(:mkdir_p).with('tmp/jobs/AIT_915/2017_11').and_raise(Errno::ENOSPC)
       end
 
-      it 'raises an error successfully' do
+      it 'raises an error' do
         expect { described_class.perform_now(fetch_month) }.to raise_error Errno::ENOSPC
         expect(fetch_month.status).to eq 'failure'
         expect(fetch_month.failure_reason).to eq 'No space left on device'
@@ -94,6 +95,7 @@ RSpec.describe FetchJob do
     let(:job) do
       described_class.new.tap { |job| job.instance_variable_set(:@fetch_month, fetch_month) }
     end
+
     it 'returns the correct args' do
       expect(job.downloader_args).to eq(['--crawlStartAfter',
                                          '2017-11-01',

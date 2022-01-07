@@ -7,7 +7,7 @@ RSpec.describe 'Queue fetch jobs for a collection', type: :feature do
 
   before do
     allow(FetchJobLister).to receive(:list).and_return([])
-    expect(FetchJobCreator).to receive(:run).with(collection: collection)
+    allow(FetchJobCreator).to receive(:run).with(collection: collection)
   end
 
   it 'initiates the fetches' do
@@ -16,6 +16,7 @@ RSpec.describe 'Queue fetch jobs for a collection', type: :feature do
     expect(page).to have_content 'Edit'
 
     click_link 'Queue fetch jobs'
+    expect(FetchJobCreator).to have_received(:run).with(collection: collection)
     expect(page).to have_content 'Queued fetch jobs for this collection.'
   end
 end
