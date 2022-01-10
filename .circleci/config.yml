@@ -37,14 +37,14 @@ jobs:
       # bundle cache
       - restore_cache:
           keys:
-            - rails-demo-bundle-v2-{{ checksum "Gemfile.lock" }}
-            - rails-demo-bundle-v2-
+            - was-registrar-v1-{{ checksum "Gemfile.lock" }}
+            - was-registrar-v1-
       - run:
           name: Bundle Install
           command: bundle check || bundle install
       # Store bundle cache
       - save_cache:
-          key: rails-demo-bundle-v2-{{ checksum "Gemfile.lock" }}
+          key: was-registrar-v1-{{ checksum "Gemfile.lock" }}
           paths:
             - vendor/bundle
       # Only necessary if app uses webpacker or yarn in some other way
@@ -76,8 +76,8 @@ jobs:
           at: '~/project'
       - restore_cache:
           keys:
-            - rails-demo-bundle-v2-{{ checksum "Gemfile.lock" }}
-            - rails-demo-bundle-v2-
+            - was-registrar-v1-{{ checksum "Gemfile.lock" }}
+            - was-registrar-v1-
       - run:
           name: Install bundler
           command: gem install bundler
