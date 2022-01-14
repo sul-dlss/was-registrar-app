@@ -6,7 +6,7 @@ RSpec.describe FetchMonthComponent do
   subject(:component) { described_class.new(fetch_month: fetch_month) }
 
   describe '#status' do
-    subject { component.status }
+    subject(:status) { component.status }
 
     context 'when status is successful' do
       let(:fetch_month) { build(:fetch_month, status: 'success') }
@@ -21,7 +21,7 @@ RSpec.describe FetchMonthComponent do
         end
 
         it {
-          is_expected.to eq 'success: Created <a target="_new" href="https://argo.stanford.edu/view/druid:1234">druid:1234</a>'
+          expect(status).to eq 'success: Created <a target="_new" href="https://argo.stanford.edu/view/druid:1234">druid:1234</a>'
         }
       end
     end
