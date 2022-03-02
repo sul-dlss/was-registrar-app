@@ -30,8 +30,8 @@ gem 'jsbundling-rails'
 gem 'view_component', '~> 2.0'
 # For configuration
 gem 'config', '~> 2.0'
-gem 'dor-services-client', '~> 7.0'
-gem 'dor-workflow-client', '~> 3.4', '>= 3.4.2'
+gem 'dor-services-client', '~> 8.0'
+gem 'dor-workflow-client', '~> 4.0'
 gem 'honeybadger'
 gem 'okcomputer'
 
