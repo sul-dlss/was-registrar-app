@@ -32,7 +32,7 @@ RSpec.describe FetchJob do
         Cocina::Models::RequestDRO.new({ type: 'http://cocina.sul.stanford.edu/models/webarchive-binary.jsonld',
                                          label: 'AIT_915/2017_11',
                                          version: 1,
-                                         access: { access: 'dark' },
+                                         access: { access: 'citation-only', download: 'none' },
                                          administrative: { hasAdminPolicy: 'druid:yf700yh0557' },
                                          identification: { sourceId: 'sul:ait-915-2017_11' },
                                          structural: { isMemberOf: [fetch_month.collection.druid] } })
