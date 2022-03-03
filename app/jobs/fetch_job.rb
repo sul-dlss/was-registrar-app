@@ -63,7 +63,7 @@ class FetchJob < ApplicationJob
     register_params = { type: 'http://cocina.sul.stanford.edu/models/webarchive-binary.jsonld',
                         label: fetch_month.job_directory,
                         version: 1,
-                        access: { access: 'dark', download: 'none' },
+                        access: { access: 'citation-only', download: 'none' },
                         administrative: { hasAdminPolicy: fetch_month.collection.admin_policy },
                         identification: { sourceId: source_id },
                         structural: { isMemberOf: [fetch_month.collection.druid] } }
