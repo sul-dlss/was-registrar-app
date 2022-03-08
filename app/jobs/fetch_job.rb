@@ -60,7 +60,7 @@ class FetchJob < ApplicationJob
   end
 
   def register
-    register_params = { type: 'http://cocina.sul.stanford.edu/models/webarchive-binary.jsonld',
+    register_params = { type: Cocina::Models::Vocab.webarchive_binary,
                         label: fetch_month.job_directory,
                         version: 1,
                         access: { access: 'citation-only', download: 'none' },

@@ -29,7 +29,7 @@ RSpec.describe FetchJob do
       let(:druid) { 'druid:bc123df4557' }
       let(:status) { instance_double(Process::Status, success?: true) }
       let(:expected) do
-        Cocina::Models::RequestDRO.new({ type: 'http://cocina.sul.stanford.edu/models/webarchive-binary.jsonld',
+        Cocina::Models::RequestDRO.new({ type: Cocina::Models::Vocab.webarchive_binary,
                                          label: 'AIT_915/2017_11',
                                          version: 1,
                                          access: { access: 'citation-only', download: 'none' },
