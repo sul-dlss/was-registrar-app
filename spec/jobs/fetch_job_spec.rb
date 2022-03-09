@@ -29,10 +29,10 @@ RSpec.describe FetchJob do
       let(:druid) { 'druid:bc123df4557' }
       let(:status) { instance_double(Process::Status, success?: true) }
       let(:expected) do
-        Cocina::Models::RequestDRO.new({ type: Cocina::Models::Vocab.webarchive_binary,
+        Cocina::Models::RequestDRO.new({ type: Cocina::Models::ObjectType.webarchive_binary,
                                          label: 'AIT_915/2017_11',
                                          version: 1,
-                                         access: { access: 'citation-only', download: 'none' },
+                                         access: { view: 'citation-only', download: 'none' },
                                          administrative: { hasAdminPolicy: 'druid:yf700yh0557' },
                                          identification: { sourceId: 'sul:ait-915-2017_11' },
                                          structural: { isMemberOf: [fetch_month.collection.druid] } })

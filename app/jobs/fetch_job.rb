@@ -60,10 +60,10 @@ class FetchJob < ApplicationJob
   end
 
   def register
-    register_params = { type: Cocina::Models::Vocab.webarchive_binary,
+    register_params = { type: Cocina::Models::ObjectType.webarchive_binary,
                         label: fetch_month.job_directory,
                         version: 1,
-                        access: { access: 'citation-only', download: 'none' },
+                        access: { view: 'citation-only', download: 'none' },
                         administrative: { hasAdminPolicy: fetch_month.collection.admin_policy },
                         identification: { sourceId: source_id },
                         structural: { isMemberOf: [fetch_month.collection.druid] } }
