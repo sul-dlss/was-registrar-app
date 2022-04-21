@@ -139,7 +139,7 @@ GEM
       capistrano-one_time_key
       capistrano-shared_configs
     docile (1.4.0)
-    dor-services-client (9.0.0)
+    dor-services-client (10.0.0)
       activesupport (>= 4.2, < 8)
       cocina-models (~> 0.75.0)
       deprecation
@@ -400,7 +400,7 @@ DEPENDENCIES
   config (~> 2.0)
   cssbundling-rails
   dlss-capistrano
-  dor-services-client (~> 9.0)
+  dor-services-client (~> 10.0)
   dor-workflow-client (~> 4.0)
   factory_bot_rails
   honeybadger
