@@ -13,7 +13,7 @@ The WAS Registrar App is a Rails application that:
 WAS Registrar App is the successor to the [Web Registrar](https://github.com/sul-dlss/was-registrar).
 
 ## Requirements
-* Ruby 2.6.3
+* Ruby 3.0.3
 * Docker / Docker-Compose (optional)
 * npm for building assets
 * Java 8ish for [WASAPI Downloader](https://github.com/sul-dlss/wasapi-downloader)
