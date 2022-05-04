@@ -1,19 +1,18 @@
-FROM ruby:3.0
+FROM ruby:3.0-alpine
 
-# https://github.com/nodesource/distributions#installation-instructions
-RUN curl -sL https://deb.nodesource.com/setup_12.x | bash - \
-    && apt-get install -y nodejs
-RUN curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | apt-key add -
-RUN echo "deb https://dl.yarnpkg.com/debian/ stable main" | tee /etc/apt/sources.list.d/yarn.list
-RUN apt-get update -qq && \
-    apt-get install -y nano build-essential postgresql-client yarn
+RUN apk add --update --no-cache \
+  build-base \
+  postgresql-dev \
+  postgresql-client \
+  tzdata \
+  yarn
 
 WORKDIR /app
 
-ADD Gemfile Gemfile.lock package.json yarn.lock /app/
-
-ENV BUNDLER_VERSION 2.3.4
+COPY Gemfile Gemfile.lock /app/
 RUN gem install bundler && bundle install
+
+COPY package.json yarn.lock /app/
 RUN yarn install --check-files
 COPY . .
 
