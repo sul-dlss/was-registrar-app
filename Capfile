@@ -13,6 +13,7 @@ require 'capistrano/bundler'
 require 'capistrano/honeybadger'
 require 'capistrano/passenger'
 require 'capistrano/rails'
+require 'capistrano/rvm'
 require 'dlss/capistrano'
 require 'whenever/capistrano'
 
