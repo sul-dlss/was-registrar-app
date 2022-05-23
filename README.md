@@ -38,7 +38,7 @@ docker-compose up -d redis
 Note: The WASAPI Downloader is not typically needed for development; it is necessary for running fetches.
 
 ```
-curl -L https://github.com/sul-dlss/wasapi-downloader/releases/download/v1.1.0/wasapi-downloader.zip > wasapi-downloader.zip
+curl -L https://github.com/sul-dlss/wasapi-downloader/releases/download/v1.1.1/wasapi-downloader.zip > wasapi-downloader.zip
 unzip wasapi-downloader.zip
 ```
 If installing in a different location, make the appropriate change in settings.
