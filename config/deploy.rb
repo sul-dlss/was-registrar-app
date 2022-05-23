@@ -42,6 +42,9 @@ set :sidekiq_systemd_use_hooks, true
 # honeybadger_env otherwise defaults to rails_env
 set :honeybadger_env, fetch(:stage)
 
+# doesn't appear to do so on our new Ubuntu boxes :shrug:
+set :rvm_map_bins, fetch(:rvm_map_bins, []).push('honeybadger')
+
 # update shared_configs before restarting app
 before 'deploy:restart', 'shared_configs:update'
 
