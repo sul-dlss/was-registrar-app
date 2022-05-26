@@ -32,6 +32,7 @@ RSpec.describe FetchJob do
         Cocina::Models::RequestDRO.new({ type: Cocina::Models::ObjectType.webarchive_binary,
                                          label: 'AIT_915/2017_11',
                                          version: 1,
+                                         description: { title: [{ value: 'AIT_915/2017_11' }] },
                                          access: { view: 'citation-only', download: 'none' },
                                          administrative: { hasAdminPolicy: 'druid:yf700yh0557' },
                                          identification: { sourceId: 'sul:ait-915-2017_11' },
