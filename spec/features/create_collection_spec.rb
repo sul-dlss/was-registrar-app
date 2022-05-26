@@ -34,6 +34,7 @@ RSpec.describe 'Create a collection', type: :feature do
       click_button 'Create Collection'
 
       expect(page).to have_content 'Collection created.'
+      expect(page).to have_content 'Edit Robots'
     end
   end
 

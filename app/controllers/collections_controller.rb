@@ -25,7 +25,7 @@ class CollectionsController < ApplicationController
 
     if @collection.save
       flash[:notice] = 'Collection created.'
-      redirect_to action: 'index'
+      render :edit
     else
       render :new
     end
@@ -34,19 +34,17 @@ class CollectionsController < ApplicationController
   def update
     @collection = Collection.find(params[:id])
 
-    if @collection.update(collection_params)
-      flash[:notice] = 'Collection updated.'
-      redirect_to action: 'index'
-    else
-      render :edit
-    end
+    flash[:notice] = 'Collection updated.' if @collection.update(collection_params)
+
+    render :edit
   end
 
   def fetch
-    collection = Collection.find(params[:id])
-    FetchJobCreator.run(collection: collection)
+    @collection = Collection.find(params[:id])
+    FetchJobCreator.run(collection: @collection)
     flash[:notice] = 'Queued fetch jobs for this collection.'
-    redirect_to action: 'index'
+
+    render :edit
   end
 
   private

@@ -18,5 +18,6 @@ RSpec.describe 'Queue fetch jobs for a collection', type: :feature do
     click_link 'Queue fetch jobs'
     expect(FetchJobCreator).to have_received(:run).with(collection: collection)
     expect(page).to have_content 'Queued fetch jobs for this collection.'
+    expect(page).to have_content "Edit #{collection.title}"
   end
 end
