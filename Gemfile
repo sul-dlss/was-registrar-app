@@ -65,6 +65,5 @@ end
 group :deployment do
   gem 'capistrano-passenger'
   gem 'capistrano-rails'
-  gem 'capistrano-rvm', require: false
   gem 'dlss-capistrano', require: false
 end
