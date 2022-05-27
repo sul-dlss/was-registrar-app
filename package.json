@@ -2,9 +2,10 @@
   "name": "was-registrar-app",
   "private": true,
   "dependencies": {
+    "@hotwired/turbo-rails": "^7.1.3",
+    "@popperjs/core": "^2.10.2",
     "bootstrap": "^5.1.3",
     "esbuild": "^0.13.4",
-    "@popperjs/core": "^2.10.2",
     "sass": "^1.42.1",
     "simple-datatables": "^2.1.6"
   },
