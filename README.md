@@ -45,6 +45,7 @@ If installing in a different location, make the appropriate change in settings.
 
 ## Tests
 ```
+bin/rails test:prepare
 bundle exec rubocop
 bundle exec rspec
 ```
