@@ -374,6 +374,9 @@ GEM
       patience_diff
     thor (1.2.1)
     timeout (0.2.0)
+    turbo-rails (1.0.1)
+      actionpack (>= 6.0.0)
+      railties (>= 6.0.0)
     tzinfo (2.0.4)
       concurrent-ruby (~> 1.0)
     unicode-display_width (2.1.0)
@@ -418,6 +421,7 @@ DEPENDENCIES
   pg
   puma (~> 5.3)
   rails (~> 7.0.1)
+  redis (~> 4.0)
   rspec-rails (~> 4.0)
   rspec_junit_formatter
   rubocop
@@ -427,6 +431,7 @@ DEPENDENCIES
   simple_form
   simplecov
   sprockets-rails
+  turbo-rails
   view_component (~> 2.0)
   web-console (>= 4.1.0)
   whenever (~> 1.0)
