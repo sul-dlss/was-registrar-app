@@ -2,6 +2,12 @@
 import * as bootstrap from "bootstrap";
 import {DataTable} from "simple-datatables"
 import "@hotwired/turbo-rails"
+import { Application } from "@hotwired/stimulus"
+
+// import HelloController from "./controllers/hello_controller"
+
+window.Stimulus = Application.start()
+// Stimulus.register("hello", HelloController)
 
 document.addEventListener("DOMContentLoaded", function() {
   const dataTable = new DataTable("#collection-table", {
