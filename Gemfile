@@ -8,7 +8,7 @@ gem 'rails', '~> 7.0.1'
 # Use postgresql as the database for Active Record
 gem 'pg'
 
-gem 'sprockets-rails'
+gem 'propshaft'
 
 gem 'turbo-rails'
 
