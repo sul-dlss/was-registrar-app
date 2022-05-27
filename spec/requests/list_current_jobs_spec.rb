@@ -3,7 +3,7 @@
 require 'rails_helper'
 
 RSpec.describe 'List current jobs', type: :request do
-  let(:collection) { create(:collection) }
+  let(:collection) { create(:ar_collection) }
   let(:fetch_month) { create(:fetch_month, collection: collection) }
 
   context 'when there are no jobs' do

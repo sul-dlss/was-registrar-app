@@ -3,7 +3,7 @@
 require 'rails_helper'
 
 RSpec.describe 'Retry fetches', type: :feature do
-  let(:collection) { create(:collection) }
+  let(:collection) { create(:ar_collection) }
 
   context 'when no retriable fetch months' do
     it 'does not render button' do

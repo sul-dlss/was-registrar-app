@@ -4,8 +4,8 @@ require 'rails_helper'
 
 RSpec.describe 'List collections', type: :request do
   before do
-    create(:collection, title: 'zzz collection')
-    create(:collection, title: 'aaa collection')
+    create(:ar_collection, title: 'zzz collection')
+    create(:ar_collection, title: 'aaa collection')
     allow(FetchJobLister).to receive(:list).and_return([])
   end
 

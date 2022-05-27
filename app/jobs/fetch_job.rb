@@ -60,16 +60,7 @@ class FetchJob < ApplicationJob
   end
 
   def register
-    register_params = { type: Cocina::Models::ObjectType.webarchive_binary,
-                        label: fetch_month.job_directory,
-                        version: 1,
-                        access: { view: 'citation-only', download: 'none' },
-                        administrative: { hasAdminPolicy: fetch_month.collection.admin_policy },
-                        identification: { sourceId: source_id },
-                        structural: { isMemberOf: [fetch_month.collection.druid] } }
-    request_model = Cocina::Models::RequestDRO.new(register_params)
-    response_model = dor_services_client.objects.register(params: request_model)
-
+    response_model = dor_services_client.objects.register(params: RequestBuilder.build(fetch_month: fetch_month))
     response_model.externalIdentifier
   end
 
@@ -80,11 +71,5 @@ class FetchJob < ApplicationJob
 
   def success(druid: nil)
     fetch_month.update(crawl_item_druid: druid, status: 'success', failure_reason: nil)
-  end
-
-  def source_id
-    # sul:[wasapi provider]-[collectionId]-[YYYY]_[MM]
-    date_part = "#{fetch_month.year}_#{fetch_month.month.to_s.rjust(2, '0')}"
-    "sul:#{fetch_month.collection.wasapi_provider}-#{fetch_month.collection.wasapi_collection_id}-#{date_part}"
   end
 end
