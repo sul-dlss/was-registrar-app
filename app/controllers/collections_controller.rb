@@ -3,6 +3,7 @@
 # Controller for Collections
 class CollectionsController < ApplicationController
   before_action :wasapi_provider_accounts, only: %i[new edit]
+  before_action :load_collection, only: %i[edit update fetch retry]
 
   def index
     @collections = Collection.order('title')
@@ -16,9 +17,7 @@ class CollectionsController < ApplicationController
     end
   end
 
-  def edit
-    @collection = Collection.find(params[:id])
-  end
+  def edit; end
 
   def create
     @collection = Collection.new(collection_params)
@@ -32,8 +31,6 @@ class CollectionsController < ApplicationController
   end
 
   def update
-    @collection = Collection.find(params[:id])
-
     if @collection.update(collection_params)
       flash[:notice] = 'Collection updated.'
       redirect_to action: 'index'
@@ -43,10 +40,15 @@ class CollectionsController < ApplicationController
   end
 
   def fetch
-    collection = Collection.find(params[:id])
-    FetchJobCreator.run(collection: collection)
-    flash[:notice] = 'Queued fetch jobs for this collection.'
-    redirect_to action: 'index'
+    FetchJobCreator.run(collection: @collection)
+    flash[:notice] = 'Queued new fetch jobs.'
+    redirect_to action: :edit
+  end
+
+  def retry
+    FetchJobRetrier.retry(collection: @collection)
+    flash[:notice] = 'Queued retry fetch jobs.'
+    redirect_to action: :edit
   end
 
   private
@@ -69,5 +71,9 @@ class CollectionsController < ApplicationController
                                       "#{provider}:#{account}"]
       end
     end
+  end
+
+  def load_collection
+    @collection = Collection.find(params[:id])
   end
 end

@@ -40,6 +40,11 @@ Metrics/MethodLength:
   Exclude:
     - db/migrate/*
 
+RSpec/LetSetup:
+  Exclude:
+    - spec/services/fetch_job_retrier_spec.rb
+    - spec/features/retry_fetches_spec.rb
+    
 Gemspec/DateAssignment: # new in 1.10
   Enabled: true
 Gemspec/RequireMFA: # new in 1.23

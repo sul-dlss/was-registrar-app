@@ -4,7 +4,7 @@ require 'rails_helper'
 
 RSpec.describe FetchJob do
   let(:collection) { create(:collection, admin_policy: 'druid:yf700yh0557', wasapi_collection_id: '915') }
-  let(:fetch_month) { create(:fetch_month, collection: collection) }
+  let(:fetch_month) { create(:fetch_month, collection: collection, year: 2017) }
 
   describe '#perform_now' do
     let(:stderr) { nil }
