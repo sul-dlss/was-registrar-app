@@ -29,6 +29,8 @@ gem 'cssbundling-rails'
 # Transpile app-like JavaScript.
 gem 'jsbundling-rails'
 
+gem 'stimulus-rails'
+
 gem 'view_component', '~> 2.0'
 # For configuration
 gem 'config', '~> 2.0'
