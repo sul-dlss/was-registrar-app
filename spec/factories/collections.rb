@@ -1,13 +1,13 @@
 # frozen_string_literal: true
 
 FactoryBot.define do
-  factory :collection do
+  factory :ar_collection, class: 'Collection' do
     sequence :title do |n|
       "Test title ##{n}"
     end
 
     sequence :druid do |n|
-      "druid:bc123df456#{n}"
+      "druid:bc123df#{n.to_s.rjust(4, '0')}"
     end
     active { true }
     embargo_months { 6 }

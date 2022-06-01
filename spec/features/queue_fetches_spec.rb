@@ -3,7 +3,7 @@
 require 'rails_helper'
 
 RSpec.describe 'Queue fetch jobs for a collection', type: :feature do
-  let(:collection) { create(:collection) }
+  let(:collection) { create(:ar_collection) }
 
   before do
     allow(FetchJobLister).to receive(:list).and_return([])

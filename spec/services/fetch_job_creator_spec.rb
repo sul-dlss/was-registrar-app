@@ -12,7 +12,7 @@ RSpec.describe FetchJobCreator do
 
   context 'when there is an embargo' do
     let(:collection) do
-      create(:collection, fetch_start_month: '2018-10-01')
+      create(:ar_collection, fetch_start_month: '2018-10-01')
     end
 
     context 'with a collection that has fetch months' do
@@ -43,7 +43,7 @@ RSpec.describe FetchJobCreator do
 
   context 'when there is no embargo' do
     let(:collection) do
-      create(:collection, embargo_months: 0, fetch_start_month: '2018-10-01')
+      create(:ar_collection, embargo_months: 0, fetch_start_month: '2018-10-01')
     end
 
     context 'with a collection that has fetch months' do

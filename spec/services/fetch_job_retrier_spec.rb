@@ -5,7 +5,7 @@ require 'rails_helper'
 RSpec.describe FetchJobRetrier do
   let(:retrier) { described_class.new(collection.id) }
 
-  let(:collection) { create(:collection, wasapi_collection_id: '915') }
+  let(:collection) { create(:ar_collection, wasapi_collection_id: '915') }
 
   before do
     allow(FetchJob).to receive(:perform_later)

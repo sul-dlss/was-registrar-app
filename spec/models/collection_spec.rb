@@ -4,11 +4,11 @@ require 'rails_helper'
 
 RSpec.describe Collection, type: :model do
   let(:collection) do
-    build(:collection, title: 'My collection', druid: 'druid:abc123')
+    build(:ar_collection, title: 'My collection', druid: 'druid:abc123')
   end
 
   before do
-    create(:collection, wasapi_collection_id: '916')
+    create(:ar_collection, wasapi_collection_id: '916')
   end
 
   context 'with a valid collection' do

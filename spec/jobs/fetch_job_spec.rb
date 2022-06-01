@@ -3,7 +3,7 @@
 require 'rails_helper'
 
 RSpec.describe FetchJob do
-  let(:collection) { create(:collection, admin_policy: 'druid:yf700yh0557', wasapi_collection_id: '915') }
+  let(:collection) { create(:ar_collection, admin_policy: 'druid:yf700yh0557', wasapi_collection_id: '915') }
   let(:fetch_month) { create(:fetch_month, collection: collection, year: 2017) }
 
   describe '#perform_now' do
@@ -28,15 +28,7 @@ RSpec.describe FetchJob do
     context 'when the fetch is successful and there are warcs' do
       let(:druid) { 'druid:bc123df4557' }
       let(:status) { instance_double(Process::Status, success?: true) }
-      let(:expected) do
-        Cocina::Models::RequestDRO.new({ type: Cocina::Models::ObjectType.webarchive_binary,
-                                         label: 'AIT_915/2017_11',
-                                         version: 1,
-                                         access: { view: 'citation-only', download: 'none' },
-                                         administrative: { hasAdminPolicy: 'druid:yf700yh0557' },
-                                         identification: { sourceId: 'sul:ait-915-2017_11' },
-                                         structural: { isMemberOf: [fetch_month.collection.druid] } })
-      end
+      let(:request_dro) { instance_double(Cocina::Models::RequestDRO) }
       let(:version_client) { instance_double(Dor::Services::Client::ObjectVersion, current: '5') }
       let(:object_client) { instance_double(Dor::Services::Client::Object, version: version_client) }
       let(:response_model) { instance_double(Cocina::Models::DRO, externalIdentifier: druid) }
@@ -51,6 +43,7 @@ RSpec.describe FetchJob do
         allow(Dor::Services::Client).to receive(:object).and_return(object_client)
         allow(Dor::Workflow::Client).to receive(:new).and_return(wf_client)
         allow(wf_client).to receive(:create_workflow_by_name).with(druid, 'wasCrawlPreassemblyWF', version: 5)
+        allow(RequestBuilder).to receive(:build).and_return(request_dro)
       end
 
       it 'runs successfully' do
@@ -58,7 +51,8 @@ RSpec.describe FetchJob do
         expect(wf_client).to have_received(:create_workflow_by_name).with(druid, 'wasCrawlPreassemblyWF', version: 5)
         expect(fetch_month.status).to eq 'success'
         expect(fetch_month.failure_reason).to be_nil
-        expect(objects_client).to have_received(:register).with(params: expected)
+        expect(RequestBuilder).to have_received(:build).with(fetch_month: fetch_month)
+        expect(objects_client).to have_received(:register).with(params: request_dro)
       end
     end
 
