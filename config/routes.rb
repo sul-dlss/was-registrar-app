@@ -8,7 +8,8 @@ Rails.application.routes.draw do
   get '/', to: redirect('/collections')
 
   resources :collections, except: %i[destroy show] do
-    get 'fetch', on: :member
+    post 'fetch', on: :member
+    post 'retry', on: :member
   end
 
   mount Sidekiq::Web => '/queues'

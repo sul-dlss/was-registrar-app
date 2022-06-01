@@ -2,7 +2,7 @@
 
 FactoryBot.define do
   factory :fetch_month do
-    year { 2017 }
+    sequence(:year, 2020)
     month { 11 }
     status { 'waiting' }
   end
