@@ -11,4 +11,4 @@ workflows:
           before-test:
             - run:
                 name: compile assets
-                command: bundle exec rails assets:precompile
+                command: bundle exec rails test:prepare
