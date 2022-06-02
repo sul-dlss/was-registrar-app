@@ -20,3 +20,4 @@ wasapi_providers:
         password: pass
 crawl_directory: tmp/jobs
 wasapi_downloader_bin: wasapi-downloader/bin/wasapi-downloader
+validate_collection_druid: false
