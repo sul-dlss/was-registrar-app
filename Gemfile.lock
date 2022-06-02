@@ -72,6 +72,8 @@ GEM
       sshkit (>= 1.6.1, != 1.7.0)
     ast (2.4.2)
     attr_extras (6.2.5)
+    auto_strip_attributes (2.6.0)
+      activerecord (>= 4.0)
     bindex (0.8.1)
     bootsnap (1.12.0)
       msgpack (~> 1.2)
@@ -400,6 +402,7 @@ PLATFORMS
   x86_64-linux
 
 DEPENDENCIES
+  auto_strip_attributes
   bootsnap (>= 1.1.0)
   byebug
   capistrano-passenger

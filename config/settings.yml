@@ -11,3 +11,5 @@ dor_services:
   token: secret-token
 
 argo_view_url: https://argo.stanford.edu/view/%s
+
+validate_collection_druid: true

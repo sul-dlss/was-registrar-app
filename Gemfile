@@ -32,6 +32,8 @@ gem 'jsbundling-rails'
 gem 'stimulus-rails'
 
 gem 'view_component', '~> 2.0'
+
+gem 'auto_strip_attributes'
 # For configuration
 gem 'config', '~> 2.0'
 gem 'dor-services-client', '~> 12.0'
