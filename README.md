@@ -95,3 +95,11 @@ bundle exec sidekiq
 To deploy to [stage](https://was-registrar-app-stage.stanford.edu): `bundle exec cap stage deploy`
 
 To deploy to [production](https://was-registrar-app.stanford.edu): `bundle exec cap prod deploy`
+
+## Auditing
+To audit the WARCs that have been accessioned in SDR against the WARCs available from a WASAPI provider,
+use the audit rake task: `bin/rake audit['<collection druid>']`
+
+For example: `RAILS_ENV=production bin/rake audit['druid:hw105qf0103']`
+
+This will return a list of WARC filenames that are available but have not been accessioned.
