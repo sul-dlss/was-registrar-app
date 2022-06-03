@@ -26,7 +26,7 @@ class CollectionsController < ApplicationController
       flash[:notice] = 'Collection created.'
       redirect_to action: 'index'
     else
-      render :new
+      render :new, status: :unprocessable_entity
     end
   end
 
@@ -35,7 +35,7 @@ class CollectionsController < ApplicationController
       flash[:notice] = 'Collection updated.'
       redirect_to action: 'index'
     else
-      render :edit
+      render :edit, status: :unprocessable_entity
     end
   end
 
