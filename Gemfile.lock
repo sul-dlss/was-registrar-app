@@ -373,8 +373,10 @@ GEM
       patience_diff
     thor (1.2.1)
     timeout (0.3.0)
-    turbo-rails (7.1.1)
-      rails (>= 6.0.0)
+    turbo-rails (1.1.1)
+      actionpack (>= 6.0.0)
+      activejob (>= 6.0.0)
+      railties (>= 6.0.0)
     tzinfo (2.0.4)
       concurrent-ruby (~> 1.0)
     unicode-display_width (2.1.0)
@@ -430,7 +432,7 @@ DEPENDENCIES
   simple_form
   simplecov
   stimulus-rails
-  turbo-rails
+  turbo-rails (~> 1.0)
   view_component (~> 2.0)
   web-console (>= 4.1.0)
   whenever (~> 1.0)

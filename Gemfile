@@ -10,7 +10,7 @@ gem 'pg'
 
 gem 'propshaft'
 
-gem 'turbo-rails'
+gem 'turbo-rails', '~> 1.0'
 
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 # gem 'jbuilder', '~> 2.5'
