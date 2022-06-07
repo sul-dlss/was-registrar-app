@@ -54,18 +54,13 @@ class FetchJob < ApplicationJob
     @workflow_client ||= Dor::Workflow::Client.new(url: Settings.workflow.url)
   end
 
-  def dor_services_client
-    @dor_services_client ||= Dor::Services::Client.configure(url: Settings.dor_services.url,
-                                                             token: Settings.dor_services.token)
-  end
-
   def register
-    response_model = dor_services_client.objects.register(params: RequestBuilder.build(fetch_month: fetch_month))
+    response_model = Dor::Services::Client.objects.register(params: RequestBuilder.build(fetch_month: fetch_month))
     response_model.externalIdentifier
   end
 
   def start_workflow(druid)
-    current_version = dor_services_client.object(druid).version.current.to_i
+    current_version = Dor::Services::Client.object(druid).version.current.to_i
     workflow_client.create_workflow_by_name(druid, 'wasCrawlPreassemblyWF', version: current_version)
   end
 
