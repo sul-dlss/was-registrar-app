@@ -1,41 +1,33 @@
-<div class="card" style="margin-top: 20px">
-  <div class="card-header">Collections</div>
-  <div class="card-body">
-    <table id="collection-table" class="table">
-      <thead>
-      <tr>
-        <th scope="col">Collection</th>
-        <th scope="col">Druid</th>
-        <th scope="col">Provider</th>
-        <th scope="col">Account</th>
-        <th scope="col">Active/Inactive</th>
-      </tr>
-      </thead>
-      <tbody>
-      <% @collections.each do |collection| %>
-
+<turbo-frame id="collections_frame">
+  <div class="card">
+    <div class="card-header">Collections</div>
+    <div class="card-body">
+      <table id="collection-table" class="table">
+        <thead>
         <tr>
-          <th scope="row"><%= link_to collection.title, edit_collection_path(collection)%></th>
-          <td><%= collection.druid %></td>
-          <td><%= collection.wasapi_provider %></td>
-          <td><%= collection.wasapi_account %></td>
-          <td><%= collection.active ? 'active' : 'inactive' %></td>
+          <th scope="col">Collection</th>
+          <th scope="col">Druid</th>
+          <th scope="col">Provider</th>
+          <th scope="col">Account</th>
+          <th scope="col">Active/Inactive</th>
         </tr>
-      <% end %>
-      </tbody>
-    </table>
-  </div>
-  <div class="card-footer">
-    <%= link_to "Add a Collection", new_collection_path, class: 'btn btn-link'%>
-  </div>
-</div>
+        </thead>
+        <tbody>
+        <% @collections.each do |collection| %>
 
-<div class="card" style="margin-top: 20px">
-  <div class="card-header">Current jobs</div>
-  <div class="card-body">
-    <%= render(FetchMonthJobsComponent.new(fetch_months: @fetch_month_jobs)) %>
+          <tr>
+            <th scope="row"><%= link_to collection.title, edit_collection_path(collection), target: "_top"%></th>
+            <td><%= collection.druid %></td>
+            <td><%= collection.wasapi_provider %></td>
+            <td><%= collection.wasapi_account %></td>
+            <td><%= collection.active ? 'active' : 'inactive' %></td>
+          </tr>
+        <% end %>
+        </tbody>
+      </table>
+    </div>
+    <div class="card-footer">
+      <%= link_to "Add a Collection", new_collection_path, class: 'btn btn-link', target: "_top"%>
+    </div>
   </div>
-  <div class="card-footer">
-    <%= link_to "Sidekiq Dashboard", "/queues", class: 'btn btn-link'%>
-  </div>
-</div>
+</turbo-frame>

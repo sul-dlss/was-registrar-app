@@ -33,4 +33,10 @@ class FetchMonth < ApplicationRecord
   def wasapi_account_config
     wasapi_provider_config.accounts[collection.wasapi_account]
   end
+
+  def source_id
+    # sul:[wasapi provider]-[collectionId]-[YYYY]_[MM]
+    date_part = "#{year}_#{month.to_s.rjust(2, '0')}"
+    "sul:#{collection.wasapi_provider}-#{collection.wasapi_collection_id}-#{date_part}"
+  end
 end

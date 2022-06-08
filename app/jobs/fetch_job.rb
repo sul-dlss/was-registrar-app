@@ -2,12 +2,13 @@
 
 require 'open3'
 
-# Retrieve the WARCs for the given month and kick off accessioning workflow
+# Retrieve the WARCs for the given month, register an item, and kick off accessioning workflow
 class FetchJob < ApplicationJob
+  include Registering
   queue_as :default
 
   rescue_from(StandardError) do |exception|
-    fetch_month&.update(failure_reason: exception.to_s, status: 'failure')
+    failure_status(fetch_month, exception)
     raise exception
   end
 
@@ -15,14 +16,14 @@ class FetchJob < ApplicationJob
 
   def perform(fetch_month)
     @fetch_month = fetch_month
-    fetch_month.update(status: 'running', failure_reason: nil)
+    running_status(fetch_month)
     FileUtils.mkdir_p(fetch_month.crawl_directory)
     fetch_warcs
-    return success unless warcs?
+    return success_status(fetch_month) unless warcs?(fetch_month.crawl_directory)
 
-    druid = register
-    start_workflow(druid)
-    success(druid: druid)
+    cocina_obj = register(request_params)
+    start_workflow(cocina_obj.externalIdentifier, cocina_obj.version)
+    success_status(fetch_month, druid: cocina_obj.externalIdentifier)
   end
 
   def fetch_warcs
@@ -46,25 +47,11 @@ class FetchJob < ApplicationJob
   end
   # rubocop:enable Metrics/AbcSize
 
-  def warcs?
-    Dir.glob("#{fetch_month.crawl_directory}/**/*.warc*").any?
-  end
-
-  def workflow_client
-    @workflow_client ||= Dor::Workflow::Client.new(url: Settings.workflow.url)
-  end
-
-  def register
-    response_model = Dor::Services::Client.objects.register(params: RequestBuilder.build(fetch_month: fetch_month))
-    response_model.externalIdentifier
-  end
-
-  def start_workflow(druid)
-    current_version = Dor::Services::Client.object(druid).version.current.to_i
-    workflow_client.create_workflow_by_name(druid, 'wasCrawlPreassemblyWF', version: current_version)
-  end
-
-  def success(druid: nil)
-    fetch_month.update(crawl_item_druid: druid, status: 'success', failure_reason: nil)
+  def request_params
+    RequestBuilder.build(title: fetch_month.job_directory,
+                         source_id: fetch_month.source_id,
+                         admin_policy: fetch_month.collection.admin_policy,
+                         collection: fetch_month.collection.druid,
+                         crawl_directory: fetch_month.crawl_directory)
   end
 end

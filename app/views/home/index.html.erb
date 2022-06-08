@@ -1,0 +1,31 @@
+<h1>WAS Registrar App</h1>
+
+<h2 class="mt-3">Scheduled WARC fetching and registration</h2>
+<turbo-frame id="collections_frame" src="<%= collections_path %>">
+  Loading ...
+</turbo-frame>
+
+<h2 class="mt-3">One-time WARC registration</h2>
+<turbo-frame id="registration_jobs_frame" src="<%= registration_jobs_path %>">
+  Loading ...
+</turbo-frame>
+
+<h2 class="mt-3">Running jobs</h2>
+  <div class="card mt-2">
+    <div class="card-header">Scheduled WARC fetching and registration</div>
+    <div class="card-body">
+      <%= render(FetchMonthJobsComponent.new(fetch_months: @running_fetch_month_jobs)) %>
+    </div>
+    <div class="card-footer">
+      <%= link_to "Sidekiq Dashboard", sidekiq_web_path, class: 'btn btn-link', target: "_top"%>
+    </div>
+  </div>
+  <div class="card mt-2">
+    <div class="card-header">One-time WARC registration jobs</div>
+    <div class="card-body">
+      <%= render(RegistrationJobsComponent.new(registration_jobs: @running_registration_jobs)) %>
+    </div>
+    <div class="card-footer">
+      <%= link_to "Sidekiq Dashboard", sidekiq_web_path, class: 'btn btn-link', target: "_top"%>
+    </div>
+  </div>

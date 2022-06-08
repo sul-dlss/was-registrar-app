@@ -10,8 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_09_06_133334) do
-
+ActiveRecord::Schema[7.0].define(version: 2022_06_08_130715) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -20,8 +19,8 @@ ActiveRecord::Schema.define(version: 2019_09_06_133334) do
     t.string "druid"
     t.integer "embargo_months"
     t.boolean "active"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at", precision: nil, null: false
+    t.datetime "updated_at", precision: nil, null: false
     t.string "wasapi_provider"
     t.string "wasapi_account"
     t.date "fetch_start_month", null: false
@@ -37,11 +36,24 @@ ActiveRecord::Schema.define(version: 2019_09_06_133334) do
     t.string "status", null: false
     t.text "failure_reason"
     t.string "crawl_item_druid"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
     t.index ["collection_id", "year", "month"], name: "index_fetch_months_on_collection_id_and_year_and_month", unique: true
     t.index ["collection_id"], name: "index_fetch_months_on_collection_id"
     t.index ["crawl_item_druid"], name: "index_fetch_months_on_crawl_item_druid", unique: true
+  end
+
+  create_table "registration_jobs", force: :cascade do |t|
+    t.string "collection", null: false
+    t.string "admin_policy", default: "druid:wr005wn5739"
+    t.string "source_id", null: false
+    t.string "job_directory", null: false
+    t.string "status", default: "waiting", null: false
+    t.text "failure_reason"
+    t.string "crawl_item_druid"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["crawl_item_druid"], name: "index_registration_jobs_on_crawl_item_druid", unique: true
   end
 
   add_foreign_key "fetch_months", "collections"

@@ -70,7 +70,7 @@ braces@~3.0.2:
   optionalDependencies:
     fsevents "~2.3.2"
 
-dayjs@^1.8.28:
+dayjs@^1.10.7:
   version "1.11.3"
   resolved "https://registry.yarnpkg.com/dayjs/-/dayjs-1.11.3.tgz#4754eb694a624057b9ad2224b67b15d552589258"
   integrity sha512-xxwlswWOlGhzgQ4TKzASQkUhqERI3egRNqgV4ScR8wlANA/A9tZ7miXa44vTTKEq5l7vWoL5G57bG3zA+Kow0A==
@@ -275,12 +275,12 @@ sass@^1.42.1:
     immutable "^4.0.0"
     source-map-js ">=0.6.2 <2.0.0"
 
-simple-datatables@^2.1.6:
-  version "2.1.13"
-  resolved "https://registry.yarnpkg.com/simple-datatables/-/simple-datatables-2.1.13.tgz#7285653892cff37ead3ce8429559346b2d21446a"
-  integrity sha512-wKl0AXy0TbFi9YlQpph8kSdNHey2cMb8AcV3gjT0ccm1Fm+yMRE6trIAwDIMgqVQpCW5VWKYbOoDjKjfCoQRPg==
+simple-datatables@^3.2.0:
+  version "3.2.0"
+  resolved "https://registry.yarnpkg.com/simple-datatables/-/simple-datatables-3.2.0.tgz#a30b42c28dffce7772f8151641e40f8e233aa8b8"
+  integrity sha512-lWwrH7SbTHp4SBQmvGty3NFzruzcbz/URUkkcwd8AdnZrQUtSitGwKeJ64qUVv2JXWP+RLOe1xpN8bW4Z6gjSQ==
   dependencies:
-    dayjs "^1.8.28"
+    dayjs "^1.10.7"
 
 "source-map-js@>=0.6.2 <2.0.0":
   version "1.0.2"

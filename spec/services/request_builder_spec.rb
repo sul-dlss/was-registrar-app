@@ -3,7 +3,15 @@
 require 'rails_helper'
 
 RSpec.describe RequestBuilder do
-  let(:request) { described_class.build(fetch_month: fetch_month) }
+  let(:request) do
+    described_class.build(
+      title: fetch_month.job_directory,
+      source_id: fetch_month.source_id,
+      admin_policy: fetch_month.collection.admin_policy,
+      collection: fetch_month.collection.druid,
+      crawl_directory: fetch_month.crawl_directory
+    )
+  end
   let(:admin_policy_druid) { 'druid:yf700yh0557' }
   let(:collection) { create(:ar_collection, admin_policy: admin_policy_druid, wasapi_collection_id: '915') }
   let(:fetch_month) { create(:fetch_month, collection: collection, year: 2017, month: 11) }

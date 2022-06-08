@@ -2,8 +2,8 @@
 
 require 'rails_helper'
 
-RSpec.describe FetchMonthComponent do
-  subject(:component) { described_class.new(fetch_month: fetch_month) }
+RSpec.describe StatusComponent do
+  subject(:component) { described_class.new(status_obj: fetch_month) }
 
   describe '#status' do
     subject(:status) { component.status }
@@ -12,7 +12,7 @@ RSpec.describe FetchMonthComponent do
       let(:fetch_month) { build(:fetch_month, status: 'success') }
 
       context 'when no WARCs were fetched' do
-        it { is_expected.to eq 'success: No WARCs fetched' }
+        it { is_expected.to eq 'success: No WARCs' }
       end
 
       context 'when a WARC was fetched' do

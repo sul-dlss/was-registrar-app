@@ -2,14 +2,14 @@
 
 require 'rails_helper'
 
-RSpec.describe 'Create a collection', type: :feature do
+RSpec.describe 'Create a collection', type: :feature, js: true do
   before do
-    allow(FetchJobLister).to receive(:list).and_return([])
+    allow(JobLister).to receive(:list).and_return([])
   end
 
   context 'when fields are missing' do
     it 'shows the errors' do
-      visit collections_path
+      visit root_path
       click_link 'Add a Collection'
       click_button 'Create Collection'
 
@@ -21,7 +21,7 @@ RSpec.describe 'Create a collection', type: :feature do
 
   context 'when all fields are present' do
     it 'creates the collection' do
-      visit collections_path
+      visit root_path
       click_link 'Add a Collection'
 
       fill_in 'Title', with: ' Robots ' # Intentionally has extra spaces to test stripping
@@ -39,11 +39,11 @@ RSpec.describe 'Create a collection', type: :feature do
   end
 
   context 'when cancelling' do
-    it 'returns to collections list page' do
-      visit collections_path
+    it 'returns to root page' do
+      visit root_path
       click_link 'Add a Collection'
       click_link 'Cancel'
-      expect(page).to have_current_path(collections_path)
+      expect(page).to have_current_path(root_path)
     end
   end
 end
