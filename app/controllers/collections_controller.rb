@@ -7,7 +7,6 @@ class CollectionsController < ApplicationController
 
   def index
     @collections = Collection.order('title')
-    @fetch_month_jobs = FetchJobLister.list
   end
 
   def new
@@ -24,7 +23,7 @@ class CollectionsController < ApplicationController
 
     if @collection.save
       flash[:notice] = 'Collection created.'
-      redirect_to action: 'index'
+      redirect_to root_path
     else
       render :new, status: :unprocessable_entity
     end
@@ -33,7 +32,7 @@ class CollectionsController < ApplicationController
   def update
     if @collection.update(collection_params)
       flash[:notice] = 'Collection updated.'
-      redirect_to action: 'index'
+      redirect_to root_path
     else
       render :edit, status: :unprocessable_entity
     end

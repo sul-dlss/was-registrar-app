@@ -2,12 +2,17 @@
 
 # Builds a RequestDRO for registering a crawl.
 class RequestBuilder
-  def self.build(fetch_month:)
-    new(fetch_month: fetch_month).build
+  def self.build(title:, source_id:, admin_policy:, collection:, crawl_directory:)
+    new(title: title, source_id: source_id, admin_policy: admin_policy, collection: collection,
+        crawl_directory: crawl_directory).build
   end
 
-  def initialize(fetch_month:)
-    @fetch_month = fetch_month
+  def initialize(title:, source_id:, admin_policy:, collection:, crawl_directory:)
+    @title = title
+    @source_id = source_id
+    @admin_policy = admin_policy
+    @collection = collection
+    @crawl_directory = crawl_directory
   end
 
   def build
@@ -16,16 +21,16 @@ class RequestBuilder
 
   private
 
-  attr_reader :fetch_month
+  attr_reader :title, :source_id, :admin_policy, :collection, :crawl_directory
 
   def props
     {
       type: Cocina::Models::ObjectType.webarchive_binary,
-      label: fetch_month.job_directory,
+      label: title,
       version: 1,
-      description: { title: [{ value: fetch_month.job_directory }] },
+      description: { title: [{ value: title }] },
       access: { view: 'citation-only', download: 'none' },
-      administrative: { hasAdminPolicy: fetch_month.collection.admin_policy },
+      administrative: { hasAdminPolicy: admin_policy },
       identification: { sourceId: source_id },
       structural: structural
     }
@@ -33,35 +38,29 @@ class RequestBuilder
 
   def structural
     {
-      isMemberOf: [fetch_month.collection.druid],
+      isMemberOf: [collection],
       contains: resources_props
     }
   end
 
-  def source_id
-    # sul:[wasapi provider]-[collectionId]-[YYYY]_[MM]
-    date_part = "#{fetch_month.year}_#{fetch_month.month.to_s.rjust(2, '0')}"
-    "sul:#{fetch_month.collection.wasapi_provider}-#{fetch_month.collection.wasapi_collection_id}-#{date_part}"
-  end
-
   def resources_props
-    warc_filepaths.map { |filepath| resource_props(filepath) }
+    warc_filepaths.map { |filepath| resource_props_for(filepath) }
   end
 
-  def resource_props(filepath)
+  def resource_props_for(filepath)
     filename = File.basename(filepath)
     {
       type: Cocina::Models::FileSetType.file,
       version: 1,
       label: filename,
       structural: {
-        contains: [file_props(filepath, filename)]
+        contains: [file_props_for(filepath, filename)]
       }
     }
   end
 
   # rubocop:disable Metrics/MethodLength
-  def file_props(filepath, filename)
+  def file_props_for(filepath, filename)
     {
       type: Cocina::Models::ObjectType.file,
       label: filename,
@@ -93,12 +92,12 @@ class RequestBuilder
 
   def warc_filepaths
     # Note that any file hierarchy is discarded.
-    Dir.glob("#{fetch_month.crawl_directory}/**/*.warc*")
+    Dir.glob("#{crawl_directory}/**/*.warc*")
   end
 
   def world?
     @world ||= begin
-      apo = Dor::Services::Client.object(fetch_month.collection.admin_policy).find
+      apo = Dor::Services::Client.object(admin_policy).find
       view = apo.administrative&.accessTemplate&.view
       # If the view access is anything other than world, it's dark.
       view == 'world'

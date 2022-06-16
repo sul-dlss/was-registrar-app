@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-RSpec.describe FetchJobLister do
+RSpec.describe JobLister do
   subject(:fetch_months) { described_class.list }
 
   let(:collection) { create(:ar_collection) }

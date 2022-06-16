@@ -2,8 +2,8 @@
 
 require 'sidekiq/api'
 
-# Lists the FetchMonths for the currently running Fetch jobs.
-class FetchJobLister
+# Lists the ActiveRecord objects for the currently running jobs.
+class JobLister
   def self.list
     new.list
   end
@@ -23,6 +23,7 @@ class FetchJobLister
 
   def gids
     payloads.map do |payload|
+      Rails.logger.info(payload)
       payload['args'][0]['arguments'][0]['_aj_globalid']
     end
   end

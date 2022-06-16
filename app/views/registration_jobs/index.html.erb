@@ -1,0 +1,30 @@
+<turbo-frame id="registration_jobs_frame">
+  <div class="card">
+    <div class="card-header">One-time registrations</div>
+    <div class="card-body">
+      <table id="registration-jobs-table" class="table">
+        <thead>
+        <tr>
+          <th scope="col">Job directory</th>
+          <th scope="col">Collection</th>
+          <th scope="col">Source ID</th>
+          <th scope="col">Status</th>
+        </tr>
+        </thead>
+        <tbody>
+        <% @registration_jobs.each do |registration_job| %>
+          <tr>
+            <th scope="row"><%= registration_job.job_directory %></th>
+            <td><%= registration_job.collection %></td>
+            <td><%= registration_job.source_id %></td>
+            <td><%= render(StatusComponent.new(status_obj: registration_job)) %></td>
+          </tr>
+        <% end %>
+        </tbody>
+      </table>
+    </div>
+    <div class="card-footer">
+      <%= link_to "Create a one-time registration", new_registration_job_path, class: 'btn btn-link', target: "_top"%>
+    </div>
+  </div>
+</turbo-frame>
