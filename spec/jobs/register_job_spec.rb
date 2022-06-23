@@ -47,5 +47,28 @@ RSpec.describe RegisterJob do
         expect(objects_client).to have_received(:register).with(params: request_dro)
       end
     end
+
+    context 'when an error' do
+      let(:druid) { 'druid:bc123df4557' }
+      let(:request_dro) { instance_double(Cocina::Models::RequestDRO) }
+      let(:objects_client) { instance_double(Dor::Services::Client::Objects) }
+
+      before do
+        allow(Dor::Services::Client).to receive(:objects).and_return(objects_client)
+        allow(RequestBuilder).to receive(:build).and_return(request_dro)
+        allow(objects_client).to receive(:register)
+          .and_raise(Dor::Services::Client::UnexpectedResponse.new(response: '',
+                                                                   errors: [{ 'title' => 'Oops!' }]))
+      end
+
+      it 'runs unsuccessfully' do
+        expect do
+          described_class.perform_now(registration_job)
+        end.to raise_error(Dor::Services::Client::UnexpectedResponse)
+        expect(registration_job.status).to eq 'failure'
+        expect(registration_job.failure_reason).to eq('Oops! ()')
+        expect(objects_client).to have_received(:register).with(params: request_dro)
+      end
+    end
   end
 end
