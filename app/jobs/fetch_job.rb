@@ -19,7 +19,7 @@ class FetchJob < ApplicationJob
     running_status(fetch_month)
     FileUtils.mkdir_p(fetch_month.crawl_directory)
     fetch_warcs
-    return success_status(fetch_month) unless warcs?(fetch_month.crawl_directory)
+    return success_status(fetch_month) unless web_archives?(fetch_month.crawl_directory)
 
     cocina_obj = register(request_params)
     start_workflow(cocina_obj.externalIdentifier, cocina_obj.version)

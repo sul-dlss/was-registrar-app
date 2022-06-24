@@ -44,7 +44,7 @@ class RequestBuilder
   end
 
   def resources_props
-    warc_filepaths.map { |filepath| resource_props_for(filepath) }
+    web_archive_filepaths.map { |filepath| resource_props_for(filepath) }
   end
 
   def resource_props_for(filepath)
@@ -67,7 +67,7 @@ class RequestBuilder
       filename: filename,
       size: File.size(filepath),
       version: 1,
-      hasMimeType: 'application/warc',
+      hasMimeType: mime_type(filename),
       hasMessageDigests: message_digests(filepath),
       access: {},
       administrative: administrative
@@ -90,9 +90,9 @@ class RequestBuilder
     }
   end
 
-  def warc_filepaths
+  def web_archive_filepaths
     # Note that any file hierarchy is discarded.
-    Dir.glob("#{crawl_directory}/**/*.warc*")
+    WebArchiveGlob.web_archives(crawl_directory)
   end
 
   def world?
@@ -102,5 +102,9 @@ class RequestBuilder
       # If the view access is anything other than world, it's dark.
       view == 'world'
     end
+  end
+
+  def mime_type(filename)
+    filename.end_with?('.wacz') ? 'application/wacz' : 'application/warc'
   end
 end

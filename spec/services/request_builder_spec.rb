@@ -72,7 +72,7 @@ RSpec.describe RequestBuilder do
                                          },
                                          {
                                            type: Cocina::Models::FileSetType.file,
-                                           label: 'AIT-915-2.warc.gz',
+                                           label: 'AIT-915-2.warc',
                                            version: 1,
                                            structural:
                                            {
@@ -80,8 +80,8 @@ RSpec.describe RequestBuilder do
                                              [
                                                {
                                                  type: Cocina::Models::ObjectType.file,
-                                                 label: 'AIT-915-2.warc.gz',
-                                                 filename: 'AIT-915-2.warc.gz',
+                                                 label: 'AIT-915-2.warc',
+                                                 filename: 'AIT-915-2.warc',
                                                  size: 9,
                                                  version: 1,
                                                  hasMimeType: 'application/warc',
@@ -99,6 +99,36 @@ RSpec.describe RequestBuilder do
                                                }
                                              ]
                                            }
+                                         },
+                                         {
+                                           type: Cocina::Models::FileSetType.file,
+                                           label: 'AIT-915-3.wacz',
+                                           version: 1,
+                                           structural:
+                                          {
+                                            contains:
+                                            [
+                                              {
+                                                type: Cocina::Models::ObjectType.file,
+                                                label: 'AIT-915-3.wacz',
+                                                filename: 'AIT-915-3.wacz',
+                                                size: 9,
+                                                version: 1,
+                                                hasMimeType: 'application/wacz',
+                                                hasMessageDigests:
+                                                  [
+                                                    { type: 'md5', digest: '32f38a4fbad4755474bc375b8a8437ea' },
+                                                    { type: 'sha1',
+                                                      digest: '649b12da4651444f9b6e922472d1dc257ae96f50' }
+                                                  ],
+                                                access:
+                                                  { view: 'dark', download: 'none',
+                                                    controlledDigitalLending: false },
+                                                administrative:
+                                                  { publish: false, sdrPreserve: true, shelve: shelve }
+                                              }
+                                            ]
+                                          }
                                          }
                                        ]
                                      } })

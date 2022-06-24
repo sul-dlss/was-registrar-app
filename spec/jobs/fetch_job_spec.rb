@@ -13,7 +13,7 @@ RSpec.describe FetchJob do
       before do
         allow(Open3).to receive(:capture3).and_return([nil, stderr, status])
         allow(FileUtils).to receive(:mkdir_p).with('spec/fixtures/jobs/AIT_915/2017_11').and_call_original
-        allow(Dir).to receive(:glob).with('spec/fixtures/jobs/AIT_915/2017_11/**/*.warc*').and_return([])
+        allow(WebArchiveGlob).to receive(:web_archives).with('spec/fixtures/jobs/AIT_915/2017_11').and_return([])
       end
 
       let(:status) { instance_double(Process::Status, success?: true) }
@@ -36,7 +36,8 @@ RSpec.describe FetchJob do
       before do
         allow(Open3).to receive(:capture3).and_return([nil, stderr, status])
         allow(FileUtils).to receive(:mkdir_p).with('spec/fixtures/jobs/AIT_915/2017_11').and_call_original
-        allow(Dir).to receive(:glob).with('spec/fixtures/jobs/AIT_915/2017_11/**/*.warc*').and_return(['foo.warc'])
+        allow(WebArchiveGlob).to receive(:web_archives)
+          .with('spec/fixtures/jobs/AIT_915/2017_11').and_return(['foo.warc'])
         allow(Dor::Services::Client).to receive(:objects).and_return(objects_client)
         allow(Dor::Workflow::Client).to receive(:new).and_return(wf_client)
         allow(wf_client).to receive(:create_workflow_by_name)
