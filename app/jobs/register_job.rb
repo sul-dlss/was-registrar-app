@@ -15,7 +15,7 @@ class RegisterJob < ApplicationJob
   def perform(registration_job)
     @registration_job = registration_job
     running_status(registration_job)
-    return success_status(registration_job) unless warcs?(registration_job.crawl_directory)
+    return success_status(registration_job) unless web_archives?(registration_job.crawl_directory)
 
     cocina_obj = register(request_params)
     start_workflow(cocina_obj.externalIdentifier, cocina_obj.version)

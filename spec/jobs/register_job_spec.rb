@@ -8,7 +8,7 @@ RSpec.describe RegisterJob do
   describe '#perform_now' do
     context 'when there are no warcs' do
       before do
-        allow(Dir).to receive(:glob).with('spec/fixtures/jobs/AIT_915/2017_11/**/*.warc*').and_return([])
+        allow(WebArchiveGlob).to receive(:web_archives).with('spec/fixtures/jobs/AIT_915/2017_11').and_return([])
       end
 
       it 'runs successfully' do

@@ -6,8 +6,8 @@ module Registering
     @workflow_client ||= Dor::Workflow::Client.new(url: Settings.workflow.url)
   end
 
-  def warcs?(crawl_directory)
-    Dir.glob("#{crawl_directory}/**/*.warc*").any?
+  def web_archives?(crawl_directory)
+    WebArchiveGlob.web_archives(crawl_directory).any?
   end
 
   def start_workflow(druid, version)
