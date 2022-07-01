@@ -3,7 +3,7 @@
 require 'rails_helper'
 
 RSpec.describe RegistrationJob, type: :model do
-  let(:registration_job) { create(:registration_job, job_directory: 'AIT_915/2017_11') }
+  let(:registration_job) { build(:registration_job, job_directory: 'AIT_915/2017_11') }
 
   describe '#crawl_directory' do
     it 'returns the correct crawl directory' do
@@ -46,6 +46,36 @@ RSpec.describe RegistrationJob, type: :model do
       it 'validates source_id must have correct structure' do
         registration_job.source_id = 'foo'
         expect(registration_job.valid?).to be(false)
+      end
+    end
+
+    context 'when validating source Id' do
+      let(:objects_client) { instance_double(Dor::Services::Client::Objects) }
+
+      before do
+        allow(Settings).to receive(:validate_source_id).and_return(true)
+        allow(Dor::Services::Client).to receive(:objects).and_return(objects_client)
+      end
+
+      context 'when found' do
+        before do
+          allow(objects_client).to receive(:find).and_return(instance_double(Cocina::Models::DRO))
+        end
+
+        it 'is not valid' do
+          expect(registration_job.valid?).to be(false)
+          expect(objects_client).to have_received(:find).with(source_id: registration_job.source_id)
+        end
+      end
+
+      context 'when not found' do
+        before do
+          allow(objects_client).to receive(:find).and_raise(Dor::Services::Client::NotFoundResponse)
+        end
+
+        it 'is valid' do
+          expect(registration_job.valid?).to be(true)
+        end
       end
     end
   end

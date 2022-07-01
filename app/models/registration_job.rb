@@ -10,7 +10,7 @@ class RegistrationJob < ApplicationRecord
   validates :status, inclusion: { in: %w[waiting running success failure] }
   validates :collection, format: { with: /\Adruid:[b-df-hjkmnp-tv-z]{2}[0-9]{3}[b-df-hjkmnp-tv-z]{2}[0-9]{4}\z/,
                                    message: 'must be a valid druid beginning with druid:' }, collection_druid: true
-  validates :source_id, format: { with: /\A.+:.+\z/, message: 'must be namespace:identifier' }
+  validates :source_id, format: { with: /\A.+:.+\z/, message: 'must be namespace:identifier' }, unique_source_id: true
   validates :job_directory, job_directory: true
 
   def crawl_directory

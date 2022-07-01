@@ -14,3 +14,4 @@ argo_view_url: https://argo.stanford.edu/view/%s
 
 validate_collection_druid: true
 validate_job_directory: true
+validate_source_id: true

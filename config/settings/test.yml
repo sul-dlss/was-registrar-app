@@ -22,3 +22,4 @@ crawl_directory: spec/fixtures/jobs
 wasapi_downloader_bin: wasapi-downloader/bin/wasapi-downloader
 validate_collection_druid: false
 validate_job_directory: false
+validate_source_id: false
