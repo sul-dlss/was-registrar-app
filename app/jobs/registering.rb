@@ -15,15 +15,15 @@ module Registering
   end
 
   def success_status(obj, druid: nil)
-    obj.update(crawl_item_druid: druid, status: 'success', failure_reason: nil)
+    obj.update!(crawl_item_druid: druid, status: 'success', failure_reason: nil)
   end
 
   def running_status(obj)
-    obj.update(status: 'running', failure_reason: nil)
+    obj.update!(status: 'running', failure_reason: nil)
   end
 
   def failure_status(obj, exception)
-    obj&.update(failure_reason: exception.to_s, status: 'failure')
+    obj&.update!(failure_reason: exception.to_s, status: 'failure')
   end
 
   def register(request_params)
