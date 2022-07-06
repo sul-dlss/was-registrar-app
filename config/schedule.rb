@@ -11,7 +11,6 @@
 #
 # Learn more: http://github.com/javan/whenever
 
-# Temporarily disabling this during pywb rollout. See https://github.com/sul-dlss/was-registrar-app/issues/482
-# every 1.day do
-#  rake 'fetch_collections'
-# end
+every 1.day do
+  rake 'fetch_collections'
+end
