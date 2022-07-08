@@ -79,6 +79,17 @@ bin/dev
 ```
 This starts css/js bundling and the development server
 
+Alernatively, you can start use docker compose:
+```
+docker compose up -d
+```
+
+if you want to run the web container in intractive mode, stop it first and then run it so it will show interactive live output:
+```
+docker compose stop web
+docker compose run --service-ports web
+```
+
 ## Background processing
 Background processing is performed by [Sidekiq](https://github.com/mperham/sidekiq).
 
