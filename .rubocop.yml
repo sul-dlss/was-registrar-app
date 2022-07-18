@@ -40,6 +40,10 @@ Metrics/MethodLength:
   Exclude:
     - db/migrate/*
 
+Metrics/ParameterLists:
+  Exclude:
+    - app/services/audit/warc_remediator.rb
+
 RSpec/LetSetup:
   Exclude:
     - spec/services/fetch_job_retrier_spec.rb

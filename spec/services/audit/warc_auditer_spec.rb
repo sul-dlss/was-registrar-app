@@ -4,7 +4,8 @@ require 'rails_helper'
 
 RSpec.describe Audit::WarcAuditer do
   let(:files) do
-    described_class.audit(collection_druid: 'druid:hw105qf0103', wasapi_collection_id: '12189', wasapi_account: 'ua')
+    described_class.audit(collection_druid: 'druid:hw105qf0103', wasapi_collection_id: '12189', wasapi_account: 'ua',
+                          embargo_months: 3)
   end
 
   before do
@@ -15,7 +16,7 @@ RSpec.describe Audit::WarcAuditer do
   it 'returns missing files' do
     expect(files).to eq(['FILE_1.warc.gz'])
     expect(Audit::WasapiWarcLister).to have_received(:new).with(wasapi_collection_id: '12189', wasapi_provider: 'ait',
-                                                                wasapi_account: 'ua')
+                                                                wasapi_account: 'ua', embargo_months: 3)
     expect(Audit::SdrWarcLister).to have_received(:new).with(collection_druid: 'druid:hw105qf0103')
   end
 end

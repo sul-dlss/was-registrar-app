@@ -3,7 +3,14 @@
 require 'rails_helper'
 
 RSpec.describe Audit::WasapiWarcLister do
-  let(:files) { described_class.new(wasapi_collection_id: '12189', wasapi_provider: 'ait', wasapi_account: 'ua').to_a }
+  let(:files) do
+    described_class.new(wasapi_collection_id: '12189', wasapi_provider: 'ait', wasapi_account: 'ua',
+                        embargo_months: 3).to_a
+  end
+
+  before do
+    allow(Time.zone).to receive(:today).and_return(Time.zone.parse('2021-01-01'))
+  end
 
   context 'when success' do
     let(:body) do
@@ -50,7 +57,7 @@ RSpec.describe Audit::WasapiWarcLister do
     end
 
     before do
-      stub_request(:get, 'https://archive-it.org/webdata?collection=12189')
+      stub_request(:get, 'https://archive-it.org/webdata?collection=12189&crawl-start-before=2020-10-01')
         .with(
           headers: {
             'Authorization' => 'Basic dXNlcjpwYXNz',
@@ -72,7 +79,7 @@ RSpec.describe Audit::WasapiWarcLister do
 
   context 'when an error' do
     before do
-      stub_request(:get, 'https://archive-it.org/webdata?collection=12189')
+      stub_request(:get, 'https://archive-it.org/webdata?collection=12189&crawl-start-before=2020-10-01')
         .with(
           headers: {
             'Authorization' => 'Basic dXNlcjpwYXNz',
@@ -83,7 +90,10 @@ RSpec.describe Audit::WasapiWarcLister do
     end
 
     it 'raises' do
-      expect { files }.to raise_error('Getting https://archive-it.org/webdata?collection=12189 returned 403')
+      expect do
+        files
+      end.to raise_error('Getting https://archive-it.org/webdata?collection=12189&crawl-start-before=2020-10-01 ' \
+                         'returned 403')
     end
   end
 end
