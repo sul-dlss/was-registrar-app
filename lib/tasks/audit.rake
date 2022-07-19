@@ -7,5 +7,31 @@ task :audit, %i[collection_druid] => :environment do |_task, args|
   puts Audit::WarcAuditer.audit(collection_druid: collection.druid,
                                 wasapi_collection_id: collection.wasapi_collection_id,
                                 wasapi_account: collection.wasapi_account,
-                                wasapi_provider: collection.wasapi_provider)
+                                wasapi_provider: collection.wasapi_provider,
+                                embargo_months: collection.embargo_months)
+end
+
+desc 'Remediate missing WARCs based on audit results'
+task :remediate, %i[collection_druid] => :environment do |_task, args|
+  collection = Collection.find_by(druid: args[:collection_druid])
+  puts "Auditing #{collection.title}. This might take a minute."
+  filenames = Audit::WarcAuditer.audit(collection_druid: collection.druid,
+                                       wasapi_collection_id: collection.wasapi_collection_id,
+                                       wasapi_account: collection.wasapi_account,
+                                       wasapi_provider: collection.wasapi_provider,
+                                       embargo_months: collection.embargo_months)
+  if filenames.empty?
+    puts 'Nothing to remediate.'
+    next
+  end
+
+  puts 'Missing files:'
+  puts filenames
+  puts 'Remediating. This might take a minute.'
+  job_directory = Audit::WarcRemediator.remediate(collection_druid: collection.druid,
+                                                  wasapi_collection_id: collection.wasapi_collection_id,
+                                                  wasapi_account: collection.wasapi_account,
+                                                  wasapi_provider: collection.wasapi_provider,
+                                                  filenames: filenames)
+  puts "Job directory: #{job_directory}"
 end

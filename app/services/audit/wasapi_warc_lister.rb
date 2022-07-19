@@ -4,10 +4,11 @@ module Audit
   # Enumberable that returns WARC filenames for a collection from a WASAPI provider.
   class WasapiWarcLister
     include Enumerable
-    def initialize(wasapi_collection_id:, wasapi_provider:, wasapi_account:)
+    def initialize(wasapi_collection_id:, wasapi_provider:, wasapi_account:, embargo_months: 0)
       @wasapi_collection_id = wasapi_collection_id
       @wasapi_provider = wasapi_provider
       @wasapi_account = wasapi_account
+      @embargo_months = embargo_months
     end
 
     def each(&block)
@@ -25,7 +26,7 @@ module Audit
 
     private
 
-    attr_reader :wasapi_collection_id, :wasapi_provider, :wasapi_account
+    attr_reader :wasapi_collection_id, :wasapi_provider, :wasapi_account, :embargo_months
 
     def wasapi_provider_config
       Settings.wasapi_providers[wasapi_provider]
@@ -36,7 +37,8 @@ module Audit
     end
 
     def first_page_url
-      "#{wasapi_provider_config.baseurl}webdata?collection=#{wasapi_collection_id}"
+      # crawl-start-before should be beginning of the month - embargo months.
+      "#{wasapi_provider_config.baseurl}webdata?collection=#{wasapi_collection_id}&crawl-start-before=#{before_date}"
     end
 
     def connection
@@ -58,6 +60,10 @@ module Audit
 
     def files_for(response)
       response[:files].pluck(:filename)
+    end
+
+    def before_date
+      (Time.zone.today - embargo_months.months).strftime('%Y-%m-01')
     end
   end
 end

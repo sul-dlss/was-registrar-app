@@ -113,4 +113,11 @@ use the audit rake task: `bin/rake audit['<collection druid>']`
 
 For example: `RAILS_ENV=production bin/rake audit['druid:hw105qf0103']`
 
-This will return a list of WARC filenames that are available but have not been accessioned.
+This will return a list of WARC filenames that are available but have not been accessioned. This will respect embargoes
+and exclude WARCs from the current month.
+
+## Remediating
+To fetch and initiate a one-time registration for missing WARCs (based on the auditing procedure described above),
+use the remediate rake task: `bin/rake remediate['<collection druid>']`
+
+For example: `RAILS_ENV=production bin/rake remediate['druid:hw105qf0103']`
