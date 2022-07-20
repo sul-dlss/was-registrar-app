@@ -33,8 +33,13 @@ RSpec.describe Collection, type: :model do
       expect(collection.valid?).to be(false)
     end
 
-    it 'validates embargo_months' do
+    it 'validates embargo_months is present' do
       collection.embargo_months = nil
+      expect(collection.valid?).to be(false)
+    end
+
+    it 'validates embargo_months is greater than 0' do
+      collection.embargo_months = 0
       expect(collection.valid?).to be(false)
     end
 

@@ -17,6 +17,7 @@ class Collection < ApplicationRecord
   validates_uniqueness_of :wasapi_collection_id,
                           scope: %i[wasapi_provider wasapi_account],
                           message: 'already have a collection configured for this WASAPI collection'
+  validates :embargo_months, comparison: { greater_than: 0 }
 
   def wasapi_provider_account
     wasapi_provider && wasapi_account ? "#{wasapi_provider}:#{wasapi_account}" : nil
