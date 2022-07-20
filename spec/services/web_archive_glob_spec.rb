@@ -8,6 +8,7 @@ RSpec.describe WebArchiveGlob do
   describe '#warcs' do
     it 'lists WARCs' do
       expect(described_class.warcs(filepath)).to eq ['spec/fixtures/jobs/AIT_915/2017_11/AIT-915-1.warc.gz',
+                                                     'spec/fixtures/jobs/AIT_915/2017_11/AIT-915-4.arc.gz',
                                                      'spec/fixtures/jobs/AIT_915/2017_11/patch/AIT-915-2.warc']
     end
   end
@@ -21,6 +22,7 @@ RSpec.describe WebArchiveGlob do
   describe '#web_archives' do
     it 'lists WARCs and WACZs' do
       expect(described_class.web_archives(filepath)).to eq ['spec/fixtures/jobs/AIT_915/2017_11/AIT-915-1.warc.gz',
+                                                            'spec/fixtures/jobs/AIT_915/2017_11/AIT-915-4.arc.gz',
                                                             'spec/fixtures/jobs/AIT_915/2017_11/patch/AIT-915-2.warc',
                                                             'spec/fixtures/jobs/AIT_915/2017_11/AIT-915-3.wacz']
     end
