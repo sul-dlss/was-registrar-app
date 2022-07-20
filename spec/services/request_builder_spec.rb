@@ -72,6 +72,36 @@ RSpec.describe RequestBuilder do
                                          },
                                          {
                                            type: Cocina::Models::FileSetType.file,
+                                           label: 'AIT-915-4.arc.gz',
+                                           version: 1,
+                                           structural:
+                                         {
+                                           contains:
+                                           [
+                                             {
+                                               type: Cocina::Models::ObjectType.file,
+                                               label: 'AIT-915-4.arc.gz',
+                                               filename: 'AIT-915-4.arc.gz',
+                                               size: 9,
+                                               version: 1,
+                                               hasMimeType: 'application/warc',
+                                               hasMessageDigests:
+                                                 [
+                                                   { type: 'md5', digest: '4f27c81d5e0399fbbef1664e5b4b94e6' },
+                                                   { type: 'sha1',
+                                                     digest: '6aeac636fd50debb80507b7f8816427fd667d815' }
+                                                 ],
+                                               access:
+                                                 { view: 'dark', download: 'none',
+                                                   controlledDigitalLending: false },
+                                               administrative:
+                                                 { publish: false, sdrPreserve: true, shelve: shelve }
+                                             }
+                                           ]
+                                         }
+                                         },
+                                         {
+                                           type: Cocina::Models::FileSetType.file,
                                            label: 'AIT-915-2.warc',
                                            version: 1,
                                            structural:
@@ -100,6 +130,7 @@ RSpec.describe RequestBuilder do
                                              ]
                                            }
                                          },
+
                                          {
                                            type: Cocina::Models::FileSetType.file,
                                            label: 'AIT-915-3.wacz',

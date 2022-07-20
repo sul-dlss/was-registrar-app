@@ -1,9 +1,9 @@
 # frozen_string_literal: true
 
-# Globs for web archive files (WARC, WACZ)
+# Globs for web archive files (WARC, ARC, WACZ)
 class WebArchiveGlob
   def self.warcs(directory)
-    Dir.glob("#{directory}/**/*.warc*")
+    Dir.glob("#{directory}/**/*.{arc,warc}*")
   end
 
   def self.waczs(directory)
