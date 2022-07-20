@@ -18,40 +18,40 @@ RSpec.describe RegistrationJob, type: :model do
 
     context 'with a valid registration job' do
       it 'validates' do
-        expect(registration_job.valid?).to be(true)
+        expect(registration_job).to be_valid
       end
     end
 
     context 'with an invalid registration job' do
       it 'validates job_directory' do
         registration_job.job_directory = nil
-        expect(registration_job.valid?).to be(false)
+        expect(registration_job).not_to be_valid
       end
 
       it 'validates job_directory when missing and status is waiting' do
         registration_job.job_directory = 'foo'
-        expect(registration_job.valid?).to be(false)
+        expect(registration_job).not_to be_valid
       end
 
       it 'validates job_directory when missing and status is not waiting' do
         registration_job.status = 'running'
         registration_job.job_directory = 'foo'
-        expect(registration_job.valid?).to be(true)
+        expect(registration_job).to be_valid
       end
 
       it 'validates collection druid must begin with druid' do
         registration_job.collection = 'abc123'
-        expect(registration_job.valid?).to be(false)
+        expect(registration_job).not_to be_valid
       end
 
       it 'validates source_id' do
         registration_job.source_id = nil
-        expect(registration_job.valid?).to be(false)
+        expect(registration_job).not_to be_valid
       end
 
       it 'validates source_id must have correct structure' do
         registration_job.source_id = 'foo'
-        expect(registration_job.valid?).to be(false)
+        expect(registration_job).not_to be_valid
       end
     end
 
@@ -69,7 +69,7 @@ RSpec.describe RegistrationJob, type: :model do
         end
 
         it 'is not valid' do
-          expect(registration_job.valid?).to be(false)
+          expect(registration_job).not_to be_valid
           expect(objects_client).to have_received(:find).with(source_id: registration_job.source_id)
         end
       end
@@ -77,7 +77,7 @@ RSpec.describe RegistrationJob, type: :model do
       context 'when status is not waiting' do
         it 'does not validate' do
           registration_job.status = 'running'
-          expect(registration_job.valid?).to be(true)
+          expect(registration_job).to be_valid
         end
       end
 
@@ -87,7 +87,7 @@ RSpec.describe RegistrationJob, type: :model do
         end
 
         it 'is valid' do
-          expect(registration_job.valid?).to be(true)
+          expect(registration_job).to be_valid
         end
       end
     end
@@ -108,7 +108,7 @@ RSpec.describe RegistrationJob, type: :model do
         end
 
         it 'is not valid' do
-          expect(registration_job.valid?).to be(true)
+          expect(registration_job).to be_valid
           expect(Dor::Services::Client).to have_received(:object).with('druid:bf172jb9970')
         end
       end
@@ -119,7 +119,7 @@ RSpec.describe RegistrationJob, type: :model do
         end
 
         it 'is valid' do
-          expect(registration_job.valid?).to be(false)
+          expect(registration_job).not_to be_valid
           expect(registration_job.errors[:collection]).to eq(['does not exist'])
         end
       end
@@ -127,7 +127,7 @@ RSpec.describe RegistrationJob, type: :model do
       context 'when status is not waiting' do
         it 'does not validate' do
           registration_job.status = 'running'
-          expect(registration_job.valid?).to be(true)
+          expect(registration_job).to be_valid
         end
       end
     end

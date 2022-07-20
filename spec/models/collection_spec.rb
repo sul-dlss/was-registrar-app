@@ -13,45 +13,45 @@ RSpec.describe Collection, type: :model do
 
   context 'with a valid collection' do
     it 'validates' do
-      expect(collection.valid?).to be(true)
+      expect(collection).to be_valid
     end
   end
 
   context 'with an invalid collection' do
     it 'validates title' do
       collection.title = nil
-      expect(collection.valid?).to be(false)
+      expect(collection).not_to be_valid
     end
 
     it 'validates druid must begin with druid' do
       collection.druid = 'abc123'
-      expect(collection.valid?).to be(false)
+      expect(collection).not_to be_valid
     end
 
     it 'validates active' do
       collection.active = nil
-      expect(collection.valid?).to be(false)
+      expect(collection).not_to be_valid
     end
 
     it 'validates embargo_months is present' do
       collection.embargo_months = nil
-      expect(collection.valid?).to be(false)
+      expect(collection).not_to be_valid
     end
 
     it 'validates embargo_months is greater than 0' do
       collection.embargo_months = 0
-      expect(collection.valid?).to be(false)
+      expect(collection).not_to be_valid
     end
 
     it 'validates wasapi_provider_account' do
       collection.wasapi_provider = nil
       collection.wasapi_account = nil
-      expect(collection.valid?).to be(false)
+      expect(collection).not_to be_valid
     end
 
     it 'validates wasapi_collection_id' do
       collection.wasapi_collection_id = nil
-      expect(collection.valid?).to be(false)
+      expect(collection).not_to be_valid
     end
 
     it 'validates default admin_policy' do
@@ -60,7 +60,7 @@ RSpec.describe Collection, type: :model do
 
     it 'validates unique' do
       collection.wasapi_collection_id = '916'
-      expect(collection.valid?).to be(false)
+      expect(collection).not_to be_valid
     end
   end
 
@@ -80,7 +80,7 @@ RSpec.describe Collection, type: :model do
       end
 
       it 'is valid' do
-        expect(collection.valid?).to be(true)
+        expect(collection).to be_valid
         expect(Dor::Services::Client).to have_received(:object).with('druid:dm081mp8068')
       end
     end
@@ -93,7 +93,7 @@ RSpec.describe Collection, type: :model do
       end
 
       it 'is not valid' do
-        expect(collection.valid?).to be(false)
+        expect(collection).not_to be_valid
         expect(collection.errors[:druid]).to eq(['not a collection'])
       end
     end
@@ -104,7 +104,7 @@ RSpec.describe Collection, type: :model do
       end
 
       it 'is not valid' do
-        expect(collection.valid?).to be(false)
+        expect(collection).not_to be_valid
         expect(collection.errors[:druid]).to eq(['does not exist'])
       end
     end
