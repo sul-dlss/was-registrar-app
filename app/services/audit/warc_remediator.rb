@@ -13,6 +13,15 @@ module Audit
           filenames: filenames).remediate
     end
 
+    # @return [String] job directory
+    def self.remediate_collection(collection:, filenames:)
+      remediate(collection_druid: collection.druid,
+                wasapi_collection_id: collection.wasapi_collection_id,
+                wasapi_account: collection.wasapi_account,
+                wasapi_provider: collection.wasapi_provider,
+                filenames: filenames)
+    end
+
     def initialize(collection_druid:, admin_policy_druid:, wasapi_collection_id:, wasapi_account:, wasapi_provider:,
                    filenames:, source_id: nil)
       @collection_druid = collection_druid
