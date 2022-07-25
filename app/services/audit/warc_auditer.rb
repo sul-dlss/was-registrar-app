@@ -9,6 +9,15 @@ module Audit
           wasapi_account: wasapi_account, wasapi_provider: wasapi_provider, embargo_months: embargo_months).audit
     end
 
+    # @return [Array<String>] filenames that are available from WASAPI provider but have not been accessioned
+    def self.audit_collection(collection:)
+      audit(collection_druid: collection.druid,
+            wasapi_collection_id: collection.wasapi_collection_id,
+            wasapi_account: collection.wasapi_account,
+            wasapi_provider: collection.wasapi_provider,
+            embargo_months: collection.embargo_months)
+    end
+
     def initialize(collection_druid:, wasapi_collection_id:, wasapi_account:, wasapi_provider:, embargo_months:)
       @collection_druid = collection_druid
       @wasapi_collection_id = wasapi_collection_id
