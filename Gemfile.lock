@@ -112,7 +112,7 @@ GEM
       xpath (~> 3.2)
     childprocess (4.1.0)
     chronic (0.10.2)
-    cocina-models (0.84.2)
+    cocina-models (0.84.3)
       activesupport
       deprecation
       dry-struct (~> 1.0)
