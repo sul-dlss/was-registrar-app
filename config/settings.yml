@@ -15,3 +15,8 @@ argo_view_url: https://argo.stanford.edu/view/%s
 validate_collection_druid: true
 validate_job_directory: true
 validate_source_id: true
+
+# checkin keys for honeybadger (actual keys are in shared_configs per environment as needed)
+# see https://app.honeybadger.io/projects/63547/check_ins
+honeybadger_checkins:
+  fetch_collections: null
