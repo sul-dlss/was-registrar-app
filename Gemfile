@@ -41,7 +41,7 @@ gem 'dor-workflow-client', '~> 4.0'
 gem 'honeybadger'
 gem 'okcomputer'
 
-gem 'sidekiq', '~> 6.0'
+gem 'sidekiq', '~> 7.0'
 gem 'simple_form'
 gem 'whenever', '~> 1.0', require: false
 
