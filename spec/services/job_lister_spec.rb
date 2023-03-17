@@ -31,7 +31,7 @@ RSpec.describe JobLister do
                    }
                  ] }
         ]
-      }
+      }.to_json
     end
 
     before do
