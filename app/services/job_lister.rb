@@ -24,7 +24,7 @@ class JobLister
   def gids
     payloads.map do |payload|
       Rails.logger.info(payload)
-      payload['args'][0]['arguments'][0]['_aj_globalid']
+      JSON.parse(payload)['args'][0]['arguments'][0]['_aj_globalid']
     end
   end
 
