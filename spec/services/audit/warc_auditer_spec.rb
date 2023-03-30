@@ -10,8 +10,20 @@ RSpec.describe Audit::WarcAuditer do
     end
 
     before do
-      allow(Audit::WasapiWarcLister).to receive(:new).and_return(['FILE_1.warc.gz', 'FILE_2.warc.gz', 'FILE_3.warc.gz'])
-      allow(Audit::SdrWarcLister).to receive(:new).and_return(['FILE_2.warc.gz', 'FILE_3.warc.gz', 'FILE_4.warc.gz'])
+      allow(Audit::WasapiWarcLister).to receive(:new).and_return(
+        [
+          Audit::WasapiRecord.new(filename: 'FILE_1.warc.gz'),
+          Audit::WasapiRecord.new(filename: 'FILE_2.warc.gz'),
+          Audit::WasapiRecord.new(filename: 'FILE_3.warc.gz')
+        ]
+      )
+      allow(Audit::SdrWarcLister).to receive(:new).and_return(
+        [
+          'FILE_2.warc.gz',
+          'FILE_3.warc.gz',
+          'FILE_4.warc.gz'
+        ]
+      )
     end
 
     it 'returns missing files' do

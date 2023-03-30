@@ -4,8 +4,12 @@ require 'rails_helper'
 
 RSpec.describe Audit::WasapiWarcLister do
   let(:files) do
-    described_class.new(wasapi_collection_id: '12189', wasapi_provider: 'ait', wasapi_account: 'ua',
-                        embargo_months: 3).to_a
+    described_class.new(
+      wasapi_collection_id: '12189',
+      wasapi_provider: 'ait',
+      wasapi_account: 'ua',
+      embargo_months: 3
+    )
   end
 
   before do
@@ -67,13 +71,17 @@ RSpec.describe Audit::WasapiWarcLister do
         .to_return(status: 200, body: body, headers: {})
     end
 
-    it 'returns files' do
-      expect(files).to eq(
-        [
-          'ARCHIVEIT-12189-ONE_TIME-JOB915353-SEED2014399-20190524001959215-00002-h3.warc.gz',
-          'ARCHIVEIT-12189-ONE_TIME-JOB915353-SEED2014399-20190523233238785-00001-h3.warc.gz'
-        ]
+    it 'iterates' do
+      results = files.to_a
+      expect(results[0].filename).to eq(
+        'ARCHIVEIT-12189-ONE_TIME-JOB915353-SEED2014399-20190524001959215-00002-h3.warc.gz'
       )
+      expect(results[0].md5).to eq('611182afc6b5986c93b99c826bdbf2cf')
+
+      expect(results[1].filename).to eq(
+        'ARCHIVEIT-12189-ONE_TIME-JOB915353-SEED2014399-20190523233238785-00001-h3.warc.gz'
+      )
+      expect(results[1].md5).to eq('6599bd32ebc09b6036cd63dfc886d517')
     end
   end
 
@@ -89,9 +97,9 @@ RSpec.describe Audit::WasapiWarcLister do
         .to_return(status: 403, body: '', headers: {})
     end
 
-    it 'raises' do
+    it 'raises 403' do
       expect do
-        files
+        files.to_a
       end.to raise_error('Getting https://archive-it.org/webdata?collection=12189&crawl-start-before=2020-10-01 ' \
                          'returned 403')
     end

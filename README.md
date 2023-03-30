@@ -133,3 +133,12 @@ For example:
 RAILS_ENV=production bin/rake remediate_collection['druid:hw105qf0103']`
 RAILS_ENV=production bin/rake remediate['druid:gq319xk9269','14373','shl','1']
 ```
+
+## WARC Listing
+
+If you would like to get a CSV of all the WARC files and their metadata (size,
+md5, sha1, etc) from a collection's WASAPI provider you can:
+
+```
+RAILS_ENV=production bin/rake warcs[druid:yh729xg0576]
+```

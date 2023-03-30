@@ -35,8 +35,12 @@ module Audit
     attr_reader :collection_druid, :wasapi_collection_id, :wasapi_account, :wasapi_provider, :embargo_months
 
     def wasapi_warc_filenames
-      WasapiWarcLister.new(wasapi_collection_id: wasapi_collection_id, wasapi_provider: wasapi_provider,
-                           wasapi_account: wasapi_account, embargo_months: embargo_months).to_a
+      WasapiWarcLister.new(
+        wasapi_collection_id: wasapi_collection_id,
+        wasapi_provider: wasapi_provider,
+        wasapi_account: wasapi_account,
+        embargo_months: embargo_months
+      ).pluck(:filename)
     end
 
     def sdr_warc_filenames
