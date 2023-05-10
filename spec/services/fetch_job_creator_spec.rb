@@ -3,7 +3,7 @@
 require 'rails_helper'
 
 RSpec.describe FetchJobCreator do
-  subject(:run) { described_class.run(collection: collection) }
+  subject(:run) { described_class.run(collection:) }
 
   before do
     allow(Date).to receive(:today).and_return(Date.parse('2019-08-21'))

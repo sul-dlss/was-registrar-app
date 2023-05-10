@@ -17,6 +17,6 @@ RSpec.describe 'Queue fetch jobs for a collection', type: :feature, js: true do
 
     click_button 'Queue fetch jobs'
     expect(page).to have_content 'Queued new fetch jobs.'
-    expect(FetchJobCreator).to have_received(:run).with(collection: collection)
+    expect(FetchJobCreator).to have_received(:run).with(collection:)
   end
 end

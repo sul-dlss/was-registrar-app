@@ -11,7 +11,7 @@ module Registering
   end
 
   def start_workflow(druid, version)
-    workflow_client.create_workflow_by_name(druid, 'wasCrawlPreassemblyWF', version: version)
+    workflow_client.create_workflow_by_name(druid, 'wasCrawlPreassemblyWF', version:)
   end
 
   def success_status(obj, druid: nil)

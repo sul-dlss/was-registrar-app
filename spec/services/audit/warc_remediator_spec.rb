@@ -58,7 +58,7 @@ RSpec.describe Audit::WarcRemediator do
 
   context 'with a collection' do
     let(:job_directory) do
-      described_class.remediate_collection(collection: collection, filenames: filenames)
+      described_class.remediate_collection(collection:, filenames:)
     end
 
     let(:collection) do
@@ -80,7 +80,7 @@ RSpec.describe Audit::WarcRemediator do
                                                           wasapi_collection_id: '12189',
                                                           wasapi_account: 'ua',
                                                           wasapi_provider: 'ait',
-                                                          filenames: filenames,
+                                                          filenames:,
                                                           admin_policy_druid: 'druid:wr005wn5739',
                                                           source_id: nil)
     end

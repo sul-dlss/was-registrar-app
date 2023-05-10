@@ -23,10 +23,10 @@ RSpec.describe FetchJobRetrier do
   end
 
   context 'when no last registered fetch month' do
-    let!(:success_fetch_month) { create(:fetch_month, collection: collection, status: 'success') }
-    let!(:failure_fetch_month) { create(:fetch_month, collection: collection, status: 'failure') }
-    let!(:waiting_fetch_month) { create(:fetch_month, collection: collection, status: 'waiting') }
-    let!(:running_fetch_month) { create(:fetch_month, collection: collection, status: 'waiting') }
+    let!(:success_fetch_month) { create(:fetch_month, collection:, status: 'success') }
+    let!(:failure_fetch_month) { create(:fetch_month, collection:, status: 'failure') }
+    let!(:waiting_fetch_month) { create(:fetch_month, collection:, status: 'waiting') }
+    let!(:running_fetch_month) { create(:fetch_month, collection:, status: 'waiting') }
 
     it 'has retriable months' do
       expect(retrier.retry?).to be true
@@ -39,14 +39,14 @@ RSpec.describe FetchJobRetrier do
   end
 
   context 'when last registered fetch month' do
-    let!(:previous_success_fetch_month) { create(:fetch_month, collection: collection, status: 'success') }
+    let!(:previous_success_fetch_month) { create(:fetch_month, collection:, status: 'success') }
     let!(:last_registered_fetch_month) do
-      create(:fetch_month, collection: collection, status: 'success', crawl_item_druid: 'druid:abc123')
+      create(:fetch_month, collection:, status: 'success', crawl_item_druid: 'druid:abc123')
     end
-    let!(:success_fetch_month) { create(:fetch_month, collection: collection, status: 'success') }
-    let!(:failure_fetch_month) { create(:fetch_month, collection: collection, status: 'failure') }
-    let!(:waiting_fetch_month) { create(:fetch_month, collection: collection, status: 'waiting') }
-    let!(:running_fetch_month) { create(:fetch_month, collection: collection, status: 'waiting') }
+    let!(:success_fetch_month) { create(:fetch_month, collection:, status: 'success') }
+    let!(:failure_fetch_month) { create(:fetch_month, collection:, status: 'failure') }
+    let!(:waiting_fetch_month) { create(:fetch_month, collection:, status: 'waiting') }
+    let!(:running_fetch_month) { create(:fetch_month, collection:, status: 'waiting') }
 
     it 'has retriable months' do
       expect(retrier.retry?).to be true

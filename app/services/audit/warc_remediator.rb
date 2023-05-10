@@ -8,9 +8,9 @@ module Audit
     # @return [String] job directory
     def self.remediate(collection_druid:, wasapi_collection_id:, wasapi_account:, filenames:, source_id: nil,
                        admin_policy_druid: 'druid:wr005wn5739', wasapi_provider: 'ait')
-      new(collection_druid: collection_druid, source_id: source_id, admin_policy_druid: admin_policy_druid,
-          wasapi_collection_id: wasapi_collection_id, wasapi_account: wasapi_account, wasapi_provider: wasapi_provider,
-          filenames: filenames).remediate
+      new(collection_druid:, source_id:, admin_policy_druid:,
+          wasapi_collection_id:, wasapi_account:, wasapi_provider:,
+          filenames:).remediate
     end
 
     # @return [String] job directory
@@ -19,7 +19,7 @@ module Audit
                 wasapi_collection_id: collection.wasapi_collection_id,
                 wasapi_account: collection.wasapi_account,
                 wasapi_provider: collection.wasapi_provider,
-                filenames: filenames)
+                filenames:)
     end
 
     def initialize(collection_druid:, admin_policy_druid:, wasapi_collection_id:, wasapi_account:, wasapi_provider:,
@@ -86,8 +86,8 @@ module Audit
     end
 
     def register
-      registration_job = RegistrationJob.create!(job_directory: job_directory, collection: collection_druid,
-                                                 admin_policy: admin_policy_druid, source_id: source_id)
+      registration_job = RegistrationJob.create!(job_directory:, collection: collection_druid,
+                                                 admin_policy: admin_policy_druid, source_id:)
       RegisterJob.perform_later(registration_job)
     end
   end

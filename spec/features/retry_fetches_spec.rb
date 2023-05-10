@@ -15,7 +15,7 @@ RSpec.describe 'Retry fetches', type: :feature do
   end
 
   context 'when retriable fetch months' do
-    let!(:fetch_month) { create(:fetch_month, collection: collection, status: 'success') }
+    let!(:fetch_month) { create(:fetch_month, collection:, status: 'success') }
 
     before do
       allow(FetchJobRetrier).to receive(:retry)
@@ -29,7 +29,7 @@ RSpec.describe 'Retry fetches', type: :feature do
 
       expect(page).to have_content "Edit #{collection.title}"
       expect(page).to have_content 'Queued retry fetch jobs.'
-      expect(FetchJobRetrier).to have_received(:retry).with(collection: collection)
+      expect(FetchJobRetrier).to have_received(:retry).with(collection:)
     end
   end
 end

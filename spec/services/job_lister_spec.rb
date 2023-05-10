@@ -6,7 +6,7 @@ RSpec.describe JobLister do
   subject(:fetch_months) { described_class.list }
 
   let(:collection) { create(:ar_collection) }
-  let(:fetch_month) { create(:fetch_month, collection: collection) }
+  let(:fetch_month) { create(:fetch_month, collection:) }
 
   context 'when there are no current jobs' do
     before do

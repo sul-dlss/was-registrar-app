@@ -24,7 +24,7 @@ RSpec.describe Audit::WarcAuditer do
 
   context 'with a collection' do
     let(:files) do
-      described_class.audit_collection(collection: collection)
+      described_class.audit_collection(collection:)
     end
 
     let(:collection) do
