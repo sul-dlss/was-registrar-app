@@ -64,7 +64,7 @@ RSpec.describe Audit::WasapiWarcLister do
             'Content-Type' => 'application/json'
           }
         )
-        .to_return(status: 200, body: body, headers: {})
+        .to_return(status: 200, body:, headers: {})
     end
 
     it 'returns files' do

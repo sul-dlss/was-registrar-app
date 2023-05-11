@@ -13,7 +13,7 @@
 #     Initiate a fetch job for each new month.
 class FetchJobCreator
   def self.run(collection:)
-    new(collection: collection).create
+    new(collection:).create
   end
 
   def initialize(collection:)

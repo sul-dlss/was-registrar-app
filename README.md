@@ -13,7 +13,7 @@ The WAS Registrar App (WRA) is a Rails application that:
 WAS Registrar App is the successor to the [Web Registrar](https://github.com/sul-dlss/was-registrar).
 
 ## Requirements
-* Ruby 3.0.3
+* Ruby 3.2.2
 * Docker / Docker-Compose (optional)
 * npm for building assets
 * Java 8ish for [WASAPI Downloader](https://github.com/sul-dlss/wasapi-downloader)
@@ -109,11 +109,11 @@ To deploy to [production](https://was-registrar-app.stanford.edu): `bundle exec 
 
 ## Auditing
 To audit the WARCs that have been accessioned in SDR against the WARCs available from a WASAPI provider,
-use an audit rake task: 
+use an audit rake task:
 * For a collection that is configured in WRA: `bin/rake audit_collection['<collection druid>']`
 * For a collection that is not configured in WRA: `bin/rake audit['<collection_druid>','<wasapi_collection_id>','<wasapi_account>','<embargo_months>']`
 
-For example: 
+For example:
 ```
 RAILS_ENV=production bin/rake audit_collection['druid:hw105qf0103']`
 RAILS_ENV=production bin/rake audit['druid:gq319xk9269','14373','shl','1']
@@ -128,7 +128,7 @@ use a remediate rake task:
 * For a collection that is configured in WRA: `bin/rake remediate_collection['<collection druid>']`
 * For a collection that is not configured in WRA: `bin/rake remediate['<collection_druid>','<wasapi_collection_id>','<wasapi_account>','<embargo_months>']`
 
-For example: 
+For example:
 ```
 RAILS_ENV=production bin/rake remediate_collection['druid:hw105qf0103']`
 RAILS_ENV=production bin/rake remediate['druid:gq319xk9269','14373','shl','1']

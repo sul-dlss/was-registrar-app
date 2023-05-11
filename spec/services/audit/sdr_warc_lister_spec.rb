@@ -5,7 +5,7 @@ require 'rails_helper'
 RSpec.describe Audit::SdrWarcLister do
   let(:files) { described_class.new(collection_druid: 'druid:hw105qf0103').to_a }
 
-  let(:object_client) { instance_double(Dor::Services::Client::Object, members: members) }
+  let(:object_client) { instance_double(Dor::Services::Client::Object, members:) }
   let(:object_client1) { instance_double(Dor::Services::Client::Object, find: cocina1) }
   let(:object_client2) { instance_double(Dor::Services::Client::Object, find: cocina2) }
   let(:members) do

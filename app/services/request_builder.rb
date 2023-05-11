@@ -3,8 +3,8 @@
 # Builds a RequestDRO for registering a crawl.
 class RequestBuilder
   def self.build(title:, source_id:, admin_policy:, collection:, crawl_directory:)
-    new(title: title, source_id: source_id, admin_policy: admin_policy, collection: collection,
-        crawl_directory: crawl_directory).build
+    new(title:, source_id:, admin_policy:, collection:,
+        crawl_directory:).build
   end
 
   def initialize(title:, source_id:, admin_policy:, collection:, crawl_directory:)
@@ -32,7 +32,7 @@ class RequestBuilder
       access: { view: 'citation-only', download: 'none' },
       administrative: { hasAdminPolicy: admin_policy },
       identification: { sourceId: source_id },
-      structural: structural
+      structural:
     }
   end
 
@@ -64,13 +64,13 @@ class RequestBuilder
     {
       type: Cocina::Models::ObjectType.file,
       label: filename,
-      filename: filename,
+      filename:,
       size: File.size(filepath),
       version: 1,
       hasMimeType: mime_type(filename),
       hasMessageDigests: message_digests(filepath),
       access: {},
-      administrative: administrative
+      administrative:
     }
   end
   # rubocop:enable Metrics/MethodLength

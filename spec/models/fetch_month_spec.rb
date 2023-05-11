@@ -4,7 +4,7 @@ require 'rails_helper'
 
 RSpec.describe FetchMonth, type: :model do
   let(:collection) { create(:ar_collection, wasapi_collection_id: '915') }
-  let(:fetch_month) { create(:fetch_month, collection: collection, crawl_item_druid: 'druid:abc123', year: 2017) }
+  let(:fetch_month) { create(:fetch_month, collection:, crawl_item_druid: 'druid:abc123', year: 2017) }
 
   describe '#crawl_directory' do
     it 'returns the correct crawl directory' do
@@ -18,7 +18,7 @@ RSpec.describe FetchMonth, type: :model do
     end
 
     context 'when the month is a single digit' do
-      let(:fetch_month) { create(:fetch_month, collection: collection, month: 1, year: 2017) }
+      let(:fetch_month) { create(:fetch_month, collection:, month: 1, year: 2017) }
 
       it 'returns the correct job directory with month padded' do
         expect(fetch_month.job_directory).to eq('AIT_915/2017_01')

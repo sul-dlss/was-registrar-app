@@ -5,7 +5,7 @@ require 'rails_helper'
 RSpec.describe 'List current jobs', type: :request do
   let(:collection) { create(:ar_collection) }
   let(:registration_job) { create(:registration_job) }
-  let(:fetch_month) { create(:fetch_month, collection: collection) }
+  let(:fetch_month) { create(:fetch_month, collection:) }
 
   context 'when there are no jobs' do
     before do

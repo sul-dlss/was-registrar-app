@@ -35,7 +35,7 @@ class FetchJobRetrier
 
   def last_registered_fetch_month
     @last_registered_fetch_month ||= FetchMonth
-                                     .where(collection_id: collection_id)
+                                     .where(collection_id:)
                                      .where(status: 'success')
                                      .where.not(crawl_item_druid: nil).order(id: :desc)
                                      .limit(1)
@@ -44,7 +44,7 @@ class FetchJobRetrier
 
   def retriable_fetch_months
     @retriable_fetch_months ||= begin
-      fetch_months = FetchMonth.where(collection_id: collection_id, status: %w[success failure])
+      fetch_months = FetchMonth.where(collection_id:, status: %w[success failure])
       last_registered_fetch_month ? fetch_months.where('id > ?', last_registered_fetch_month.id) : fetch_months
     end
   end

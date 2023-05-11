@@ -14,7 +14,7 @@ RSpec.describe RequestBuilder do
   end
   let(:admin_policy_druid) { 'druid:yf700yh0557' }
   let(:collection) { create(:ar_collection, admin_policy: admin_policy_druid, wasapi_collection_id: '915') }
-  let(:fetch_month) { create(:fetch_month, collection: collection, year: 2017, month: 11) }
+  let(:fetch_month) { create(:fetch_month, collection:, year: 2017, month: 11) }
   let(:object_client) { instance_double(Dor::Services::Client::Object, find: admin_policy) }
   let(:admin_policy) do
     build(:admin_policy, id: admin_policy_druid).new(
@@ -22,7 +22,7 @@ RSpec.describe RequestBuilder do
         hasAdminPolicy: 'druid:hv992ry2431',
         hasAgreement: 'druid:hp308wm0436',
         accessTemplate: {
-          view: view,
+          view:,
           download: 'none'
         }
       }
@@ -65,7 +65,7 @@ RSpec.describe RequestBuilder do
                                                      { view: 'dark', download: 'none',
                                                        controlledDigitalLending: false },
                                                  administrative:
-                                                     { publish: false, sdrPreserve: true, shelve: shelve }
+                                                     { publish: false, sdrPreserve: true, shelve: }
                                                }
                                              ]
                                            }
@@ -95,7 +95,7 @@ RSpec.describe RequestBuilder do
                                                  { view: 'dark', download: 'none',
                                                    controlledDigitalLending: false },
                                                administrative:
-                                                 { publish: false, sdrPreserve: true, shelve: shelve }
+                                                 { publish: false, sdrPreserve: true, shelve: }
                                              }
                                            ]
                                          }
@@ -125,7 +125,7 @@ RSpec.describe RequestBuilder do
                                                    { view: 'dark', download: 'none',
                                                      controlledDigitalLending: false },
                                                  administrative:
-                                                   { publish: false, sdrPreserve: true, shelve: shelve }
+                                                   { publish: false, sdrPreserve: true, shelve: }
                                                }
                                              ]
                                            }
@@ -156,7 +156,7 @@ RSpec.describe RequestBuilder do
                                                   { view: 'dark', download: 'none',
                                                     controlledDigitalLending: false },
                                                 administrative:
-                                                  { publish: false, sdrPreserve: true, shelve: shelve }
+                                                  { publish: false, sdrPreserve: true, shelve: }
                                               }
                                             ]
                                           }
