@@ -314,3 +314,6 @@ RSpec/NoExpectationExample: # new in 2.13
   Enabled: true
 RSpec/Capybara/SpecificFinders: # new in 2.13
   Enabled: true
+
+Rails/UniqueValidationWithoutIndex:
+  Enabled: false # it's buggy in 2.20.1
