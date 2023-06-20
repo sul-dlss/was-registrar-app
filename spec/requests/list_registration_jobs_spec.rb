@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-RSpec.describe 'List registration jobs', type: :request do
+RSpec.describe 'List registration jobs' do
   before do
     create(:registration_job, job_directory: 'crawl1')
     create(:registration_job, job_directory: 'crawl2')

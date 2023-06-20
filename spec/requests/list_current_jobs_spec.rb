@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-RSpec.describe 'List current jobs', type: :request do
+RSpec.describe 'List current jobs' do
   let(:collection) { create(:ar_collection) }
   let(:registration_job) { create(:registration_job) }
   let(:fetch_month) { create(:fetch_month, collection:) }
