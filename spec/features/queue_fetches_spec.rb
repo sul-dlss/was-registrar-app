@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-RSpec.describe 'Queue fetch jobs for a collection', type: :feature, js: true do
+RSpec.describe 'Queue fetch jobs for a collection', js: true do
   let!(:collection) { create(:ar_collection) }
 
   before do

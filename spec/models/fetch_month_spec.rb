@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-RSpec.describe FetchMonth, type: :model do
+RSpec.describe FetchMonth do
   let(:collection) { create(:ar_collection, wasapi_collection_id: '915') }
   let(:fetch_month) { create(:fetch_month, collection:, crawl_item_druid: 'druid:abc123', year: 2017) }
 

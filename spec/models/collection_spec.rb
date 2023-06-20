@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-RSpec.describe Collection, type: :model do
+RSpec.describe Collection do
   let(:collection) do
     build(:ar_collection, title: 'My collection', druid: 'druid:dm081mp8068')
   end

@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-RSpec.describe 'Retry fetches', type: :feature do
+RSpec.describe 'Retry fetches' do
   let(:collection) { create(:ar_collection) }
 
   context 'when no retriable fetch months' do

@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-RSpec.describe 'Create a registration job', type: :feature, js: true do
+RSpec.describe 'Create a registration job', js: true do
   before do
     allow(JobLister).to receive(:list).and_return([])
   end

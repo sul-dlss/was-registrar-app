@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-RSpec.describe RegistrationJob, type: :model do
+RSpec.describe RegistrationJob do
   let(:registration_job) { build(:registration_job, job_directory: 'AIT_915/2017_11') }
 
   describe '#crawl_directory' do
