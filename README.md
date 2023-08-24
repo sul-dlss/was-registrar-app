@@ -133,3 +133,16 @@ For example:
 RAILS_ENV=production bin/rake remediate_collection['druid:hw105qf0103']`
 RAILS_ENV=production bin/rake remediate['druid:gq319xk9269','14373','shl','1']
 ```
+
+## Reset Process (for QA/Stage)
+
+### Requirements
+
+
+### Steps
+
+1. Stop the redis queues: https://was-registrar-app-stage.stanford.edu/queues/
+2. Reset the database: `bin/rails -e p db:reset`
+3. Verity the default collection has been created and no jobs are reported
+4. Run the `web_archive_accessioning_spec` (`bundle exec rspec spec/features/web_archiving_accessioning_spec.rb`) integration test and verify that a `One-time WARC` is created.
+5. Verify that `https://library.stanford.edu/sites/all/themes/sulair2016/logo.svg` is indexed: https://swap-stage.stanford.edu/was/*/https://library.stanford.edu/sites/all/themes/sulair2016/logo.svg
