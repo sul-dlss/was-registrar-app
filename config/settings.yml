@@ -20,3 +20,12 @@ validate_source_id: true
 # see https://app.honeybadger.io/projects/63547/check_ins
 honeybadger_checkins:
   fetch_collections: null
+
+default_setup:
+  collection: 'druid:bc778pm9866'
+  admin_policy: 'druid:wr005wn5739'
+  embargo_months: 4
+  wasapi_provider: 'ait'
+  wasapi_account: 'ua'
+  wasapi_collection_id: '15778'
+  fetch_start_month: 'Wed, 01 Dec 2021'
