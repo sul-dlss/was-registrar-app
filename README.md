@@ -143,6 +143,17 @@ RAILS_ENV=production bin/rake remediate['druid:gq319xk9269','14373','shl','1']
 
 1. Stop the redis queues: https://was-registrar-app-stage.stanford.edu/queues/
 2. Reset the database: `bin/rails -e p db:reset`
-3. Verity the default collection has been created and no jobs are reported
-4. Run the `web_archive_accessioning_spec` (`bundle exec rspec spec/features/web_archiving_accessioning_spec.rb`) integration test and verify that a `One-time WARC` is created.
-5. Verify that `https://library.stanford.edu/sites/all/themes/sulair2016/logo.svg` is indexed: https://swap-stage.stanford.edu/was/*/https://library.stanford.edu/sites/all/themes/sulair2016/logo.svg
+3. Verify that `Settings.default_apo` is set to point at an SDR APO object that has:
+  * Access rights: dark
+  * Registration workflow: registrationWF
+  * Default Access Rights: world
+4. Verify that there is a SDR Web Archive Seed Object APO that has:
+  * Access rights: dark
+  * Registration workflow: wasSeedPreassemblyWF
+  * Default object rights: world
+5. Verify that `Settings.default_collection` is set to point a SDR Collection object that has:
+  * Access rights: world
+  * Admin policy: Web Archive Seed Object APO (see 4)
+  * Object type: collection
+6. Run the `web_archive_accessioning_spec` (`bundle exec rspec spec/features/web_archiving_accessioning_spec.rb`) integration test and verify that a `One-time WARC` is created.
+7. Verify that `https://library.stanford.edu/sites/all/themes/sulair2016/logo.svg` is indexed: https://swap-stage.stanford.edu/was/*/https://library.stanford.edu/sites/all/themes/sulair2016/logo.svg
