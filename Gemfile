@@ -36,7 +36,7 @@ gem 'view_component', '~> 2.0'
 gem 'auto_strip_attributes'
 # For configuration
 gem 'config', '~> 2.0'
-gem 'dor-services-client', '~> 12.5'
+gem 'dor-services-client', '~> 13.0'
 gem 'dor-workflow-client', '~> 4.0'
 gem 'honeybadger'
 gem 'okcomputer'
