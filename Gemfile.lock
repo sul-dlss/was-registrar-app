@@ -217,7 +217,7 @@ GEM
     faraday-net_http (3.0.2)
     faraday-retry (2.2.0)
       faraday (~> 2.0)
-    ffi (1.16.2)
+    ffi (1.16.3)
     globalid (1.2.1)
       activesupport (>= 6.1)
     hashdiff (1.0.1)
@@ -250,7 +250,7 @@ GEM
     minitest (5.20.0)
     msgpack (1.7.2)
     multi_json (1.15.0)
-    net-imap (0.3.7)
+    net-imap (0.4.0)
       date
       net-protocol
     net-pop (0.1.2)
@@ -276,7 +276,7 @@ GEM
     openapi_parser (1.0.0)
     optimist (3.1.0)
     parallel (1.23.0)
-    parser (3.2.2.3)
+    parser (3.2.2.4)
       ast (~> 2.4.1)
       racc
     patience_diff (1.2.0)
@@ -386,7 +386,7 @@ GEM
       rexml (~> 3.2, >= 3.2.5)
       rubyzip (>= 1.2.2, < 3.0)
       websocket (~> 1.0)
-    sidekiq (7.1.4)
+    sidekiq (7.1.5)
       concurrent-ruby (< 2)
       connection_pool (>= 2.3.0)
       rack (>= 2.2.4)
