@@ -65,7 +65,7 @@ class CollectionsController < ApplicationController
   def wasapi_provider_accounts
     @wasapi_provider_accounts = []
     Settings.wasapi_providers.each do |provider, provider_info|
-      provider_info.accounts.each do |account, _|
+      provider_info.accounts.each do |account, _| # rubocop:disable Style/HashEachMethods rubocop thinks each entry is a regular Hash, but accounts elements are actually Arrays of the form [Symbol, Config::options].  so there's no each_key method.
         @wasapi_provider_accounts << ["#{provider_info.name} (#{provider}) > #{account}",
                                       "#{provider}:#{account}"]
       end
