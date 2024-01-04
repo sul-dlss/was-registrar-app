@@ -10,7 +10,7 @@ RSpec.describe 'Retry fetches' do
       visit edit_collection_path(collection)
       expect(page).to have_content "Edit #{collection.title}"
       expect(page).to have_button 'Queue fetch jobs'
-      expect(page).not_to have_button 'Retry fetch jobs'
+      expect(page).to have_no_button 'Retry fetch jobs'
     end
   end
 
