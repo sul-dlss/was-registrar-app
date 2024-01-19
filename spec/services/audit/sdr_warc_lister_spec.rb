@@ -11,8 +11,8 @@ RSpec.describe Audit::SdrWarcLister do
   let(:object_client2) { instance_double(Dor::Services::Client::Object, find: cocina2) }
   let(:members) do
     [
-      Dor::Services::Client::Members::Member.new(externalIdentifier: 'druid:cv062jz2211', type: 'item'),
-      Dor::Services::Client::Members::Member.new(externalIdentifier: 'druid:kx571tc4076', type: 'item')
+      Dor::Services::Client::Members::Member.new(externalIdentifier: 'druid:cv062jz2211'),
+      Dor::Services::Client::Members::Member.new(externalIdentifier: 'druid:kx571tc4076')
     ]
   end
   let(:cocina1) do
