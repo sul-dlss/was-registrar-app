@@ -5,7 +5,7 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
 gem 'auto_strip_attributes'
 gem 'bootsnap', '>= 1.1.0', require: false # Reduce boot time via caching; required in config/boot.rb
-gem 'config', '~> 2.0'
+gem 'config'
 gem 'cssbundling-rails'
 gem 'honeybadger'
 gem 'jsbundling-rails' # Transpile app-like JavaScript.
