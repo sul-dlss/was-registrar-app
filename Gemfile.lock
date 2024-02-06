@@ -464,7 +464,7 @@ DEPENDENCIES
   capistrano-passenger
   capistrano-rails
   capybara
-  config (~> 2.0)
+  config
   cssbundling-rails
   dlss-capistrano
   dor-services-client (~> 14.0)
