@@ -3,55 +3,34 @@
 source 'https://rubygems.org'
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
-# Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '~> 7.0.1'
-# Use postgresql as the database for Active Record
-gem 'pg'
-
-gem 'propshaft'
-
-gem 'turbo-rails', '~> 1.0'
-
-# Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
-# gem 'jbuilder', '~> 2.5'
-# Redis is needed for turbo-streams
-gem 'redis', '~> 4.0'
-# Use ActiveModel has_secure_password
-# gem 'bcrypt', '~> 3.1.7'
-
-# Use ActiveStorage variant
-# gem 'mini_magick', '~> 4.8'
-
-# Reduces boot times through caching; required in config/boot.rb
-gem 'bootsnap', '>= 1.1.0', require: false
-
-gem 'cssbundling-rails'
-# Transpile app-like JavaScript.
-gem 'jsbundling-rails'
-
-gem 'stimulus-rails'
-
-gem 'view_component', '~> 2.0'
-
 gem 'auto_strip_attributes'
-# For configuration
+gem 'bootsnap', '>= 1.1.0', require: false # Reduce boot time via caching; required in config/boot.rb
 gem 'config', '~> 2.0'
-gem 'dor-services-client', '~> 14.0'
-gem 'dor-workflow-client', '~> 4.0'
+gem 'cssbundling-rails'
 gem 'honeybadger'
+gem 'jsbundling-rails' # Transpile app-like JavaScript.
 gem 'okcomputer'
-
+gem 'pg'
+gem 'propshaft'
+gem 'rails', '~> 7.0.1'
+gem 'redis', '~> 4.0' # Redis is needed for turbo-streams
 gem 'sidekiq', '~> 7.0'
 gem 'simple_form'
+gem 'stimulus-rails'
+gem 'turbo-rails', '~> 1.0'
+gem 'view_component', '~> 2.0'
 gem 'whenever', '~> 1.0', require: false
+
+# dlss gems
+gem 'dor-services-client', '~> 14.0'
+gem 'dor-workflow-client', '~> 4.0'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug'
   gem 'capybara'
   gem 'factory_bot_rails'
-  # Use Puma as the app server
-  gem 'puma', '~> 5.3'
+  gem 'puma', '~> 5.3' # app server
   gem 'rspec_junit_formatter'
   gem 'rspec-rails', '~> 4.0'
   gem 'rubocop'
