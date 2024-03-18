@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-RSpec.describe 'Create a collection', js: true do
+RSpec.describe 'Create a collection', :js do
   before do
     allow(JobLister).to receive(:list).and_return([])
   end
