@@ -29,6 +29,7 @@ group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug'
   gem 'capybara'
+  gem 'erb_lint', require: false
   gem 'factory_bot_rails'
   gem 'puma', '~> 5.3' # app server
   gem 'rspec_junit_formatter'
