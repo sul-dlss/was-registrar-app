@@ -4,18 +4,18 @@
     <title>WasRegistrarApp</title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
-    <%= stylesheet_link_tag "application" %>
-    <%= javascript_include_tag "application", "data-turbo-track": "reload", defer: true %>
+    <%= stylesheet_link_tag 'application' %>
+    <%= javascript_include_tag 'application', 'data-turbo-track': 'reload', defer: true %>
   </head>
 
   <body>
     <div class="container">
       <% flash.each do |name, msg| %>
         <% if name == 'notice' %>
-          <%= content_tag :div, msg, class: "alert alert-info" %>
+          <%= content_tag :div, msg, class: 'alert alert-info' %>
         <% end %>
         <% if name == 'alert' %>
-          <%= content_tag :div, msg, class: "alert alert-warning" %>
+          <%= content_tag :div, msg, class: 'alert alert-warning' %>
         <% end %>
       <% end %>
       <%= yield %>

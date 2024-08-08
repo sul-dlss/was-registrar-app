@@ -25,9 +25,9 @@ linters:
       Rails/LinkToBlank:
         Enabled: false
   ErbSafety:
-    enabled: false
-  PartialInstanceVariable:
     enabled: true
+  PartialInstanceVariable:
+    enabled: false
   DeprecatedClasses:
     enabled: true
   NoUnusedDisable:

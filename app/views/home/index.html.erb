@@ -17,7 +17,7 @@
       <%= render(FetchMonthJobsComponent.new(fetch_months: @running_fetch_month_jobs)) %>
     </div>
     <div class="card-footer">
-      <%= link_to "Sidekiq Dashboard", sidekiq_web_path, class: 'btn btn-link', target: "_top"%>
+      <%= link_to 'Sidekiq Dashboard', sidekiq_web_path, class: 'btn btn-link', target: '_top' %>
     </div>
   </div>
   <div class="card mt-2">
@@ -26,6 +26,6 @@
       <%= render(RegistrationJobsComponent.new(registration_jobs: @running_registration_jobs)) %>
     </div>
     <div class="card-footer">
-      <%= link_to "Sidekiq Dashboard", sidekiq_web_path, class: 'btn btn-link', target: "_top"%>
+      <%= link_to 'Sidekiq Dashboard', sidekiq_web_path, class: 'btn btn-link', target: '_top' %>
     </div>
   </div>

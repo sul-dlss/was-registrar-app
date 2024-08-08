@@ -4,10 +4,10 @@
       <%= form.input :job_directory, hint: "Omit #{Settings.crawl_directory}/ in path" %>
       <%= form.input :collection, label: 'Collection Druid' %>
       <%= form.input :admin_policy, collection: [
-          ['Web Archive Crawl Object Public APO', 'druid:wr005wn5739'],
-          ['Web Archive Crawl Object Dark APO', 'druid:yf700yh0557']
-        ] %>
-      <%= form.input :source_id, label: "Source ID" %>      
+            ['Web Archive Crawl Object Public APO', 'druid:wr005wn5739'],
+            ['Web Archive Crawl Object Dark APO', 'druid:yf700yh0557']
+          ] %>
+      <%= form.input :source_id, label: 'Source ID' %>
       <%= form.button :submit, class: 'btn-primary mt-2' %>
       <%= link_to 'Cancel', root_path, class: 'ms-2' %>
     </div>
