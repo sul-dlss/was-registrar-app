@@ -16,7 +16,7 @@
         <% @collections.each do |collection| %>
 
           <tr>
-            <th scope="row"><%= link_to collection.title, edit_collection_path(collection), target: "_top"%></th>
+            <th scope="row"><%= link_to collection.title, edit_collection_path(collection), target: '_top' %></th>
             <td><%= collection.druid %></td>
             <td><%= collection.wasapi_provider %></td>
             <td><%= collection.wasapi_account %></td>
@@ -27,7 +27,7 @@
       </table>
     </div>
     <div class="card-footer">
-      <%= link_to "Add a Collection", new_collection_path, class: 'btn btn-link', target: "_top"%>
+      <%= link_to 'Add a Collection', new_collection_path, class: 'btn btn-link', target: '_top' %>
     </div>
   </div>
 </turbo-frame>

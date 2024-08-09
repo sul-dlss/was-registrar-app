@@ -1,4 +1,4 @@
-<%= button_to("Queue fetch jobs", [:fetch, @collection], method: :post, class: 'btn btn-primary mb-2') %>
+<%= button_to('Queue fetch jobs', [:fetch, @collection], method: :post, class: 'btn btn-primary mb-2') %>
 <% if retry? %>
-  <%= button_to("Retry fetch jobs", [:retry, @collection], method: :post, class: 'btn btn-primary') %>
+  <%= button_to('Retry fetch jobs', [:retry, @collection], method: :post, class: 'btn btn-primary') %>
 <% end %>
