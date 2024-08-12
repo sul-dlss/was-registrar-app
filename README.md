@@ -21,7 +21,7 @@ WAS Registrar App is the successor to the [Web Registrar](https://github.com/sul
 ## Setup
 ### To use Postgres container (instead of local Postgres)
 ```
-docker-compose up -d db
+docker compose up -d db
 ```
 
 ### Setup the db
@@ -31,7 +31,7 @@ RAILS_ENV=test rake db:create db:migrate
 
 ### To use Redis container (instead of local Redis)
 ```
-docker-compose up -d redis
+docker compose up -d redis
 ```
 
 ### Install WASAPI Downloader
@@ -52,17 +52,17 @@ bundle exec rspec
 
 ## Run with docker
 ```
-docker-compose up -d db
-docker-compose run web rake db:setup
-docker-compose up -d
+docker compose up -d db
+docker compose run web rake db:setup
+docker compose up -d
 ```
 The app will now be available on [http://localhost:3000](http://localhost:3000).
 
 As you make changes (e.g., to gems), you will need to rebuild the web container:
 ```
-docker-compose stop web
-docker-compose build web
-docker-compose up -d
+docker compose stop web
+docker compose build web
+docker compose up -d
 ```
 
 ## Run locally
