@@ -165,18 +165,18 @@ GEM
       capistrano-shared_configs
       ed25519
     docile (1.4.1)
-    dor-services-client (14.21.0)
+    dor-services-client (15.2.0)
       activesupport (>= 4.2, < 8)
       cocina-models (~> 0.99.0)
       deprecation
       faraday (~> 2.0)
       faraday-retry
       zeitwerk (~> 2.1)
-    dor-workflow-client (4.0.0)
+    dor-workflow-client (7.5.0)
       activesupport (>= 3.2.1, < 8)
       deprecation (>= 0.99.0)
       faraday (~> 2.0)
-      faraday-retry
+      faraday-retry (~> 2.0)
       nokogiri (~> 1.6)
       zeitwerk (~> 2.1)
     dry-core (1.0.1)
@@ -478,8 +478,8 @@ DEPENDENCIES
   config
   cssbundling-rails
   dlss-capistrano
-  dor-services-client (~> 14.0)
-  dor-workflow-client (~> 4.0)
+  dor-services-client
+  dor-workflow-client
   erb_lint
   factory_bot_rails
   honeybadger
