@@ -22,8 +22,8 @@ gem 'view_component', '~> 2.0'
 gem 'whenever', '~> 1.0', require: false
 
 # dlss gems
-gem 'dor-services-client', '~> 14.0'
-gem 'dor-workflow-client', '~> 4.0'
+gem 'dor-services-client'
+gem 'dor-workflow-client'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
