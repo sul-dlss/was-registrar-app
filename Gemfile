@@ -12,7 +12,7 @@ gem 'jsbundling-rails' # Transpile app-like JavaScript.
 gem 'okcomputer'
 gem 'pg'
 gem 'propshaft'
-gem 'rails', '~> 7.0.1'
+gem 'rails', '~> 7.2.0'
 gem 'redis', '~> 4.0' # Redis is needed for turbo-streams
 gem 'sidekiq', '~> 7.0'
 gem 'simple_form'
@@ -31,9 +31,9 @@ group :development, :test do
   gem 'capybara'
   gem 'erb_lint', require: false
   gem 'factory_bot_rails'
-  gem 'puma', '~> 5.3' # app server
+  gem 'puma' # app server
   gem 'rspec_junit_formatter'
-  gem 'rspec-rails', '~> 4.0'
+  gem 'rspec-rails'
   gem 'rubocop'
   gem 'rubocop-capybara'
   gem 'rubocop-factory_bot'
