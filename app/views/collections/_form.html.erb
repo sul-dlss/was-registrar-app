@@ -3,7 +3,7 @@
     <div class="card-body">
       <%= form.input :title %>
       <%= form.input :druid, label: 'Collection Druid' %>
-      <%= form.input :fetch_start_month, as: :date, start_year: Time.zone.today.year - 15,
+      <%= form.input :fetch_start_month, as: :date, start_year: 1990,
                                          end_year: Time.zone.today.year, discard_day: true,
                                          order: %i[month year] %>
       <%= form.input :wasapi_provider_account, label: 'WASAPI provider / account', collection: @wasapi_provider_accounts %>
