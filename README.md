@@ -1,8 +1,7 @@
 # WAS Registrar App
 
 [![CircleCI](https://circleci.com/gh/sul-dlss/was-registrar-app/tree/main.svg?style=svg)](https://circleci.com/gh/sul-dlss/was-registrar-app/tree/main)
-[![Test Coverage](https://api.codeclimate.com/v1/badges/825ca3f3c2fe04d3319c/test_coverage)](https://codeclimate.com/github/sul-dlss/was-registrar-app/test_coverage)
-[![Maintainability](https://api.codeclimate.com/v1/badges/825ca3f3c2fe04d3319c/maintainability)](https://codeclimate.com/github/sul-dlss/was-registrar-app/maintainability)
+[![codecov](https://codecov.io/github/sul-dlss/was-registrar-app/graph/badge.svg?token=xa5nf8ztic)](https://codecov.io/github/sul-dlss/was-registrar-app)
 
 The WAS Registrar App (WRA) is a Rails application that:
 * Allows a web archivist to update configuration and schedule web archive collections to be fetched.
