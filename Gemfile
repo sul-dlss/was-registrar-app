@@ -12,13 +12,13 @@ gem 'jsbundling-rails' # Transpile app-like JavaScript.
 gem 'okcomputer'
 gem 'pg'
 gem 'propshaft'
-gem 'rails', '~> 7.2.0'
+gem 'rails', '~> 8.0.0'
 gem 'redis', '~> 4.0' # Redis is needed for turbo-streams
 gem 'sidekiq', '~> 7.0'
 gem 'simple_form'
 gem 'stimulus-rails'
 gem 'turbo-rails', '~> 1.0'
-gem 'view_component', '~> 2.0'
+gem 'view_component'
 gem 'whenever', '~> 1.0', require: false
 
 # dlss gems
