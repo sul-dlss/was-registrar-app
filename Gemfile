@@ -18,7 +18,7 @@ gem 'sidekiq', '~> 7.0'
 gem 'simple_form'
 gem 'stimulus-rails'
 gem 'turbo-rails', '~> 1.0'
-gem 'view_component', '~> 2.0'
+gem 'view_component'
 gem 'whenever', '~> 1.0', require: false
 
 # dlss gems
