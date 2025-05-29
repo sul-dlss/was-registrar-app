@@ -34,7 +34,7 @@ Rails.application.configure do
   # config.ssl_options = { redirect: { exclude: ->(request) { request.path == "/up" } } }
 
   # Log to STDOUT with the current request id as a default log tag.
-  # config.log_tags = [:request_id]
+  config.log_tags = [:request_id]
   # config.logger   = ActiveSupport::TaggedLogging.logger(STDOUT)
   # Log to STDOUT if env var is set
   if ENV['RAILS_LOG_TO_STDOUT'].present?
@@ -66,7 +66,7 @@ Rails.application.configure do
   # config.action_mailer.raise_delivery_errors = false
 
   # Set host to be used by links generated in mailer templates.
-  config.action_mailer.default_url_options = { host: 'example.com' }
+  # config.action_mailer.default_url_options = { host: 'example.com' }
 
   # Specify outgoing SMTP server. Remember to add smtp/* credentials via rails credentials:edit.
   # config.action_mailer.smtp_settings = {
