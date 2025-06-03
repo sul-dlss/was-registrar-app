@@ -53,19 +53,14 @@ class CollectionsController < ApplicationController
   private
 
   def collection_params
-    params.require(:collection).permit(:title,
-                                       :druid,
-                                       :embargo_months,
-                                       :fetch_start_month,
-                                       :active,
-                                       :wasapi_provider_account,
-                                       :wasapi_collection_id)
+    params.expect(collection: %i[title druid embargo_months fetch_start_month
+                                 active wasapi_provider_account wasapi_collection_id])
   end
 
   def wasapi_provider_accounts
     @wasapi_provider_accounts = []
     Settings.wasapi_providers.each do |provider, provider_info|
-      provider_info.accounts.each do |account, _| # rubocop:disable Style/HashEachMethods rubocop thinks each entry is a regular Hash, but accounts elements are actually Arrays of the form [Symbol, Config::options].  so there's no each_key method.
+      provider_info.accounts.each do |account, _| # rubocop:disable Style/HashEachMethods -- rubocop thinks each entry is a regular Hash, but accounts elements are actually Arrays of the form [Symbol, Config::options].  so there's no each_key method.
         @wasapi_provider_accounts << ["#{provider_info.name} (#{provider}) > #{account}",
                                       "#{provider}:#{account}"]
       end

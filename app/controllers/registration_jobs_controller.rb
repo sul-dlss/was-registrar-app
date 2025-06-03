@@ -25,6 +25,6 @@ class RegistrationJobsController < ApplicationController
   private
 
   def registration_job_params
-    params.require(:registration_job).permit(:job_directory, :collection, :admin_policy, :source_id)
+    params.expect(registration_job: %i[job_directory collection admin_policy source_id])
   end
 end
