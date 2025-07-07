@@ -25,13 +25,14 @@ RSpec.describe FetchJob do
       end
     end
 
-    context 'when the fetch is successful and there are warcs' do
+    context 'when the fetch is successful and there are warcs' do # rubocop:disable RSpec/MultipleMemoizedHelpers
       let(:druid) { 'druid:bc123df4557' }
       let(:status) { instance_double(Process::Status, success?: true) }
       let(:request_dro) { instance_double(Cocina::Models::RequestDRO) }
       let(:response_model) { instance_double(Cocina::Models::DRO, externalIdentifier: druid, version: 1) }
       let(:objects_client) { instance_double(Dor::Services::Client::Objects, register: response_model) }
-      let(:wf_client) { instance_double(Dor::Workflow::Client) }
+      let(:wf_client) { instance_double(Dor::Services::Client::Object) }
+      let(:workflow) { instance_double(Dor::Services::Client::ObjectWorkflow) }
 
       before do
         allow(Open3).to receive(:capture3).and_return([nil, stderr, status])
@@ -39,14 +40,15 @@ RSpec.describe FetchJob do
         allow(WebArchiveGlob).to receive(:web_archives)
           .with('spec/fixtures/jobs/AIT_915/2017_11').and_return(['foo.warc'])
         allow(Dor::Services::Client).to receive(:objects).and_return(objects_client)
-        allow(Dor::Workflow::Client).to receive(:new).and_return(wf_client)
-        allow(wf_client).to receive(:create_workflow_by_name)
+        allow(Dor::Services::Client).to receive(:object).with(druid).and_return(wf_client)
+        allow(wf_client).to receive(:workflow).with('wasCrawlPreassemblyWF').and_return(workflow)
+        allow(workflow).to receive(:create).with(version: 1)
         allow(RequestBuilder).to receive(:build).and_return(request_dro)
       end
 
       it 'runs successfully' do
         described_class.perform_now(fetch_month)
-        expect(wf_client).to have_received(:create_workflow_by_name).with(druid, 'wasCrawlPreassemblyWF', version: 1)
+        expect(workflow).to have_received(:create).with(version: 1)
         expect(fetch_month.status).to eq 'success'
         expect(fetch_month.failure_reason).to be_nil
         expect(RequestBuilder).to have_received(:build).with(title: fetch_month.job_directory,

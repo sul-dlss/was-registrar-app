@@ -24,18 +24,20 @@ RSpec.describe RegisterJob do
       let(:request_dro) { instance_double(Cocina::Models::RequestDRO) }
       let(:response_model) { instance_double(Cocina::Models::DRO, externalIdentifier: druid, version: 1) }
       let(:objects_client) { instance_double(Dor::Services::Client::Objects, register: response_model) }
-      let(:wf_client) { instance_double(Dor::Workflow::Client) }
+      let(:wf_client) { instance_double(Dor::Services::Client::Object) }
+      let(:workflow) { instance_double(Dor::Services::Client::ObjectWorkflow) }
 
       before do
         allow(Dor::Services::Client).to receive(:objects).and_return(objects_client)
-        allow(Dor::Workflow::Client).to receive(:new).and_return(wf_client)
-        allow(wf_client).to receive(:create_workflow_by_name)
+        allow(Dor::Services::Client).to receive(:object).with(druid).and_return(wf_client)
+        allow(wf_client).to receive(:workflow).with('wasCrawlPreassemblyWF').and_return(workflow)
+        allow(workflow).to receive(:create).with(version: 1)
         allow(RequestBuilder).to receive(:build).and_return(request_dro)
       end
 
       it 'runs successfully' do
         described_class.perform_now(registration_job)
-        expect(wf_client).to have_received(:create_workflow_by_name).with(druid, 'wasCrawlPreassemblyWF', version: 1)
+        expect(workflow).to have_received(:create).with(version: 1)
         expect(registration_job.status).to eq 'success'
         expect(registration_job.failure_reason).to be_nil
         expect(registration_job.crawl_item_druid).to eq druid

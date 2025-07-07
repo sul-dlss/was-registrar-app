@@ -2,16 +2,12 @@
 
 # Methods to assist jobs that register items.
 module Registering
-  def workflow_client
-    @workflow_client ||= Dor::Workflow::Client.new(url: Settings.workflow.url)
-  end
-
   def web_archives?(crawl_directory)
     WebArchiveGlob.web_archives(crawl_directory).any?
   end
 
   def start_workflow(druid, version)
-    workflow_client.create_workflow_by_name(druid, 'wasCrawlPreassemblyWF', version:)
+    Dor::Services::Client.object(druid).workflow('wasCrawlPreassemblyWF').create(version:)
   end
 
   def success_status(obj, druid: nil)
