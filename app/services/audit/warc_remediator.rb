@@ -1,7 +1,5 @@
 # frozen_string_literal: true
 
-require 'open3'
-
 module Audit
   # Retrieves WARC files from a WASAPI provider and initiates one-time registration.
   class WarcRemediator
@@ -56,25 +54,16 @@ module Audit
     end
 
     def fetch
-      FileUtils.mkdir_p(crawl_directory)
+      @client ||= WasapiClient.new(username: wasapi_account_config.username,
+                                   password: wasapi_account_config.password)
       filenames.each { |filename| fetch_warc(filename) }
     end
 
     def fetch_warc(filename)
-      _, stderr, status = Open3.capture3(Settings.wasapi_downloader_bin, *downloader_args(filename))
-      return if status.success?
-
-      raise "Fetching WARCs failed: #{stderr}"
-    end
-
-    def downloader_args(filename)
-      ['--filename', filename,
-       '--baseurl', wasapi_provider_config.baseurl,
-       '--authurl', wasapi_provider_config.authurl,
-       '--username', wasapi_account_config.username,
-       '--password', wasapi_account_config.password,
-       '--outputBaseDir', "#{crawl_directory}/",
-       '--resume']
+      FileUtils.mkdir_p(crawl_directory)
+      @client.fetch_file(file: filename, output_dir: crawl_directory)
+    rescue StandardError => e
+      raise "Fetching WARC failed: #{e.message}"
     end
 
     def wasapi_provider_config

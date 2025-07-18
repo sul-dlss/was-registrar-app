@@ -35,12 +35,25 @@ module Audit
     attr_reader :collection_druid, :wasapi_collection_id, :wasapi_account, :wasapi_provider, :embargo_months
 
     def wasapi_warc_filenames
-      WasapiWarcLister.new(wasapi_collection_id:, wasapi_provider:,
-                           wasapi_account:, embargo_months:).to_a
+      client = WasapiClient.new(username: wasapi_account_config.username,
+                                password: wasapi_account_config.password)
+      client.filenames(collection: wasapi_collection_id, crawl_start_before: before_date)
     end
 
     def sdr_warc_filenames
       SdrWarcLister.new(collection_druid:).to_a
+    end
+
+    def before_date
+      (Time.zone.today - embargo_months.months).strftime('%Y-%m-01')
+    end
+
+    def wasapi_provider_config
+      Settings.wasapi_providers[wasapi_provider]
+    end
+
+    def wasapi_account_config
+      wasapi_provider_config.accounts[wasapi_account]
     end
   end
 end

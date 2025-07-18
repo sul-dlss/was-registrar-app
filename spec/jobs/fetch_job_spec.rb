@@ -3,17 +3,16 @@
 require 'rails_helper'
 
 RSpec.describe FetchJob do
+  let(:output_dir) { 'spec/fixtures/jobs/AIT_915/2017_11' }
   let(:collection) { create(:ar_collection, admin_policy: 'druid:yf700yh0557', wasapi_collection_id: '915') }
   let(:fetch_month) { create(:fetch_month, collection:, year: 2017) }
 
   describe '#perform_now' do
-    let(:stderr) { nil }
-
     context 'when the fetch is successful and there are no warcs' do
       before do
-        allow(Open3).to receive(:capture3).and_return([nil, stderr, status])
-        allow(FileUtils).to receive(:mkdir_p).with('spec/fixtures/jobs/AIT_915/2017_11').and_call_original
-        allow(WebArchiveGlob).to receive(:web_archives).with('spec/fixtures/jobs/AIT_915/2017_11').and_return([])
+        allow(WasapiClient).to receive(:new).and_return(instance_double(WasapiClient, fetch_warcs: nil))
+        allow(FileUtils).to receive(:mkdir_p).with(output_dir).and_call_original
+        allow(WebArchiveGlob).to receive(:web_archives).with(output_dir).and_return([])
       end
 
       let(:status) { instance_double(Process::Status, success?: true) }
@@ -35,10 +34,9 @@ RSpec.describe FetchJob do
       let(:workflow) { instance_double(Dor::Services::Client::ObjectWorkflow) }
 
       before do
-        allow(Open3).to receive(:capture3).and_return([nil, stderr, status])
-        allow(FileUtils).to receive(:mkdir_p).with('spec/fixtures/jobs/AIT_915/2017_11').and_call_original
+        allow(WasapiClient).to receive(:new).and_return(instance_double(WasapiClient, fetch_warcs: nil))
         allow(WebArchiveGlob).to receive(:web_archives)
-          .with('spec/fixtures/jobs/AIT_915/2017_11').and_return(['foo.warc'])
+          .with(output_dir).and_return(['foo.warc'])
         allow(Dor::Services::Client).to receive(:objects).and_return(objects_client)
         allow(Dor::Services::Client).to receive(:object).with(druid).and_return(wf_client)
         allow(wf_client).to receive(:workflow).with('wasCrawlPreassemblyWF').and_return(workflow)
@@ -62,56 +60,35 @@ RSpec.describe FetchJob do
 
     context 'when the fetch is not successful' do
       let(:status) { instance_double(Process::Status, success?: false) }
-      let(:stderr) { 'Ooops' }
+      let(:wasapi_client) { instance_double(WasapiClient) }
 
       before do
-        allow(Open3).to receive(:capture3).and_return([nil, stderr, status])
-        allow(FileUtils).to receive(:mkdir_p).with('spec/fixtures/jobs/AIT_915/2017_11').and_call_original
+        allow(WasapiClient).to receive(:new).and_return(wasapi_client)
+        allow(wasapi_client).to receive(:fetch_warcs).and_raise(RuntimeError, 'Failed to fetch a valid file')
       end
 
       it 'raises an error' do
-        expect { described_class.perform_now(fetch_month) }.to raise_error 'Fetching WARCs failed: Ooops'
+        expect do
+          described_class.perform_now(fetch_month)
+        end.to raise_error RuntimeError, 'Fetching WARCs failed: Failed to fetch a valid file'
         expect(fetch_month.status).to eq 'failure'
-        expect(fetch_month.failure_reason).to eq 'Fetching WARCs failed: Ooops'
+        expect(fetch_month.failure_reason).to eq 'Fetching WARCs failed: Failed to fetch a valid file'
       end
     end
 
     context 'when a non-fetch error occurs' do
+      let(:wasapi_client) { instance_double(WasapiClient) }
+
       before do
-        allow(FileUtils).to receive(:mkdir_p).with('spec/fixtures/jobs/AIT_915/2017_11').and_raise(Errno::ENOSPC)
+        allow(WasapiClient).to receive(:new).and_return(wasapi_client)
+        allow(wasapi_client).to receive(:fetch_warcs).and_raise(Errno::ENOSPC)
       end
 
       it 'raises an error' do
-        expect { described_class.perform_now(fetch_month) }.to raise_error Errno::ENOSPC
+        expect { described_class.perform_now(fetch_month) }.to raise_error StandardError
         expect(fetch_month.status).to eq 'failure'
-        expect(fetch_month.failure_reason).to eq 'No space left on device'
+        expect(fetch_month.failure_reason).to eq 'Fetching WARCs failed: No space left on device'
       end
-    end
-  end
-
-  describe '#downloader_args' do
-    let(:job) do
-      described_class.new.tap { |job| job.instance_variable_set(:@fetch_month, fetch_month) }
-    end
-
-    it 'returns the correct args' do
-      expect(job.downloader_args).to eq(['--crawlStartAfter',
-                                         '2017-11-01',
-                                         '--crawlStartBefore',
-                                         '2017-12-01',
-                                         '--baseurl',
-                                         'https://archive-it.org/',
-                                         '--authurl',
-                                         'https://archive-it.org/login',
-                                         '--username',
-                                         'user',
-                                         '--password',
-                                         'pass',
-                                         '--outputBaseDir',
-                                         'spec/fixtures/jobs/AIT_915/2017_11/',
-                                         '--collectionId',
-                                         '915',
-                                         '--resume'])
     end
   end
 end

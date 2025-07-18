@@ -1,7 +1,7 @@
 # WAS Registrar App
 
 [![CircleCI](https://circleci.com/gh/sul-dlss/was-registrar-app/tree/main.svg?style=svg)](https://circleci.com/gh/sul-dlss/was-registrar-app/tree/main)
-[![codecov](https://codecov.io/github/sul-dlss/was-registrar-app/graph/badge.svg?token=xa5nf8ztic)](https://codecov.io/github/sul-dlss/was-registrar-app)
+[![codecov](https://codecov.io/gh/sul-dlss/was-registrar-app/graph/badge.svg?token=xa5nf8ztic)](https://codecov.io/gh/sul-dlss/was-registrar-app)
 
 The WAS Registrar App (WRA) is a Rails application that:
 * Allows a web archivist to update configuration and schedule web archive collections to be fetched.
@@ -15,7 +15,6 @@ WAS Registrar App is the successor to the [Web Registrar](https://github.com/sul
 * Ruby 3.4.1
 * Docker / Docker-Compose (optional)
 * npm for building assets
-* Java 8ish for [WASAPI Downloader](https://github.com/sul-dlss/wasapi-downloader)
 
 ## Setup
 ### To use Postgres container (instead of local Postgres)
@@ -33,14 +32,6 @@ RAILS_ENV=test rake db:create db:migrate
 docker compose up -d redis
 ```
 
-### Install WASAPI Downloader
-Note: The WASAPI Downloader is not typically needed for development; it is necessary for running fetches.
-
-```
-curl -L https://github.com/sul-dlss/wasapi-downloader/releases/download/v1.1.1/wasapi-downloader.zip > wasapi-downloader.zip
-unzip wasapi-downloader.zip
-```
-If installing in a different location, make the appropriate change in settings.
 
 ## Tests
 ```
@@ -83,7 +74,7 @@ Alernatively, you can start use docker compose:
 docker compose up -d
 ```
 
-if you want to run the web container in intractive mode, stop it first and then run it so it will show interactive live output:
+if you want to run the web container in interactive mode, stop it first and then run it so it will show interactive live output:
 ```
 docker compose stop web
 docker compose run --service-ports web
