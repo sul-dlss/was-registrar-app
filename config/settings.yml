@@ -1,7 +1,6 @@
 # Default number of months to embargo a collection
 default_embargo_months: 6
 crawl_directory: /was_unaccessioned_data/jobs
-wasapi_downloader_bin: wasapi-downloader/v1.0.0/bin/wasapi-downloader
 
 dor_services:
   url:  'https://dor-services-test.stanford.test'

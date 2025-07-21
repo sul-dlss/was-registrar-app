@@ -19,6 +19,7 @@ gem 'simple_form'
 gem 'stimulus-rails'
 gem 'turbo-rails', '~> 1.0'
 gem 'view_component'
+gem 'wasapi_client'
 gem 'whenever', '~> 1.0', require: false
 
 # dlss gems
