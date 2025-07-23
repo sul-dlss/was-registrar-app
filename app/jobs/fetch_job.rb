@@ -12,8 +12,10 @@ class FetchJob < ApplicationJob
 
   attr_reader :fetch_month
 
-  def perform(fetch_month)
+  def perform(fetch_month) # rubocop:disable Metrics/AbcSize, Metrics/MethodLength
     @fetch_month = fetch_month
+    Honeybadger.context({ collection: fetch_month.collection.druid,
+                          fetch_month: fetch_month.id })
     running_status(fetch_month)
     fetch_warcs
     return success_status(fetch_month) unless web_archives?(fetch_month.crawl_directory)

@@ -82,12 +82,15 @@ RSpec.describe FetchJob do
       before do
         allow(WasapiClient).to receive(:new).and_return(wasapi_client)
         allow(wasapi_client).to receive(:fetch_warcs).and_raise(Errno::ENOSPC)
+        allow(Honeybadger).to receive(:context)
       end
 
       it 'raises an error' do
         expect { described_class.perform_now(fetch_month) }.to raise_error StandardError
         expect(fetch_month.status).to eq 'failure'
         expect(fetch_month.failure_reason).to eq 'Fetching WARCs failed: No space left on device'
+        expect(Honeybadger).to have_received(:context).with(collection: fetch_month.collection.druid,
+                                                            fetch_month: fetch_month.id)
       end
     end
   end
