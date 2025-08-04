@@ -18,7 +18,7 @@ gem 'sidekiq', '~> 7.0'
 gem 'simple_form'
 gem 'stimulus-rails'
 gem 'turbo-rails', '~> 1.0'
-gem 'view_component'
+gem 'view_component', '~> 3.0' # Pinned due to form issues. See https://github.com/sul-dlss/was-registrar-app/issues/751
 gem 'wasapi_client'
 gem 'whenever', '~> 1.0', require: false
 
