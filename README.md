@@ -99,18 +99,35 @@ To deploy to [production](https://was-registrar-app.stanford.edu): `bundle exec 
 
 ## Auditing
 To audit the WARCs that have been accessioned in SDR against the WARCs available from a WASAPI provider,
-use an audit rake task:
-* For a collection that is configured in WRA: `bin/rake audit_collection['<collection druid>']`
-* For a collection that is not configured in WRA: `bin/rake audit['<collection_druid>','<wasapi_collection_id>','<wasapi_account>','<embargo_months>']`
+use an audit rake task.
+
+For a collection that is configured in WRA: 
+
+```
+bin/rake audit_collection['<collection druid>']
+```
+
+This will return a list of WARC filenames that are available but have not been accessioned. This will respect embargoes and exclude WARCs from the current month.
 
 For example:
 ```
-RAILS_ENV=production bin/rake audit_collection['druid:hw105qf0103']`
+RAILS_ENV=production bin/rake audit_collection['druid:hw105qf0103']
+```
+
+For a collection that is not configured in WRA: 
+```
+bin/rake audit['<collection_druid>','<wasapi_collection_id>','<wasapi_account>','<embargo_months>']
+```
+
+
+For example:
+```
 RAILS_ENV=production bin/rake audit['druid:gq319xk9269','14373','shl','1']
 ```
 
-This will return a list of WARC filenames that are available but have not been accessioned. This will respect embargoes
-and exclude WARCs from the current month.
+This will return a list of WARC filenames that are available but have not been accessioned. This will respect the embargo parameter and exclude WARCs from the current month.
+
+
 
 ## Remediating
 To fetch and initiate a one-time registration for missing WARCs (based on the auditing procedure described above),
