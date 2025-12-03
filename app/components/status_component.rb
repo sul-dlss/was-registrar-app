@@ -3,7 +3,7 @@
 # Renders status for a model that has status, crawl_item_druid, and failure_reason
 class StatusComponent < ViewComponent::Base
   def initialize(status_obj:)
-    super
+    super()
     @status_obj = status_obj
   end
 

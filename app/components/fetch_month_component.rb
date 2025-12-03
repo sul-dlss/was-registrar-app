@@ -3,7 +3,7 @@
 # Draws a single table row that represents a FetchMonth model
 class FetchMonthComponent < ViewComponent::Base
   def initialize(fetch_month:)
-    super
+    super()
     @fetch_month = fetch_month
   end
 

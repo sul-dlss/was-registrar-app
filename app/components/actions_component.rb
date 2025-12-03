@@ -3,7 +3,7 @@
 # Actions for a FetchMonth.
 class ActionsComponent < ViewComponent::Base
   def initialize(collection:)
-    super
+    super()
     @collection = collection
   end
 

@@ -3,7 +3,7 @@
 # Draws a single table row that represents a Registration Job
 class RegistrationJobComponent < ViewComponent::Base
   def initialize(registration_job:)
-    super
+    super()
     @registration_job = registration_job
   end
 
