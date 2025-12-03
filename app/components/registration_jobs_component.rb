@@ -3,7 +3,7 @@
 # Draws a table of listing the RegistrationJobs that have current jobs
 class RegistrationJobsComponent < ViewComponent::Base
   def initialize(registration_jobs:)
-    super
+    super()
     @registration_jobs = registration_jobs
   end
 

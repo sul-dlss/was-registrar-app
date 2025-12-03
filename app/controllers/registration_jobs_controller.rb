@@ -3,7 +3,7 @@
 # Controller for one-time registration jobs
 class RegistrationJobsController < ApplicationController
   def index
-    @registration_jobs = RegistrationJob.order('created_at desc')
+    @registration_jobs = RegistrationJob.order(created_at: :desc)
   end
 
   def new
@@ -18,7 +18,7 @@ class RegistrationJobsController < ApplicationController
       flash[:notice] = 'Queueing one-time registration.'
       redirect_to root_path
     else
-      render :new, status: :unprocessable_entity
+      render :new, status: :unprocessable_content
     end
   end
 

@@ -4,6 +4,7 @@ module Audit
   # Enumberable that returns WARC filenames for a collection from SDR.
   class SdrWarcLister
     include Enumerable
+
     def initialize(collection_druid:)
       @collection_druid = collection_druid
     end

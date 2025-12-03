@@ -3,7 +3,7 @@
 # Draws a table of FetchMonths for a given collection
 class FetchMonthsComponent < ViewComponent::Base
   def initialize(collection:)
-    super
+    super()
     @collection = collection
   end
 

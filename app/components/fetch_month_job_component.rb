@@ -5,7 +5,7 @@ class FetchMonthJobComponent < ViewComponent::Base
   with_collection_parameter :fetch_month
 
   def initialize(fetch_month:)
-    super
+    super()
     @fetch_month = fetch_month
   end
 

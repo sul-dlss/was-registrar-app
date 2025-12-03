@@ -6,7 +6,7 @@ class CollectionsController < ApplicationController
   before_action :load_collection, only: %i[edit update fetch retry]
 
   def index
-    @collections = Collection.order('title')
+    @collections = Collection.order(:title)
   end
 
   def new
@@ -25,7 +25,7 @@ class CollectionsController < ApplicationController
       flash[:notice] = 'Collection created.'
       redirect_to root_path
     else
-      render :new, status: :unprocessable_entity
+      render :new, status: :unprocessable_content
     end
   end
 
@@ -34,7 +34,7 @@ class CollectionsController < ApplicationController
       flash[:notice] = 'Collection updated.'
       redirect_to root_path
     else
-      render :edit, status: :unprocessable_entity
+      render :edit, status: :unprocessable_content
     end
   end
 
