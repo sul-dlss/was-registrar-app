@@ -3,6 +3,7 @@
 # Register and item and kick off accessioning workflow
 class RegisterJob < ApplicationJob
   include Registering
+
   queue_as :default
 
   rescue_from(StandardError) do |exception|

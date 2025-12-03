@@ -3,6 +3,7 @@
 # Retrieve the WARCs for the given month, register an item, and kick off accessioning workflow
 class FetchJob < ApplicationJob
   include Registering
+
   queue_as :default
 
   rescue_from(StandardError) do |exception|
