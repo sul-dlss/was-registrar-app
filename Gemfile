@@ -7,6 +7,7 @@ gem 'auto_strip_attributes'
 gem 'bootsnap', '>= 1.1.0', require: false # Reduce boot time via caching; required in config/boot.rb
 gem 'config'
 gem 'cssbundling-rails'
+gem 'dor-services-client'
 gem 'honeybadger'
 gem 'jsbundling-rails' # Transpile app-like JavaScript.
 gem 'okcomputer'
@@ -14,16 +15,13 @@ gem 'pg'
 gem 'propshaft'
 gem 'rails', '~> 8.0.0'
 gem 'redis', '~> 4.0' # Redis is needed for turbo-streams
-gem 'sidekiq', '~> 7.0'
+gem 'sidekiq', '~> 8.0'
 gem 'simple_form'
 gem 'stimulus-rails'
 gem 'turbo-rails', '~> 1.0'
 gem 'view_component'
 gem 'wasapi_client'
 gem 'whenever', '~> 1.0', require: false
-
-# dlss gems
-gem 'dor-services-client'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
