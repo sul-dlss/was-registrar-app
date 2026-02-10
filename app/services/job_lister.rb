@@ -29,7 +29,10 @@ class JobLister
   end
 
   def payloads
-    workers.map do |_, _, work|
+    workers.map do |*args, **kwargs|
+      Rails.logger.info(args)
+      Rails.logger.info(kwargs)
+      work = args[2]
       work['payload']
     end.compact
   end
