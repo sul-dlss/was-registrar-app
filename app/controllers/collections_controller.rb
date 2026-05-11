@@ -68,6 +68,6 @@ class CollectionsController < ApplicationController
   end
 
   def load_collection
-    @collection = Collection.find(params[:id])
+    @collection = Collection.find(params.expect(:id))
   end
 end
