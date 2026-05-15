@@ -536,6 +536,7 @@ DEPENDENCIES
   capistrano-passenger
   capistrano-rails
   capybara
+  cocina-models
   config
   cssbundling-rails
   dlss-capistrano
