@@ -25,6 +25,8 @@ gem 'wasapi_client'
 gem 'whenever', '~> 1.0', require: false
 
 group :development, :test do
+  # Security audit for known security defects in code (use config/brakeman.ignore to ignore issues)
+  gem 'brakeman', require: false
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug'
   gem 'capybara'
