@@ -13,10 +13,10 @@ RSpec.describe 'Create a registration job', :js do
       click_link 'Create a one-time registration'
       click_button 'Create Registration job'
 
-      expect(page).to have_content "Job directory can't be blank"
-      expect(page).to have_content "Collection can't be blank and Collection must be a " \
-                                   'valid druid beginning with druid:'
-      expect(page).to have_content "Source can't be blank and Source must be namespace:identifier"
+      expect(page).to have_text "Job directory can't be blank"
+      expect(page).to have_text "Collection can't be blank and Collection must be a " \
+                                'valid druid beginning with druid:'
+      expect(page).to have_text "Source can't be blank and Source must be namespace:identifier"
     end
   end
 
@@ -34,7 +34,7 @@ RSpec.describe 'Create a registration job', :js do
       fill_in 'Source ID', with: 'sul:AIT_123'
       click_button 'Create Registration job'
 
-      expect(page).to have_content 'Queueing one-time registration.'
+      expect(page).to have_text 'Queueing one-time registration.'
       expect(RegistrationJob.exists?(job_directory: 'AIT_123')).to be true
       expect(RegisterJob).to have_received(:perform_later)
     end
