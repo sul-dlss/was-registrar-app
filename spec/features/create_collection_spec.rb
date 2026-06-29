@@ -13,9 +13,9 @@ RSpec.describe 'Create a collection', :js do
       click_link 'Add a Collection'
       click_button 'Create Collection'
 
-      expect(page).to have_content "Title can't be blank"
-      expect(page).to have_content "Druid can't be blank and Druid must be a valid druid beginning with druid:"
-      expect(page).to have_content "Wasapi provider account can't be blank"
+      expect(page).to have_text "Title can't be blank"
+      expect(page).to have_text "Druid can't be blank and Druid must be a valid druid beginning with druid:"
+      expect(page).to have_text "Wasapi provider account can't be blank"
     end
   end
 
@@ -33,7 +33,7 @@ RSpec.describe 'Create a collection', :js do
       check 'collection_active'
       click_button 'Create Collection'
 
-      expect(page).to have_content 'Collection created.'
+      expect(page).to have_text 'Collection created.'
       expect(Collection.exists?(title: 'Robots')).to be true
     end
   end

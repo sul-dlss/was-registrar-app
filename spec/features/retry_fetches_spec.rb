@@ -8,7 +8,7 @@ RSpec.describe 'Retry fetches' do
   context 'when no retriable fetch months' do
     it 'does not render button' do
       visit edit_collection_path(collection)
-      expect(page).to have_content "Edit #{collection.title}"
+      expect(page).to have_text "Edit #{collection.title}"
       expect(page).to have_button 'Queue fetch jobs'
       expect(page).to have_no_button 'Retry fetch jobs'
     end
@@ -23,12 +23,12 @@ RSpec.describe 'Retry fetches' do
 
     it 'allows retrying' do
       visit edit_collection_path(collection)
-      expect(page).to have_content "Edit #{collection.title}"
+      expect(page).to have_text "Edit #{collection.title}"
 
       click_button 'Retry fetch jobs'
 
-      expect(page).to have_content "Edit #{collection.title}"
-      expect(page).to have_content 'Queued retry fetch jobs.'
+      expect(page).to have_text "Edit #{collection.title}"
+      expect(page).to have_text 'Queued retry fetch jobs.'
       expect(FetchJobRetrier).to have_received(:retry).with(collection:)
     end
   end

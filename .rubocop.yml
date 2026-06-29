@@ -457,8 +457,6 @@ Rails/SelectMap: # new in 2.21
   Enabled: true
 Rails/UnusedRenderContent: # new in 2.21
   Enabled: true
-Capybara/ClickLinkOrButtonStyle: # new in 2.19
-  Enabled: false
 Capybara/RedundantWithinFind: # new in 2.20
   Enabled: true
 Capybara/RSpec/HaveSelector: # new in 2.19

@@ -13,10 +13,10 @@ RSpec.describe 'Queue fetch jobs for a collection', :js do
   it 'initiates the fetches' do
     visit '/'
     click_link collection.title
-    expect(page).to have_content 'Edit'
+    expect(page).to have_text 'Edit'
 
     click_button 'Queue fetch jobs'
-    expect(page).to have_content 'Queued new fetch jobs.'
+    expect(page).to have_text 'Queued new fetch jobs.'
     expect(FetchJobCreator).to have_received(:run).with(collection:)
   end
 end
