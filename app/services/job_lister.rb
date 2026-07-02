@@ -30,7 +30,7 @@ class JobLister
 
   def payloads
     workers.map do |_, _, work|
-      work['payload']
+      work.payload
     end.compact
   end
 end

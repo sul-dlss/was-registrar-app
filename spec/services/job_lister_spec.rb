@@ -19,8 +19,7 @@ RSpec.describe JobLister do
   end
 
   context 'when there are current jobs' do
-    let(:workers) { instance_double(Sidekiq::Workers) }
-    let(:work) do
+    let(:payload) do
       gid = "gid://was-registrar-app/FetchMonth/#{fetch_month.id}"
       {
         'args' => [
@@ -33,10 +32,10 @@ RSpec.describe JobLister do
         ]
       }.to_json
     end
+    let(:sidekiq_work) { Sidekiq::Work.new('pid', 'tid', { 'payload' => payload, 'queue' => 'default', 'run_at' => Time.now.to_i }) }
 
     before do
-      allow(Sidekiq::Workers).to receive(:new).and_return(workers)
-      allow(workers).to receive(:map).and_return([nil, work])
+      allow(Sidekiq::Workers).to receive(:new).and_return([['pid', 'tid', sidekiq_work]])
     end
 
     it 'returns FetchMonths for those jobs' do
