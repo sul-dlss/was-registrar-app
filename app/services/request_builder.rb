@@ -26,7 +26,6 @@ class RequestBuilder
   def props
     {
       type: Cocina::Models::ObjectType.webarchive_binary,
-      label: title,
       version: 1,
       description: { title: [{ value: title }] },
       access: { view: 'citation-only', download: 'none' },
