@@ -31,7 +31,6 @@ RSpec.describe RequestBuilder do
 
   let(:expected) do
     Cocina::Models::RequestDRO.new({ type: Cocina::Models::ObjectType.webarchive_binary,
-                                     label: 'AIT_915/2017_11',
                                      version: 1,
                                      description: { title: [{ value: 'AIT_915/2017_11' }] },
                                      access: { view: 'citation-only', download: 'none' },
