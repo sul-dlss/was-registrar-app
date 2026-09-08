@@ -233,7 +233,6 @@ GEM
       net-http (~> 0.5)
     faraday-retry (2.4.0)
       faraday (~> 2.0)
-    ffi (1.17.4)
     ffi (1.17.4-aarch64-linux-gnu)
     ffi (1.17.4-arm64-darwin)
     ffi (1.17.4-x86_64-darwin)
@@ -327,7 +326,6 @@ GEM
       racc
     patience_diff (1.2.0)
       optimist (~> 3.0)
-    pg (1.6.3)
     pg (1.6.3-aarch64-linux)
     pg (1.6.3-arm64-darwin)
     pg (1.6.3-x86_64-darwin)
@@ -557,7 +555,7 @@ DEPENDENCIES
   factory_bot_rails
   honeybadger
   jsbundling-rails
-  json (< 3)
+  json (~> 2.0)
   listen (~> 3.3)
   okcomputer
   pg
