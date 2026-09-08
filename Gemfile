@@ -11,6 +11,7 @@ gem 'cssbundling-rails'
 gem 'dor-services-client'
 gem 'honeybadger'
 gem 'jsbundling-rails' # Transpile app-like JavaScript.
+gem 'json', '~> 2.0' # Pinned until Rails 8.1.4 is released https://github.com/rails/rails/issues/58685
 gem 'okcomputer'
 gem 'pg'
 gem 'propshaft'
