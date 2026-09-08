@@ -2,7 +2,7 @@
 
 require 'simplecov'
 SimpleCov.start :rails do
-  add_filter 'spec'
+  skip 'spec'
 
   if ENV['CI']
     require 'simplecov_json_formatter'

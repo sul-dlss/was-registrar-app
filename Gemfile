@@ -11,6 +11,9 @@ gem 'cssbundling-rails'
 gem 'dor-services-client'
 gem 'honeybadger'
 gem 'jsbundling-rails' # Transpile app-like JavaScript.
+# json 3.0 made JSON.parse's options keyword-only, but ActiveSupport::JSON.decode
+# still passes them positionally. Unpin once Rails supports json 3.
+gem 'json', '< 3'
 gem 'okcomputer'
 gem 'pg'
 gem 'propshaft'
