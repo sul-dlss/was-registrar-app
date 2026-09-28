@@ -555,7 +555,6 @@ DEPENDENCIES
   factory_bot_rails
   honeybadger
   jsbundling-rails
-  json (~> 2.0)
   listen (~> 3.3)
   okcomputer
   pg
