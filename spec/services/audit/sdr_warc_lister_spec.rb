@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-# rubocop:disable RSpec/IndexedLet
+# rubocop:disable-next RSpec/IndexedLet
 RSpec.describe Audit::SdrWarcLister do
   let(:files) { described_class.new(collection_druid: 'druid:hw105qf0103').to_a }
 
@@ -107,4 +107,3 @@ RSpec.describe Audit::SdrWarcLister do
     expect(cocina2).not_to have_received(:structural)
   end
 end
-# rubocop:enable RSpec/IndexedLet
