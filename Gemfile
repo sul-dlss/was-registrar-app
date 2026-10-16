@@ -4,7 +4,7 @@ source 'https://rubygems.org'
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
 gem 'auto_strip_attributes'
-gem 'bootsnap', '>= 1.1.0', require: false # Reduce boot time via caching; required in config/boot.rb
+gem 'bootsnap', require: false # Reduce boot time via caching; required in config/boot.rb
 gem 'cocina-models'
 gem 'config'
 gem 'cssbundling-rails'
@@ -15,14 +15,14 @@ gem 'okcomputer'
 gem 'pg'
 gem 'propshaft'
 gem 'rails', '~> 8.1.0'
-gem 'redis', '~> 4.0' # Redis is needed for turbo-streams
-gem 'sidekiq', '~> 8.0'
+gem 'redis' # Redis is needed for turbo-streams
+gem 'sidekiq'
 gem 'simple_form'
 gem 'stimulus-rails'
-gem 'turbo-rails', '~> 1.0'
+gem 'turbo-rails'
 gem 'view_component'
 gem 'wasapi_client'
-gem 'whenever', '~> 1.0', require: false
+gem 'whenever', require: false
 
 group :development, :test do
   # Security audit for known security defects in code (use config/brakeman.ignore to ignore issues)
@@ -48,8 +48,8 @@ end
 
 group :development do
   # Access an interactive console on exception pages or by calling 'console' anywhere in the code.
-  gem 'listen', '~> 3.3'
-  gem 'web-console', '>= 4.1.0'
+  gem 'listen'
+  gem 'web-console'
 end
 
 group :deployment do

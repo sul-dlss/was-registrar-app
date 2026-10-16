@@ -58,7 +58,7 @@ class RequestBuilder
     }
   end
 
-  # rubocop:disable Metrics/MethodLength
+  # rubocop:disable-next Metrics/MethodLength
   def file_props_for(filepath, filename)
     {
       type: Cocina::Models::ObjectType.file,
@@ -72,7 +72,6 @@ class RequestBuilder
       administrative:
     }
   end
-  # rubocop:enable Metrics/MethodLength
 
   def message_digests(filepath)
     [
